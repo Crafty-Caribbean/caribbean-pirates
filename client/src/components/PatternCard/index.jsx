@@ -1,20 +1,31 @@
 import React from 'react';
+import HeartButton from './HeartButton';
 import styles from './PatternCard.css';
 
 class PatternCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showHeart: false,
     };
+    this.toggleShowHeart = this.toggleShowHeart.bind(this);
+  }
+
+  toggleShowHeart() {
+    const { showHeart } = this.state;
+    this.setState({
+      showHeart: !showHeart,
+    });
   }
 
   render() {
-    const cardWidth = 252;
-    // make this a prop
+    const { cardWidth, imgSrc } = this.props;
+    const { showHeart } = this.state;
     return (
-      <div className={`${styles.patternCard} pattern-card`} style={{ width: `${cardWidth}px` }}>
+      <div className={`${styles.patternCard} pattern-card`} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
         <div className={`image-div ${styles.imageContent}`}>
-          <img src="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" alt="pattern" />
+          <img src={imgSrc} alt="pattern" />
+          {showHeart ? <HeartButton /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
@@ -26,7 +37,6 @@ class PatternCard extends React.Component {
             <button type="button">Pattern type</button>
           </div>
         </div>
-
       </div>
     );
   }
