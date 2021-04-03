@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header/Header';
+import PatternPage from './PatternPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        {/* <PatternPage /> */}
         Put your app here
         { /* <AppHere /> */ }
       </div>
