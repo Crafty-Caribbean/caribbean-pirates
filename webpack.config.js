@@ -1,6 +1,3 @@
-/*
-Mikey's
-*/
 const path = require('path');
 
 module.exports = {
