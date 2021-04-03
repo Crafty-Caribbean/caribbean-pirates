@@ -17,7 +17,7 @@ class App extends React.Component {
         <Header />
         {/* <PatternPage /> */}
         {/* <PatternCard /> */}
-        Put your app here
+        {/* Put your app here */}
         { /* <AppHere /> */ }
       </div>
     );
