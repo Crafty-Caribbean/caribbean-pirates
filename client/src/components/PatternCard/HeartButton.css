@@ -1,0 +1,14 @@
+.heartButton {
+  position: relative;
+  right: 35px;
+  top: 3px;
+  height: 32px;
+  width: 32px;
+  background: none;
+  border: none;
+}
+
+.heartButton:hover {
+  color: pink;
+  cursor: pointer;
+}
