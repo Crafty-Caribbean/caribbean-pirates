@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
     const { searchedText } = this.state;
     let searchMenuRender;
     let searchMenu = (
-      <div className={styles.searchMenu}>This will be search menu</div>
+      <div className={styles.searchMenu}>This will be suggestions menu</div>
     );
 
     searchedText.length > 0 ? searchMenuRender = searchMenu : null;
@@ -37,7 +37,7 @@ class SearchBar extends React.Component {
       <div>
         <form>
           <div className={styles.searchContainer}>
-            <FaSearch className={styles.searchIcon} size="25" color="#EBEBEB" />
+            <FaSearch className={styles.searchIcon} size="25" color="#D1D1D1" />
             <div>
               <input
                 className={styles.searchInput}
