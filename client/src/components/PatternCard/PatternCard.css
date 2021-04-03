@@ -1,0 +1,22 @@
+.patternCard {
+  padding: 16px 8px;
+  padding-top: 0px;
+}
+
+.imageContent img {
+  width: 100%;
+  border-radius: 16px;
+  height: auto;
+  object-fit: cover;
+}
+
+.patternCardFooterContent,
+.patternCardFooterContentTags {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.patternCardFooterContent button:first-child,
+.patternCardFooterContentTags button:first-child {
+  margin-right: 10px;
+}
