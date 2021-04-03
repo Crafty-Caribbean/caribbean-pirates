@@ -1,6 +1,13 @@
 .patternCard {
-  padding: 16px 8px;
-  padding-top: 0px;
+  /* padding: 16px 8px; */
+  /* padding-top: 0px; */
+  margin: 16px 8px;
+  margin-top: 0px;
+}
+
+.imageContent {
+  display: grid;
+  grid-template-columns: 100% auto;
 }
 
 .imageContent img {
@@ -8,15 +15,35 @@
   border-radius: 16px;
   height: auto;
   object-fit: cover;
+  padding-bottom: 8px;
 }
 
 .patternCardFooterContent,
 .patternCardFooterContentTags {
   display: flex;
   justify-content: flex-start;
+  padding: 8px;
+  padding-top: 0px;
+}
+
+.patternCardFooterContent button,
+.patternCardFooterContentTags button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.patternCardFooterContent button:hover {
+  text-decoration: underline;
+}
+
+.patternCardFooterContentTags button {
+  border: 1px solid #888;
+  border-radius: 16px;
 }
 
 .patternCardFooterContent button:first-child,
 .patternCardFooterContentTags button:first-child {
   margin-right: 10px;
 }
+
