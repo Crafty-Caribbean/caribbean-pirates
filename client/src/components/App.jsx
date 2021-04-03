@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header/Header';
 import PatternPage from './PatternPage';
 import PatternCard from './PatternCard';
+import UserPage from './UserPage/UserPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class App extends React.Component {
         {/* <PatternPage /> */}
         {/* <PatternCard /> */}
         Put your app here
-        { /* <AppHere /> */ }
+        <UserPage userId={1} />
       </div>
     );
   }
