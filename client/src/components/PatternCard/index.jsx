@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HeartButton from './HeartButton';
 import styles from './PatternCard.css';
 
@@ -29,7 +30,11 @@ class PatternCard extends React.Component {
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
-            <button type="button">Title</button>
+            <span className={`pattern-card-footer-title ${styles.patternCardFooterContentTitle}`}>
+              <Link to="/patterns/1">
+                Title
+              </Link>
+            </span>
             <span>$Price</span>
           </div>
           <div className={`pattern-card-footer-content-tags ${styles.patternCardFooterContentTags}`}>
