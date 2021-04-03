@@ -1,0 +1,4 @@
+.patternList {
+  display: flex;
+  flex-direction: column;
+}

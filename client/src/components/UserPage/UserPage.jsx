@@ -11,10 +11,10 @@ const UserPage = () => {
   const [purchased, setPurchased] = useState(dummyData.patterns.purchased);
   const [favorites, setFavorites] = useState(dummyData.patterns.favorites);
   const [created, setCreated] = useState(dummyData.patterns.created);
-  const [inProgress, setProgress] = useState(
+  const [completed, setCompleted] = useState(
     dummyData.patterns.projects.filter((pattern) => pattern.progress === 100),
   );
-  const [completed, setCompleted] = useState(
+  const [inProgress, setProgress] = useState(
     dummyData.patterns.projects.filter((pattern) => pattern.progress !== 100),
   );
 
