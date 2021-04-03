@@ -33,6 +33,10 @@
   cursor: pointer;
 }
 
+.patternCardFooterContent button:hover {
+  text-decoration: underline;
+}
+
 .patternCardFooterContentTags button {
   border: 1px solid #888;
   border-radius: 16px;
