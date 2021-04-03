@@ -18,11 +18,11 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        {/* <form>
+        <form>
           <FaSearch className={styles.searchIcon} size="15" color="#E8E8E8" onClick={this.handleSearch} />
           <input>
           </input>
-        </form> */}
+        </form>
       </div>
     );
   }
