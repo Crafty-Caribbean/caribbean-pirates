@@ -18,7 +18,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 2,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -31,7 +31,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 3,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -60,7 +60,7 @@ module.exports = {
         progress: 100,
       },
       {
-        id: 1,
+        id: 2,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -73,7 +73,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 3,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -102,7 +102,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 2,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -115,7 +115,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 3,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -126,7 +126,7 @@ module.exports = {
         difficulty: 'string',
         author: 'string',
         progress: 10,
-      }
+      },
     ],
 
     purchased: [
@@ -144,7 +144,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 2,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -157,7 +157,7 @@ module.exports = {
         progress: 10,
       },
       {
-        id: 1,
+        id: 3,
         images: [
           './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
           './henry-co--odUkx8C2gg-unsplash.jpg',
@@ -168,7 +168,7 @@ module.exports = {
         difficulty: 'string',
         author: 'string',
         progress: 10,
-      }
+      },
     ],
   },
 };

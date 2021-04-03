@@ -18,23 +18,27 @@ const UserPage = () => {
     dummyData.patterns.projects.filter((pattern) => pattern.progress !== 100),
   );
 
-  // const getUserData = (userId) => {
-  //   axios.get(`/users/${userId}`)
-  //     .then(({ data }) => {
-  //       setPurchased(data.patterns.purchased);
-  //       setFavorites(data.patterns.favorites);
-  //       setCreated(data.owned);
-  //       setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
-  //       setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const getUserData = (userId) => {
+    console.log(userId);
+    // axios.get(`/users/${userId}`)
+    //   .then(({ data }) => {
+    //     setPurchased(data.patterns.purchased);
+    //     setFavorites(data.patterns.favorites);
+    //     setCreated(data.owned);
+    //     setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
+    //     setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
 
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
+  const { location } = window;
+  useEffect(() => {
+    if (location) {
+      getUserData(`${location.pathname.split('/')[2]}`);
+    }
+  }, []);
 
   return (
     <div className="userpage-container">
