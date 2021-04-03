@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from '../SearchBar';
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Header extends React.Component {
     return (
       <div id="header">
         <span>StitchSaver</span>
+        <SearchBar />
       </div>
     );
   }
