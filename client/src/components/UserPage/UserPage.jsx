@@ -4,6 +4,7 @@ import axios from 'axios';
 // import PropTypes from 'prop-types';
 import dummyData from './dummyData/dummyData';
 import PatternList from './PatternList';
+import styles from './userPage.module.css';
 
 const UserPage = () => {
   // console.log(dummyData);
@@ -38,11 +39,13 @@ const UserPage = () => {
   return (
     <div className="userpage-container">
       <div className="user-static">IM</div>
-      <PatternList className="Purchased" list={purchased} title="Purchased" />
-      <PatternList className="Favorites" list={favorites} title="Favorites" />
-      <PatternList className="Created" list={created} title="Created" />
-      <PatternList className="In-Progress" list={inProgress} title="In Progress" />
-      <PatternList className="Completed" list={completed} title="Completed" />
+      <div className={styles.patternsContainer}>
+        <PatternList className="Purchased" list={purchased} title="Purchased" />
+        <PatternList className="Favorites" list={favorites} title="Favorites" />
+        <PatternList className="Created" list={created} title="Created" />
+        <PatternList className="In-Progress" list={inProgress} title="In Progress" />
+        <PatternList className="Completed" list={completed} title="Completed" />
+      </div>
     </div>
   );
 };
