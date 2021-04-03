@@ -22,7 +22,7 @@ class PatternCard extends React.Component {
     const { cardWidth, imgSrc } = this.props;
     const { showHeart } = this.state;
     return (
-      <div className={`${styles.patternCard} pattern-card`} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
+      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
         <div className={`image-div ${styles.imageContent}`}>
           <img src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton /> : ''}
