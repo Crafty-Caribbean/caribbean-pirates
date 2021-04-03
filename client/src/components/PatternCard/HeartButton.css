@@ -6,6 +6,7 @@
   width: 32px;
   background: none;
   border: none;
+  outline: none;
 }
 
 .heartButton:hover {
