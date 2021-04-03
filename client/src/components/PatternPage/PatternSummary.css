@@ -1,0 +1,100 @@
+.patternSummaryContainer {
+  display: flex;
+  /* align-content: space-between; */
+  /* justify-content: space-between; */
+  flex-direction: column;
+  height:100%;
+  padding: 0px 32px;
+}
+
+.header{
+  height:10%;
+}
+
+.content{
+  height: 65%;
+}
+
+.footer {
+  height:25%;
+}
+
+.favoritebutton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.patternName {
+  color: blueviolet;
+  display: flex;
+  /* justify-content: center; */
+  /* font-size: 50px; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 36px;
+}
+
+.userpfp {
+  position:relative;
+  border: 1px solid purple;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  top: -7px;
+  margin-right: 5px;
+}
+.authorName {
+  color: black;
+  border: transparent;
+  display:flex;
+  background-color: transparent;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.authorName:hover {
+  color:red;
+  cursor:pointer;
+  outline:none;
+}
+
+.authorContainer{
+  display:flex;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.tagContainer {
+  /* border: 1px solid brown; */
+  height: 30px;
+  width : 100%;
+  display: flex;
+}
+
+.craftTypeTag {
+  color:orange
+}
+
+.skillLevelTag {
+  margin-left: 5px;
+  color:black
+}
+
+
+
+.descriptionInfo{
+  color:green;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+}
+
+.priceAndBuy {
+  height: 50px;
+  width: 100%;
+  /* border: 1px solid brown; */
+  /* bottom: 10px; */
+}
+
+.test {
+  /* display: flex; */
+  /* align-content: flex-end; */
+  /* align-items: flex-end; */
+}
+
