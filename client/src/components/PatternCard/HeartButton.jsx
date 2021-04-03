@@ -1,5 +1,4 @@
 import React from 'react';
-// import { BiHeart } from 'react-icons/bi';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import styles from './HeartButton.css';
 
