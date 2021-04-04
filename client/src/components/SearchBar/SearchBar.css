@@ -1,6 +1,6 @@
 .searchContainer {
   height: 35px;
-  width: 80%;
+  width: 90%;
   display: grid;
   grid-template-columns: auto 30px;
 }
