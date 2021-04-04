@@ -1,6 +1,6 @@
 .patternsContainer {
   display: flex;
-  left: 15%;
-  right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 

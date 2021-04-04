@@ -10,9 +10,9 @@ const PatternList = ({ title, list }) => {
   console.log();
   return (
     <div>
-      <div>{title}</div>
-      <div className={styles.patternsContainer}>
-        {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} />)}
+      <div className={styles.title}>{title}</div>
+      <div className={styles.patternsList}>
+        {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} />)}
         <TopArrow />
         <DownArrow />
       </div>

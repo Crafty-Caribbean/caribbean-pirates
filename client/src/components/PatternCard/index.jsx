@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HeartButton from './HeartButton';
 import styles from './PatternCard.css';
+import ProgressBar from '../UserPage/ProgressBar';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -20,10 +21,11 @@ class PatternCard extends React.Component {
   }
 
   render() {
-    const { cardWidth, imgSrc } = this.props;
+    const { cardWidth, imgSrc, progress, title } = this.props;
     const { showHeart } = this.state;
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
+        {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         <div className={`image-div ${styles.imageContent}`}>
           <img src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton /> : ''}
