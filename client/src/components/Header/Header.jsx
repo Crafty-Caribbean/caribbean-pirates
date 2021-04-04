@@ -12,6 +12,7 @@ class Header extends React.Component {
     };
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleProfileHover = this.handleProfileHover.bind(this);
+    this.navToHomePage = this.navToHomePage.bind(this);
   }
 
   handleProfileClick(event) {
@@ -26,13 +27,18 @@ class Header extends React.Component {
     this.setState({ profileHover: !profileHover });
   }
 
+  navToHomePage() {
+    console.log('Take user to home/search page');
+  }
+
   render() {
     const { profileHover } = this.state;
 
     return (
       <div id="header" className={styles.header}>
-        <button className={styles.logo}>StitchSaver</button>
-        <button className={styles.homeButton}>Home</button>
+        <img className={styles.logoImage} src="/images/StitchSaverLogo.png" alt="StitchSaver Logo" />
+        <button className={styles.logoName} type="submit">StitchSaver</button>
+        <button className={styles.homeButton} type="submit">Home</button>
         <SearchBar />
         <div
           className={styles.profileIconWrapper}
@@ -43,7 +49,7 @@ class Header extends React.Component {
             className={styles.profileIcon}
             size="50"
             // color="white"
-            color={profileHover ? 'white' : '#D1D1D1'}
+            color={profileHover ? 'black' : '#D1D1D1'}
             onClick={this.handleProfileClick}
           />
         </div>

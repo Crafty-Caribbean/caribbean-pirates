@@ -42,7 +42,7 @@ class SearchBar extends React.Component {
     const { searchedText, searchHover } = this.state;
 
     return (
-      <div>
+      <div className={styles.searchBar}>
         <form onSubmit={this.handleSearch}>
           <div className={styles.searchContainer}>
             <input
@@ -63,7 +63,7 @@ class SearchBar extends React.Component {
               <FaSearch
                 className={styles.searchIcon}
                 size="25"
-                color={searchHover ? 'white' : '#D1D1D1'}
+                color={searchHover ? 'black' : '#D1D1D1'}
                 onClick={this.handleSearch}
               />
             </div>

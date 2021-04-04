@@ -1,6 +1,12 @@
-.searchContainer {
+.searchBar {
+  position: relative;
+  justify-self: center;
   height: 35px;
   width: 90%;
+}
+
+.searchContainer {
+  position: relative;
   display: grid;
   grid-template-columns: auto 30px;
 }
@@ -23,7 +29,7 @@
   justify-content: center;
   align-content: center;
   border: solid 10px white;
-  margin-left: 20px;
+  margin: 0px 20px;
 }
 
 .searchIconWrapper:hover,
@@ -60,6 +66,7 @@
   background-color: #E0E0E0;
   box-shadow: 2px 2px 7px 1px #EBEBEB;
   z-index: 4;
+  color: black;
 }
 
 .searchSuggestions {
