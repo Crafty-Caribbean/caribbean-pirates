@@ -2,12 +2,12 @@
   height: 35px;
   width: 80%;
   display: grid;
-  grid-template-columns: 30px auto;
+  grid-template-columns: auto 30px;
 }
 
-.searchIcon {
-  padding-top: 5px;
-}
+/* .searchContainer:focus-within {
+  outline-color: E0E0E0;
+} */
 
 .searchInput {
   margin: 0px;
@@ -43,4 +43,8 @@
   justify-content: center;
   color: #5C5C5C;
   box-shadow: 2px 2px 7px 1px #EBEBEB;
+}
+
+.searchIcon {
+  padding: 5px;
 }

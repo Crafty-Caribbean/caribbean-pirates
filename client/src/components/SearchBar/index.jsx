@@ -9,47 +9,46 @@ class SearchBar extends React.Component {
       searchedText: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  // Get request for searchbar
-
-  // Need suggestions
-
-  // Suggestions for patterns, authors, tags, etc.
-
   handleChange(event) {
-    console.log(event.target.value);
     this.setState({
       searchedText: event.target.value,
     });
+    // Need suggestions
+    // Suggestions for patterns, authors, tags, etc.
+  }
+
+  handleSearch(event) {
+    const { searchedText } = this.state;
+    event.preventDefault();
+    console.log('Searched for ', searchedText);
+    // Will need to query for patterns, users/authorors, tags, etc.
   }
 
   render() {
     const { searchedText } = this.state;
-    let searchMenuRender;
-    let searchMenu = (
-      <div className={styles.searchMenu}>This will be suggestions menu</div>
-    );
-
-    searchedText.length > 0 ? searchMenuRender = searchMenu : null;
+    const options = ['testing', 'lala', 'abc', 'hello', 'yay', 'no', 'happy', 'angry', 'bye'];
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSearch} autoComplete="off">
           <div className={styles.searchContainer}>
-            <FaSearch className={styles.searchIcon} size="25" color="#D1D1D1" />
             <div>
               <input
                 className={styles.searchInput}
-                // placeholder="Search"
                 placeholder="Search"
-                type="text"
+                type="search"
                 name="searchedText"
                 value={searchedText}
+                spellCheck="true"
                 onChange={this.handleChange}
               />
-              {searchMenuRender}
+              {searchedText.length > 0
+              && <div className={styles.searchMenu}>This will be suggestions menu</div>}
             </div>
+            <FaSearch className={styles.searchIcon} size="25" color="#D1D1D1" />
           </div>
         </form>
       </div>
@@ -66,3 +65,24 @@ export default SearchBar;
 // <button className={styles.searchView} type="text" name="searchView">
 // {magnifyingIcon} Search
 // </button>
+
+// To blur background during search and close when clicking on blur:
+
+// if (searchedText.length > 0) {
+//   searchMenuRender = searchMenu;
+//   document.getElementById("root").style.filter = "blur(8px)";
+//   document.getElementById('root').onclick = this.closeSearchSuggestions;
+// } else {
+//   searchMenuRender = null;
+//   document.getElementById("root").style.filter = "none";
+//   document.getElementById('root').onclick = this.closeSearchSuggestions;
+// }
+
+// this.closeSearchSuggestions = this.closeSearchSuggestions.bind(this);
+
+// closeSearchSuggestions() {
+//   this.setState({
+//     searchedText: '',
+//   });
+//   document.getElementById("root").style.filter = "none";
+// }
