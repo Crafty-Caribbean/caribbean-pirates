@@ -1,0 +1,73 @@
+.header {
+  display: grid;
+  position: sticky;
+  grid-template-columns: 20% 15% auto 5%;
+  background-color: white;
+  opacity: 0.7;
+}
+
+.logo {
+  font-family: "montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  border: none;
+  position: relative;
+  outline: none;
+  height: 47px;
+  width: 80%;
+  align-self: center;
+  color: #757575;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.homeButton {
+  font-family: "montserrat", sans-serif;
+  font-weight: 700;
+  border: none;
+  position: relative;
+  outline: none;
+  height: 50px;
+  width: 60%;
+  align-self: center;
+  cursor: pointer;
+  color: #808080;
+  background: #EBEBEB;
+  border-radius: 50px;
+}
+
+.homeButton:hover,
+.homeButton:focus {
+  outline: none;
+  box-shadow: 2px 2px 7px 1px #EBEBEB;
+  background: #E0E0E0;
+  color: #808080;
+}
+
+.profileIcon:hover,
+.profileIcon:focus {
+  outline: none;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+  color: white;
+}
+
+.profileIconWrapper {
+  display: grid;
+  padding: 5px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-content: center;
+  border: solid 10px white;
+}
+
+.profileIconWrapper:hover,
+.profileIconWrapper:focus {
+  background-color: #EBEBEB;
+  border: solid 10px #EBEBEB;
+  color: white;
+  box-shadow: 2px 2px 7px 1px #EBEBEB;
+}

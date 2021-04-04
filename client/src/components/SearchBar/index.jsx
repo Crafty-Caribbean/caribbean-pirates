@@ -7,14 +7,15 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       searchedText: '',
+      searchHover: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.searchHover = this.searchHover.bind(this);
   }
 
   // Get request for searchbar
-
   // Need suggestions
-
   // Suggestions for patterns, authors, tags, etc.
 
   handleChange(event) {
@@ -24,12 +25,25 @@ class SearchBar extends React.Component {
     });
   }
 
-  render() {
+  handleSearch(event) {
     const { searchedText } = this.state;
+    event.preventDefault();
+    console.log('Query/search database for: ', searchedText);
+    this.setState({ searchedText: '' });
+  }
+
+  searchHover(event) {
+    event.preventDefault();
+    const { searchHover } = this.state;
+    this.setState({ searchHover: !searchHover });
+  }
+
+  render() {
+    const { searchedText, searchHover } = this.state;
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSearch}>
           <div className={styles.searchContainer}>
             <input
               className={styles.searchInput}
@@ -41,7 +55,18 @@ class SearchBar extends React.Component {
               onChange={this.handleChange}
               autoComplete="off"
             />
-            <FaSearch className={styles.searchIcon} size="25" color="#D1D1D1" />
+            <div
+              className={styles.searchIconWrapper}
+              onMouseEnter={this.searchHover}
+              onMouseLeave={this.searchHover}
+            >
+              <FaSearch
+                className={styles.searchIcon}
+                size="25"
+                color={searchHover ? 'white' : '#D1D1D1'}
+                onClick={this.handleSearch}
+              />
+            </div>
             {searchedText.length > 0
             && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
           </div>
