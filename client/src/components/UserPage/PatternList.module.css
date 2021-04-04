@@ -1,0 +1,9 @@
+.title {
+
+}
+
+.patternList {
+  display: flex;
+  flex-direction: column;
+  height: 33vw;
+}
