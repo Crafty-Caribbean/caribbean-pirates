@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 
-const ProgressBar = () => {
-  const [value, setValue] = useState("0");
+const ProgressBar = ({ progress }) => {
+  const [value, setValue] = useState(progress.toString());
+
+  const at100 = () => {
+    if (confirm('Move to completed?')) {
+      console.log('ok');
+    } else {
+      console.log('do nothing');
+    }
+  };
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    if (event.target.value === '100') {
+      at100();
+    }
+  };
+
   return (
-    <progress value={value} max="100"></progress>
+    <input type="range" min="0" max="100" value={value} step="1" onChange={(event) => handleChange(event)} />
   );
 };
 
 export default ProgressBar;
-

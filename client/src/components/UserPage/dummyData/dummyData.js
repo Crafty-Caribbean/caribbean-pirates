@@ -70,7 +70,7 @@ module.exports = {
         craft_type: 'string',
         difficulty: 'string',
         author: 'string',
-        progress: 10,
+        progress: 80,
       },
       {
         id: 3,

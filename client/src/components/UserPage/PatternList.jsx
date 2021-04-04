@@ -5,7 +5,6 @@ import TopArrow from './TopArrow';
 import DownArrow from './DownArrow';
 import styles from './userPage.module.css';
 import PatternCard from '../PatternCard/index';
-import ProgressBar from './ProgressBar';
 
 const PatternList = ({ title, list }) => {
   console.log();
@@ -13,8 +12,7 @@ const PatternList = ({ title, list }) => {
     <div>
       <div className={styles.title}>{title}</div>
       <div className={styles.patternsList}>
-        {title === 'In Progress' ? <ProgressBar /> : null}
-        {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />)}
+        {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} />)}
         <TopArrow />
         <DownArrow />
       </div>
