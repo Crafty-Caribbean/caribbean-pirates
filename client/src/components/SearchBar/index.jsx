@@ -26,30 +26,24 @@ class SearchBar extends React.Component {
 
   render() {
     const { searchedText } = this.state;
-    let searchMenuRender;
-    let searchMenu = (
-      <div className={styles.searchMenu}>This will be suggestions menu</div>
-    );
-
-    searchedText.length > 0 ? searchMenuRender = searchMenu : null;
 
     return (
       <div>
         <form>
           <div className={styles.searchContainer}>
+            <input
+              className={styles.searchInput}
+              // placeholder="Search"
+              placeholder="Search"
+              type="text"
+              name="searchedText"
+              value={searchedText}
+              onChange={this.handleChange}
+              autoComplete="off"
+            />
             <FaSearch className={styles.searchIcon} size="25" color="#D1D1D1" />
-            <div>
-              <input
-                className={styles.searchInput}
-                // placeholder="Search"
-                placeholder="Search"
-                type="text"
-                name="searchedText"
-                value={searchedText}
-                onChange={this.handleChange}
-              />
-              {searchMenuRender}
-            </div>
+            {searchedText.length > 0
+            && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
           </div>
         </form>
       </div>
