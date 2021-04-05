@@ -18,16 +18,11 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-<<<<<<< HEAD
-        {/* <Route path="/" component={UserPage} /> */}
-          <PatternPage />
-=======
           <Route path="/user" component={UserPage} />
           <Route path="/pattern">
             <PatternPage />
           </Route>
           {/* <PatternPage /> */}
->>>>>>> 43b6835... create modal
           {/* <Route path="/">
             Put your app here
             <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />
