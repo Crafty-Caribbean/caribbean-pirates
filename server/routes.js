@@ -2,6 +2,7 @@ const router = require('express').Router();
 const users = require('./controllers/users');
 const patterns = require('./controllers/patterns');
 const userFavorite = require('./controllers/user_favorite');
+const userProjects = require('./controllers/user_projects');
 /* "Pattern" ========================================= */
 // (load patterns)
 router.get('/patterns/:pattern_id', patterns.getOnePattern);
@@ -24,14 +25,14 @@ router.put('/users/:user_id');
 // unfavorite a pattern, remove from user favorite list
 // (favorite a pattern, add to user favorite list)
 router.post('/users/:user_id/favorite/', userFavorite.userAddFavorite);
-router.delete('/users/:user_id/favorite/:pattern_id');
+router.delete('/users/:user_id/favorite/:pattern_id', userFavorite.userDeleteFavorite);
 
 // Favorite and project are in one tables
 // router.put('/users/:user_id/favorite/:pattern_id')
 
 // "User-Project"  =========================================*/
 // (create a project, add to project in progress list)
-router.post('/users/:user_id/projects/');
+router.post('/users/:user_id/projects/', userProjects.userAddProject);
 // (update project progress)
 router.put('/users/:user_id/projects/:pattern_id/progress');
 // (delete a project, remove from project in progress/completed list)
