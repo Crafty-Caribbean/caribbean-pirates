@@ -14,8 +14,10 @@ class PatternPage extends React.Component {
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
-          <div className={styles.imageGallery}>Image Gallery</div>
-          <div className={styles.patternSummary}><PatternSummary/></div>
+          <div className={styles.patternDetailCard}>
+            <div className={styles.imageGallery}>Image Gallery</div>
+            <div className={styles.patternSummary}><PatternSummary /></div>
+          </div>
         </div>
         <div className={styles.relatedPatterns}>Related Patterns</div>
       </div>
