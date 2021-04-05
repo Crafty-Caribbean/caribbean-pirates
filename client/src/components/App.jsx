@@ -18,8 +18,8 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-        <Route path="/" component={UserPage} />
-          {/* <PatternPage /> */}
+        {/* <Route path="/" component={UserPage} /> */}
+          <PatternPage />
           {/* <Route path="/">
             Put your app here
             <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />
