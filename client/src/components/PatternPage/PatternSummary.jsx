@@ -56,7 +56,7 @@ class PatternSummary extends React.Component {
         <div className={styles.footer}>
           <div className={styles.priceAndBuy}>
             <div>Price</div>
-            <button type="button">Buy Button</button>
+            <button type="button" className={styles.buybutton}>Buy or Free</button>
           </div>
 
         </div>
