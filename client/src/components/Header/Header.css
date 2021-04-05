@@ -5,7 +5,7 @@
   height: 100px;
   grid-template-columns: 120px 15% auto 10% 10% 5%;
   background-color: white;
-  opacity: 0.9;
+  opacity: 0.97;
   margin: 10px 0px;
 }
 
@@ -83,10 +83,8 @@
   outline: none;
   cursor: pointer;
   color: white;
-  /* border: 2px solid #cccc; */
   box-shadow: 2px 2px 7px 1px #EBEBEB;
   border-radius: 50px;
-  /* border: solid 5px white; */
   border: solid 5px #EBEBEB;
   background-color: #EBEBEB;
 }
@@ -99,14 +97,5 @@
   width: 100px;
   justify-content: center;
   align-content: center;
-  /* border: solid 10px white; */
   margin: 0px 20px;
-  /* box-shadow: 2px 2px 7px 1px #EBEBEB; */
-}
-
-.profileIconWrapper:hover,
-.profileIconWrapper:focus {
-  /* background-color: #EBEBEB; */
-  /* border: solid 1px #EBEBEB; */
-  /* color: white; */
 }
