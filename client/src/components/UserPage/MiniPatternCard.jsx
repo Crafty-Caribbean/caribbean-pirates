@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HeartButton from './HeartButton';
-import styles from './PatternCard.css';
+import HeartButton from './MiniHeartButton';
+import styles from './MiniPatternCard.module.css';
 import ProgressBar from '../UserPage/ProgressBar';
 
 class PatternCard extends React.Component {
@@ -25,7 +25,6 @@ class PatternCard extends React.Component {
     const { showHeart } = this.state;
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
-        {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         <div className={`image-div ${styles.imageContent}`}>
           <img src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton /> : ''}
@@ -37,12 +36,13 @@ class PatternCard extends React.Component {
                 Title
               </Link>
             </span>
-            <span>$Price</span>
+            {/* <span>$Price</span> */}
           </div>
           <div className={`pattern-card-footer-content-tags ${styles.patternCardFooterContentTags}`}>
             <button type="button">Skill level</button>
             <button type="button">Pattern type</button>
           </div>
+          {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         </div>
       </div>
     );

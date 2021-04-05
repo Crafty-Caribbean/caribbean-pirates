@@ -1,0 +1,14 @@
+.title {
+  font-family: "adobe-clean", sans-serif;
+  font-size: 20px;
+}
+
+.patternList {
+  display: flex;
+  flex-direction: column;
+  height: 78vh;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  margin-left: 40px;
+  margin-right: 40px;
+}

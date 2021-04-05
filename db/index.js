@@ -1,10 +1,9 @@
-const pg, {Pool} = require('pg');
+const { Pool } = require('pg');
 
-module.exports = pool = new Pool({
+module.exports = new Pool({
   host: 'localhost',
   port: 5432,
   user: 'postgres',
-  database: 'stitchSaver',
+  database: 'stitchsaver',
   password: '123456789',
 });
-

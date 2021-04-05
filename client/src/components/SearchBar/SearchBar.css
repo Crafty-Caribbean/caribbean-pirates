@@ -1,26 +1,65 @@
-.searchContainer {
-  height: 35px;
-  width: 80%;
-  display: grid;
-  grid-template-columns: 30px auto;
+.searchBar {
+  position: relative;
+  justify-self: center;
+  width: 100%;
 }
 
-.searchIcon {
-  padding-top: 5px;
+.searchContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 85% auto;
+  align-content: center;
+  height: 80px;
+  width: auto;
+  margin-top: 10px;
+}
+
+.searchIcon:hover,
+.searchIcon:focus {
+  outline: none;
+  justify-self: start;
+  align-self: center;
+  cursor: pointer;
+  color: white;
+}
+
+.searchIconWrapper {
+  display: grid;
+  padding: 5px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-content: center;
+  border: solid 10px white;
+}
+
+.searchIconWrapper:hover,
+.searchIconWrapper:focus {
+  background-color: #EBEBEB;
+  border: solid 10px #EBEBEB;
+  color: white;
+  box-shadow: 2px 2px 7px 1px #EBEBEB;
 }
 
 .searchInput {
+  font-family: "montserrat", sans-serif;
+  font-weight: 700;
+  position: relative;
   margin: 0px;
   padding: 0px;
   outline: none;
   border: none;
   background-color: #EBEBEB;
-  color: #5C5C5C;
+  color: #6E6E6E;
   border-radius: 50px;
-  height: 35px;
-  width: 80%;
-  padding: 0px 20px;
+  height: 50px;
+  width: 90%;
+  padding: 0px 15px 0px 35px;
   z-index: 5;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
 }
 
 .searchInput:hover,
@@ -29,18 +68,27 @@
   background-color: #E0E0E0;
   box-shadow: 2px 2px 7px 1px #EBEBEB;
   z-index: 4;
+  color: black;
 }
 
-.searchMenu {
+.searchSuggestions {
+  font-family: "montserrat", sans-serif;
+  font-weight: 700;
   position: relative;
-  left: 1.25%;
-  margin: 0px 0px;
+  top: 65px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 17%;
   padding: 20px;
-  width: 77%;
+  width: 70%;
   height: auto;
   border-radius: 0px 0px 5px 5px;
   z-index: 5;
   justify-content: center;
-  color: #5C5C5C;
+  color: #6E6E6E;
   box-shadow: 2px 2px 7px 1px #EBEBEB;
+  justify-self: center;
+  align-self: center;
 }

@@ -11,33 +11,38 @@ const UserPage = () => {
   const [purchased, setPurchased] = useState(dummyData.patterns.purchased);
   const [favorites, setFavorites] = useState(dummyData.patterns.favorites);
   const [created, setCreated] = useState(dummyData.patterns.created);
-  const [inProgress, setProgress] = useState(
+  const [completed, setCompleted] = useState(
     dummyData.patterns.projects.filter((pattern) => pattern.progress === 100),
   );
-  const [completed, setCompleted] = useState(
+  const [inProgress, setProgress] = useState(
     dummyData.patterns.projects.filter((pattern) => pattern.progress !== 100),
   );
 
-  // const getUserData = (userId) => {
-  //   axios.get(`/users/${userId}`)
-  //     .then(({ data }) => {
-  //       setPurchased(data.patterns.purchased);
-  //       setFavorites(data.patterns.favorites);
-  //       setCreated(data.owned);
-  //       setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
-  //       setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const getUserData = (userId) => {
+    console.log(userId);
+    // axios.get(`/users/${userId}`)
+    //   .then(({ data }) => {
+    //     setPurchased(data.patterns.purchased);
+    //     setFavorites(data.patterns.favorites);
+    //     setCreated(data.owned);
+    //     setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
+    //     setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
 
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
+  const { location } = window;
+  useEffect(() => {
+    if (location) {
+      getUserData(`${location.pathname.split('/')[2]}`);
+    }
+  }, []);
 
   return (
-    <div className="userpage-container">
+    <div>
+    <div className={styles.userPageContainer}>
       <div className="user-static">IM</div>
       <div className={styles.patternsContainer}>
         <PatternList className="Purchased" list={purchased} title="Purchased" />
@@ -46,6 +51,7 @@ const UserPage = () => {
         <PatternList className="In-Progress" list={inProgress} title="In Progress" />
         <PatternList className="Completed" list={completed} title="Completed" />
       </div>
+    </div>
     </div>
   );
 };
