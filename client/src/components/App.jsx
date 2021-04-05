@@ -22,7 +22,9 @@ class App extends React.Component {
           {/* <Route path="/" component={UserPage} /> */}
           {/* <PatternPage /> */}
           <Route path="/">
-            Put your app here
+            {/* <PatternPage /> */}
+            {/* <Route path="/">
+              Put your app here
             {/* <HomePage /> */}
           </Route>
         </Switch>
