@@ -1,9 +1,8 @@
 .patternCard {
   /* padding: 16px 8px; */
   /* padding-top: 0px; */
-  /* margin: 16px 8px; */
-  margin-top: 1vw;
-  height: 20vw;
+  margin: 16px 8px;
+  margin-top: 0px;
 }
 
 .imageContent {
@@ -12,18 +11,11 @@
 }
 
 .imageContent img {
-  margin-left: auto;
-  margin-right: auto;
-  width: 10vw;
-  height: 10vw;
+  width: 100%;
   border-radius: 16px;
-  height: 10vw;
+  height: auto;
   object-fit: cover;
 }
-
-/* .patterCardFooter {
-  height: 5vw;
-} */
 
 .patternCardFooterContent {
   display: flex;
@@ -35,18 +27,11 @@
   justify-content: flex-start;
 }
 
-.patternCardFooterContent
-.patternCardFooterContentTags {
-  /* padding: 8px;
-  padding-top: 0px; */
-  height: auto;
-}
-
-/* .patternCardFooterContent
+.patternCardFooterContent,
 .patternCardFooterContentTags {
   padding: 8px;
   padding-top: 0px;
-} */
+}
 
 .patternCardFooterContent button,
 .patternCardFooterContentTags button {
@@ -73,8 +58,6 @@
 .patternCardFooterContentTags button {
   border: 1px solid #888;
   border-radius: 16px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .patternCardFooterContent button:first-child,
