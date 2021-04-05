@@ -43,7 +43,7 @@ class PatternPage extends React.Component {
         {
           showModal
           && (
-            <AppModal ref={this.registerModal} outsideClickHandler={this.toggleModal}>
+            <AppModal outsideClickHandler={this.toggleModal}>
               <Login />
             </AppModal>
           )
