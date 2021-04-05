@@ -1,0 +1,84 @@
+.patternCard {
+  /* padding: 16px 8px; */
+  /* padding-top: 0px; */
+  /* margin: 16px 8px; */
+  margin-top: 1vw;
+  height: 20vw;
+}
+
+.imageContent {
+  display: grid;
+  grid-template-columns: 100% auto;
+}
+
+.imageContent img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 16px;
+  height: 10vw;
+  object-fit: cover;
+}
+
+/* .patterCardFooter {
+  height: 5vw;
+} */
+
+.patternCardFooterContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.patternCardFooterContentTags {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.patternCardFooterContent
+.patternCardFooterContentTags {
+  /* padding: 8px;
+  padding-top: 0px; */
+  height: auto;
+}
+
+/* .patternCardFooterContent
+.patternCardFooterContentTags {
+  padding: 8px;
+  padding-top: 0px;
+} */
+
+.patternCardFooterContent button,
+.patternCardFooterContentTags button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.patternCardFooterContent span:first-child {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.patternCardFooterContent a {
+  color: black;
+  text-decoration: none;
+}
+
+.patternCardFooterContent a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.patternCardFooterContentTags button {
+  border: 1px solid #888;
+  border-radius: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.patternCardFooterContent button:first-child,
+.patternCardFooterContentTags button:first-child {
+  margin-right: 10px;
+}
+

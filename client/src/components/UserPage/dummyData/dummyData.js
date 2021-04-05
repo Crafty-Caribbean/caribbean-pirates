@@ -43,6 +43,19 @@ module.exports = {
         author: 'string',
         progress: 10,
       },
+      {
+        id: 4,
+        images: [
+          './george-pagan-iii-FBwW4Xu3FTs-unsplash.jpg',
+          './henry-co--odUkx8C2gg-unsplash.jpg',
+          './magicpattern-eHH_5rn3xnU-unsplash.jpg',
+        ],
+        title: 'string',
+        craft_type: 'string',
+        difficulty: 'string',
+        author: 'string',
+        progress: 10,
+      }
     ],
 
     projects: [

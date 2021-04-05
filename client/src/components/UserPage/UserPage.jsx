@@ -41,7 +41,8 @@ const UserPage = () => {
   }, []);
 
   return (
-    <div className="userpage-container">
+    <div>
+    <div className={styles.userPageContainer}>
       <div className="user-static">IM</div>
       <div className={styles.patternsContainer}>
         <PatternList className="Purchased" list={purchased} title="Purchased" />
@@ -50,6 +51,7 @@ const UserPage = () => {
         <PatternList className="In-Progress" list={inProgress} title="In Progress" />
         <PatternList className="Completed" list={completed} title="Completed" />
       </div>
+    </div>
     </div>
   );
 };
