@@ -2,9 +2,10 @@ const db = require('../index.js');
 
 module.exports = {
   addFavoritePattern(userId, patternId, callback) {
-    const query = `INSERT INTO public.user_favorite(
-      user_id, pattern_id)
-      VALUES (${userId}, ${patternId});`;
+    const query = {
+      text: 'INSERT INTO public.user_favorite(user_id, pattern_id) VALUES ($1, $2)',
+      values: [userId, patternId],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding favorite pattern', err.stack);
@@ -20,8 +21,10 @@ module.exports = {
   },
 
   deleteFavoritePattern(userId, patternId, callback) {
-    const query = `DELETE FROM public.user_favorite
-    WHERE pattern_id=${patternId} AND user_id=${userId};`;
+    const query = {
+      text: 'DELETE FROM public.user_favorite WHERE pattern_id=$1 AND user_id=$2;',
+      values: [patternId, userId],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error deleting favorite pattern', err.stack);
