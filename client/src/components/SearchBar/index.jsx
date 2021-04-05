@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
   }
 
   // Get request for searchbar
-  // Need suggestions
+  // // Need suggestions
   // Suggestions for patterns, authors, tags, etc.
 
   handleChange(event) {

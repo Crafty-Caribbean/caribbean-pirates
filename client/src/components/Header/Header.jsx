@@ -52,8 +52,8 @@ class Header extends React.Component {
           alt="StitchSaver Logo"
         />
         <button className={styles.logoName} type="submit">StitchSaver</button>
-        <button onClick={this.navToHomePage} className={styles.homeButton} type="submit">Home</button>
         <SearchBar />
+        <button onClick={this.navToHomePage} className={styles.homeButton} type="submit">Home</button>
         <div
           className={styles.profileIconWrapper}
           onMouseEnter={this.handleProfileHover}

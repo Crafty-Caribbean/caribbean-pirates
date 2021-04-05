@@ -1,9 +1,10 @@
 .header {
   display: grid;
   position: relative;
-  grid-template-columns: 5% 15% 15% auto 5%;
+  grid-template-columns: 5% 15% auto 10% 5%;
   background-color: white;
   opacity: 0.9;
+  margin: 10px 0px;
 }
 
 .logoImage {
@@ -40,6 +41,7 @@
 
 .homeButton {
   font-family: "montserrat", sans-serif;
+  font-size: 15px;
   font-weight: 700;
   border: none;
   position: relative;
@@ -48,8 +50,8 @@
   width: 80%;
   align-self: center;
   cursor: pointer;
-  color: #808080;
-  background: #EBEBEB;
+  color: #3B3B3B;
+  background: none;
   border-radius: 50px;
   justify-self: center;
 }
@@ -58,7 +60,7 @@
   outline: none;
   box-shadow: 2px 2px 7px 3px #EBEBEB;
   background: #E0E0E0;
-  color: black;
+  color: #3B3B3B;
 }
 
 .homeButton:target,
