@@ -1,13 +1,15 @@
 .patternSummaryContainer {
-  display: flex;
+  /* display: flex; */
+  /* flex-direction: column; */
   /* align-content: space-between; */
   /* justify-content: space-between; */
-  flex-direction: column;
+  display:grid;
+  grid-template-rows: 5% 75% auto ;
   height:100%;
   padding: 0px 32px;
 }
 
-.header{
+/* .header{
   height:10%;
 }
 
@@ -17,11 +19,15 @@
 
 .footer {
   height:25%;
-}
+} */
 
 .favoritebutton {
-  display: flex;
-  justify-content: flex-end;
+  position: relative;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  /* right: 0px; */
+  left: calc(100% + 35px);
+
 }
 
 .patternName {
@@ -48,12 +54,12 @@
   display:flex;
   background-color: transparent;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  outline:none;
 }
 
 .authorName:hover {
   color:red;
   cursor:pointer;
-  outline:none;
 }
 
 .authorContainer{
@@ -83,6 +89,13 @@
   color:green;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
+  max-height: 55%;
+  overflow: auto;
+}
+
+.descriptionParagraph{
+  overflow:auto;
+  max-height: 30%;
 }
 
 .priceAndBuy {
