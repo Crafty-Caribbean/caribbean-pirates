@@ -12,8 +12,6 @@ class Header extends React.Component {
     };
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleProfileHover = this.handleProfileHover.bind(this);
-    this.navToHomePage = this.navToHomePage.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleProfileClick(event) {
@@ -33,38 +31,31 @@ class Header extends React.Component {
     console.log('Take user to home/search page');
   }
 
-  handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      console.log('User pressed enter');
-    }
-  }
-
   render() {
     const { profileHover } = this.state;
 
     return (
       <div id="header" className={styles.header}>
-        <img
-          onClick={this.navToHomePage}
-          onKeyPress={this.handleKeyPress}
-          className={styles.logoImage}
-          src="/images/StitchSaverLogo.png"
-          alt="StitchSaver Logo"
-        />
+        <div onClick={this.navToHomePage}>
+          <img
+            className={styles.logoImage}
+            src="/images/StitchSaverLogo.png"
+            alt="StitchSaver Logo"
+          />
+        </div>
         <button className={styles.logoName} type="submit">StitchSaver</button>
         <SearchBar />
         <button onClick={this.navToHomePage} className={styles.homeButton} type="submit">Home</button>
         <div
           className={styles.profileIconWrapper}
-          onMouseEnter={this.handleProfileHover}
-          onMouseLeave={this.handleProfileHover}
         >
           <IoPersonCircle
             className={styles.profileIcon}
             size="50"
-            // color="white"
             color={profileHover ? 'black' : '#D1D1D1'}
             onClick={this.handleProfileClick}
+            onMouseEnter={this.handleProfileHover}
+            onMouseLeave={this.handleProfileHover}
           />
         </div>
         {/* Can use this if user has profile picture: */}

@@ -45,16 +45,20 @@ class SearchBar extends React.Component {
       <div className={styles.searchBar}>
         <form onSubmit={this.handleSearch}>
           <div className={styles.searchContainer}>
-            <input
-              className={styles.searchInput}
-              // placeholder="Search"
-              placeholder="Search"
-              type="text"
-              name="searchedText"
-              value={searchedText}
-              onChange={this.handleChange}
-              autoComplete="off"
-            />
+            <div>
+              <input
+                className={styles.searchInput}
+                // placeholder="Search"
+                placeholder="Search"
+                type="text"
+                name="searchedText"
+                value={searchedText}
+                onChange={this.handleChange}
+                autoComplete="off"
+              />
+              {searchedText.length > 0
+              && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
+            </div>
             <div
               className={styles.searchIconWrapper}
               onMouseEnter={this.searchHover}
@@ -67,11 +71,9 @@ class SearchBar extends React.Component {
                 onClick={this.handleSearch}
               />
             </div>
-            {searchedText.length > 0
-            && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
           </div>
         </form>
-      </div>
+</div>
     );
   }
 }
@@ -85,3 +87,38 @@ export default SearchBar;
 // <button className={styles.searchView} type="text" name="searchView">
 // {magnifyingIcon} Search
 // </button>
+
+// Functional:
+
+{/* <div className={styles.searchBar}>
+<form onSubmit={this.handleSearch}>
+  <div className={styles.searchContainer}>
+    <div>
+      <input
+        className={styles.searchInput}
+        // placeholder="Search"
+        placeholder="Search"
+        type="text"
+        name="searchedText"
+        value={searchedText}
+        onChange={this.handleChange}
+        autoComplete="off"
+      />
+      {searchedText.length > 0
+      && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
+    </div>
+    <div
+      className={styles.searchIconWrapper}
+      onMouseEnter={this.searchHover}
+      onMouseLeave={this.searchHover}
+    >
+      <FaSearch
+        className={styles.searchIcon}
+        size="25"
+        color={searchHover ? 'black' : '#D1D1D1'}
+        onClick={this.handleSearch}
+      />
+    </div>
+  </div>
+</form>
+</div> */}

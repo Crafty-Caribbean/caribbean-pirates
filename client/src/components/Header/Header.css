@@ -1,7 +1,9 @@
 .header {
   display: grid;
-  position: relative;
-  grid-template-columns: 5% 15% auto 10% 5%;
+  position: sticky;
+  top: 0px;
+  height: 100px;
+  grid-template-columns: 120px 15% auto 10% 10% 5%;
   background-color: white;
   opacity: 0.9;
   margin: 10px 0px;
@@ -9,8 +11,8 @@
 
 .logoImage {
   position: relative;
-  width: 45px;
-  height: 45px;
+  width: 80px;
+  height: 80px;
   justify-self: start;
   align-self: center;
   border: none;
@@ -29,6 +31,7 @@
   font-family: "montserrat", sans-serif;
   font-size: 25px;
   font-weight: 700;
+    height: 50px;
   border: none;
   position: relative;
   outline: none;
@@ -69,29 +72,41 @@
   color: #E0E0E0;
 }
 
+.profileIcon {
+  align-content: center;
+  height: 50px;
+  width: 50px;
+}
+
 .profileIcon:hover,
 .profileIcon:focus {
   outline: none;
   cursor: pointer;
   color: white;
+  /* border: 2px solid #cccc; */
+  box-shadow: 2px 2px 7px 1px #EBEBEB;
+  border-radius: 50px;
+  /* border: solid 5px white; */
+  border: solid 5px #EBEBEB;
+  background-color: #EBEBEB;
 }
 
 .profileIconWrapper {
   display: grid;
-  padding: 5px;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  position: relative;
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
   justify-content: center;
   align-content: center;
-  border: solid 10px white;
+  /* border: solid 10px white; */
   margin: 0px 20px;
+  /* box-shadow: 2px 2px 7px 1px #EBEBEB; */
 }
 
 .profileIconWrapper:hover,
 .profileIconWrapper:focus {
-  background-color: #EBEBEB;
-  border: solid 10px #EBEBEB;
-  color: white;
-  box-shadow: 2px 2px 7px 1px #EBEBEB;
+  /* background-color: #EBEBEB; */
+  /* border: solid 1px #EBEBEB; */
+  /* color: white; */
 }
