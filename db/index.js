@@ -4,6 +4,6 @@ module.exports = new Pool({
   host: 'localhost',
   port: 5432,
   user: 'postgres',
-  database: 'stitchSaver',
+  database: 'stitchsaver',
   password: '123456789',
 });
