@@ -24,7 +24,7 @@ router.put('/users/:user_id');
 // unfavorite a pattern, remove from user favorite list
 // (favorite a pattern, add to user favorite list)
 router.post('/users/:user_id/favorite/', userFavorite.userAddFavorite);
-router.delete('/users/:user_id/favorite/:pattern_id');
+router.delete('/users/:user_id/favorite/:pattern_id', userFavorite.userDeleteFavorite);
 
 // Favorite and project are in one tables
 // router.put('/users/:user_id/favorite/:pattern_id')

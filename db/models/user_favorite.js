@@ -11,8 +11,25 @@ module.exports = {
       }
       client.query(query, (error, results) => {
         release();
-        if (err) {
-          callback(err.stack);
+        if (error) {
+          callback(error.stack);
+        }
+        callback(null, results);
+      });
+    });
+  },
+
+  deleteFavoritePattern(userId, patternId, callback) {
+    const query = `DELETE FROM public.user_favorite
+    WHERE pattern_id=${patternId} AND user_id=${userId};`;
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error deleting favorite pattern', err.stack);
+      }
+      client.query(query, (error, results) => {
+        release();
+        if (error) {
+          callback(error.stack);
         }
         callback(null, results);
       });
