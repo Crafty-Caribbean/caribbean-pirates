@@ -16,8 +16,8 @@ class Login extends React.Component {
           <label htmlFor='email' className={styles.a11yHidden}>Email:</label>
           <input className={styles.loginFormInput} name="email" type="text" placeholder="Email" />
 
-          <label htmlFor='email'>Password:</label>
-          <input className={styles.loginFormInput} name="password" type="password" />
+          <label htmlFor='password' className={styles.a11yHidden}>Password:</label>
+          <input className={styles.loginFormInput} name="password" type="password" placeholder="password" />
         </form>
       </div>
     );
