@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import HeartButton from './HeartButton';
 import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
+import SkillTag from './SkillTag';
+import CraftTag from './CraftTag';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -21,7 +23,15 @@ class PatternCard extends React.Component {
   }
 
   render() {
-    const { cardWidth, imgSrc, progress, title } = this.props;
+    const {
+      cardWidth,
+      imgSrc,
+      progress,
+      title,
+      skillLevel,
+      craftType,
+      showTags,
+    } = this.props;
     const { showHeart } = this.state;
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
@@ -39,10 +49,13 @@ class PatternCard extends React.Component {
             </span>
             <span>$Price</span>
           </div>
-          <div className={`pattern-card-footer-content-tags ${styles.patternCardFooterContentTags}`}>
-            <button type="button">Skill level</button>
-            <button type="button">Pattern type</button>
-          </div>
+          {showTags !== false
+            ? (
+              <div className={`pattern-card-footer-content-tags ${styles.patternCardFooterContentTags}`}>
+                <SkillTag skillLevel={skillLevel} />
+                <CraftTag craftType={craftType} />
+              </div>
+            ) : ''}
         </div>
       </div>
     );
