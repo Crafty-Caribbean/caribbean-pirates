@@ -88,7 +88,8 @@
   z-index: 5;
   justify-content: center;
   color: #6E6E6E;
-  box-shadow: 2px 2px 7px 1px #EBEBEB;
   justify-self: center;
   align-self: center;
+  background: white;
+  opacity: 1;
 }
