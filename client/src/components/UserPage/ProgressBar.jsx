@@ -10,15 +10,13 @@ const ProgressBar = ({
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const debounce = (func, delay = 500) => {
-    let timeoutId;
+  const debounce = (func, delay) => {
+    let timerId;
     return (...args) => {
-      const later = () => {
-        timeoutId = null;
-        func.apply(null, ...args);
-      };
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(later, delay);
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+      timerId = setTimeout(() => func.apply(this, args), delay);
     };
   };
 
@@ -32,9 +30,11 @@ const ProgressBar = ({
       });
   };
 
+  const sendData = debounce(updateProgress, 1000);
+
   const handleChange = (event) => {
     setValue(event.target.value);
-    debounce(updateProgress, 1000)();
+    sendData();
     if (event.target.value === '100') {
       setShowConfirmation(true);
     }

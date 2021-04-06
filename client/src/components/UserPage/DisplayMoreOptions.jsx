@@ -7,7 +7,6 @@ const DisplayMoreOptions = () => {
   const [showOptions, setOptions] = useState(false);
   const showModal = (event) => {
     event.preventDefault();
-    // event.stopPropagation();
     setOptions(!showOptions);
   };
 

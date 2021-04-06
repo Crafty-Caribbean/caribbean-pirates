@@ -13,7 +13,24 @@ const PatternList = ({
     <div className={styles.title}>{title}</div>
     <TopArrow id={title} />
     <div id={title} className={styles.patternList}>
-      {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} id={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} setRefresh={setRefresh} setFavorited={setFavorited} user={user} showTags craftType={pattern.craft_type} skillLevel={pattern.difficulty} cardWidth={210} />)}
+      {list.map((pattern) => (
+        <PatternCard
+          info={pattern}
+          key={pattern.id}
+          id={pattern.id}
+          imgSrc={pattern.images[0]}
+          progress={pattern.progress}
+          title={title}
+          setRefresh={setRefresh}
+          setFavorited={setFavorited}
+          user={user}
+          showTags
+          craftType={pattern.craft_type}
+          skillLevel={pattern.difficulty}
+          cardWidth={210}
+          name={pattern.title}
+        />
+      ))}
     </div>
     <DownArrow id={title} listLength={list.length} />
   </div>
