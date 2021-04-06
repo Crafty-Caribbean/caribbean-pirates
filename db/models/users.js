@@ -62,16 +62,18 @@ module.exports = {
   },
 
   addUser(email, username, age, password, callback) {
-    const query = `INSERT INTO users (email, username, age, password, image) VALUES
-    (${email}, ${username}, ${age}, ${password}, '');`;
+    const query = {
+      text: 'INSERT INTO users (email, username, age, password, image) VALUES ($1, $2, $3, $4, $5);',
+      values: [email, username, age, password, ''],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding user', err.stack);
       }
       client.query(query, (error, results) => {
         release();
-        if (err) {
-          callback(err.stack);
+        if (error) {
+          callback(error.stack);
         }
         callback(null, results);
       });
