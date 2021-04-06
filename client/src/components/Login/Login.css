@@ -1,3 +1,18 @@
+.buttonSwitchMode {
+  background: unset;
+  border: 2px solid rgba(0,0,0,0);
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+  font-weight: 600;
+  margin: 0;
+}
+
+.buttonSwitchMode:focus {
+  outline: none;
+  border-radius: 999px;
+  border: 2px solid rgb(111, 209, 255);
+}
+
 .header {
   color: rgb(51, 51, 51);
   font-size: 36px;
@@ -16,10 +31,16 @@
 }
 
 .loginFormInput {
-  border-radius: 8px;
+  border-radius: 16px;
   border: 2px solid gray;
+  box-sizing: border-box;
   margin-bottom: 8px;
   min-height: 48px;
+  padding: 8px 16px;
+}
+.loginFormInput:focus {
+  outline: none;
+  border: 2px solid rgb(111, 209, 255);
 }
 
 .loginModal {
@@ -32,10 +53,23 @@
   font-family: Helvetica, Arial, sans-serif;
   justify-content: center;
   margin: auto;
-  padding: 32px 0px;
+  padding: 32px 16px;
   position: relative;
   text-align: center;
   width: 400px;
+}
+
+.logo {
+  background-color: #DC244B;
+  border-radius: 999px;
+  color: white;
+  font-size: 36px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 8px;
+  text-align: center;
+  width: 40px;
 }
 
 .a11yHidden {
@@ -43,3 +77,26 @@
   top: -9999px;
   left: -9999px;
 }
+
+.submitButton {
+  background-color: #DC244B;
+  border-radius: 999px;
+  border: 2px solid #DC244B;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 15px 0;
+  min-height: 40px;
+}
+
+.submitButton:hover {
+  background-color: #AF1D3C;
+  border: 2px solid #AF1D3C;
+}
+
+.submitButton:focus {
+  outline: none;
+  border: 2px solid rgb(111, 209, 255);
+}
+
+

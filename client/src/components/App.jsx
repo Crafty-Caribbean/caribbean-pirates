@@ -24,6 +24,11 @@ class App extends React.Component {
             <PatternPage />
           </Route>
           {/* <Route path="/" component={UserPage} /> */}
+
+          <Route path="/user" component={UserPage} />
+          <Route path="/patterns">
+            <PatternPage />
+          </Route>
           <Route path="/">
             {/* <PatternPage /> */}
             Put your app here
