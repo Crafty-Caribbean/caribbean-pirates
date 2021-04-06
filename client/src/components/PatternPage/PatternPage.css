@@ -42,3 +42,17 @@
   border: 1px solid black;
   margin-top: 100px;
 }
+
+.commentsSection{
+  display: flex;
+  justify-content: center;
+  width:80%;
+  height:1000px;
+  border: 1px solid black;
+  margin-top: 15px;
+}
+
+.commentsSectionHolder {
+  display:flex;
+  justify-content: center;
+}
