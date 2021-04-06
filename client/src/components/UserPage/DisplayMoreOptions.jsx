@@ -5,15 +5,28 @@ import OptionsModal from './OptionsModal';
 
 const DisplayMoreOptions = () => {
   const [showOptions, setOptions] = useState(false);
+  const [coordinates, setCoordinates] = useState({ x: '', y: '' });
+
   const showModal = (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    const x = event.clientX;
+    const y = event.clientY;
+    console.log(x, y);
+    setCoordinates({ x, y });
     setOptions(!showOptions);
   };
 
   return (
-    <div className={styles.moreOptionsContainer} onMouseEnter={(event) => showModal(event)}>
+    <div
+      className={styles.moreOptionsContainer}
+      onClick={(event) => showModal(event)}
+      onKeyPress={(event) => showModal(event)}
+      role="button"
+      tabIndex={0}
+    >
       {showOptions ? (
-        <div className={styles.modalContainer}>
+        <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
           <OptionsModal showModal={showModal} />
         </div>
       ) : null}

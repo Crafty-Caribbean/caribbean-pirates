@@ -19,7 +19,7 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-          {/* <Route path="/stitchsaver/users/:user_id" component={UserPage} /> */}
+          <Route path="/stitchsaver/users/:user_id" component={UserPage} />
           {/* <Route path="/pattern">
             <PatternPage />
           </Route> */}

@@ -14,6 +14,8 @@ const UserPage = () => {
   const [inProgress, setProgress] = useState([]);
   const [refresh, setRefresh] = useState('');
   const [favorited, setFavorited] = useState({ liked: false, id: '' });
+  const [deleted, setDeleted] = useState({list: '', id: ''});
+  const [startProgress, setStartProgress] = useState({list: '', id: ''});
   const [user, setUser] = useState(0);
 
   const getUserData = (userId) => {
@@ -61,6 +63,20 @@ const UserPage = () => {
     }
   };
 
+  const removePatternCard = (patternObj) => {
+    axios.delete(`/users/${user}/${patternObj.list}/${patternObj.id}`)
+      .then(() => {
+        getUserData(user);
+      });
+  };
+
+  const initiateProgress = (patternObj) => {
+    axios.put(`/api/users/${user}/projects/${patternObj.id}/progress`, { progress: 0 })
+      .then(() => {
+        axios.delete(`/users/${user}/${patternObj.list}/${patternObj.id}`);
+      });
+  };
+
   const { location } = window;
   useEffect(() => {
     console.log(location);
@@ -78,6 +94,14 @@ const UserPage = () => {
       handleToggledHeart(favorited);
     }
   }, [favorited]);
+
+  useEffect(() => {
+    removePatternCard(deleted);
+  }, [deleted]);
+
+  useEffect(() => {
+    initiateProgress(startProgress);
+  }, [startProgress]);
 
   return (
     <div>
