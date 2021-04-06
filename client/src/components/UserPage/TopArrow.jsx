@@ -1,19 +1,19 @@
 import React from 'react';
 import styles from './userPage.module.css';
 
-const TopArrow = () => {
+const TopArrow = ({id}) => {
   const handleClick = () => {
-    if (document.getElementById('patternList').scrollTop > 0) {
-      document.getElementById('patternList').scrollTop -= 100;
+    if (document.getElementById(id).scrollTop > 0) {
+      document.getElementById(id).scrollTop -= 250;
     }
-    if (document.getElementById('patternList').scrollTop <= 100) {
-      document.getElementById('arrowTop').className = styles.hide;
+    if (document.getElementById(id).scrollTop <= 250) {
+      document.getElementById(`${id}arrowTop`).className = styles.hide;
     }
   };
 
   return (
     <button id="topArrow" className={styles.topArrow} onClick={handleClick} onKeyPress={handleClick} tag={0}>
-      <i id="arrowTop" className={styles.hide} />
+      <i id={`${id}arrowTop`} className={styles.hide} />
     </button>
   );
 };
