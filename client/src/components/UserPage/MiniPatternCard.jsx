@@ -26,7 +26,7 @@ class PatternCard extends React.Component {
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
         <div className={`image-div ${styles.imageContent}`}>
-          <img src={imgSrc} alt="pattern" />
+          <img className={styles.image} src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
@@ -36,7 +36,6 @@ class PatternCard extends React.Component {
                 Title
               </Link>
             </span>
-            {/* <span>$Price</span> */}
           </div>
           <div className={`pattern-card-footer-content-tags ${styles.patternCardFooterContentTags}`}>
             <button type="button">Skill level</button>
