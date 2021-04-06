@@ -51,7 +51,7 @@ class PatternCard extends React.Component {
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
     return (
-      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
+      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
           <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton id={id} user={user} setRefresh={setRefresh} /> : ''}
