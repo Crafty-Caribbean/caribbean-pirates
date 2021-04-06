@@ -74,7 +74,9 @@ const UserPage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    handleToggledHeart(favorited);
+    if (favorited.id) {
+      handleToggledHeart(favorited);
+    }
   }, [favorited]);
 
   return (
