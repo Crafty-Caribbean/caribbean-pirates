@@ -6,7 +6,8 @@ module.exports = {
                           p.title AS name,
                           json_build_object(
                             'id', (SELECT u.id FROM users u WHERE u.id=p.author_id),
-                            'username', (SELECT u.username FROM users u WHERE u.id=p.author_id)
+                            'username', (SELECT u.username FROM users u WHERE u.id=p.author_id),
+                            'profile_pic', (SELECT u.image FROM users u WHERE u.id=p.author_id)
                         ) AS author,
                         p.skill_level,
                         p.craft_type,
