@@ -6,6 +6,8 @@ import PatternCard from './PatternCard';
 import UserPage from './UserPage/UserPage';
 import HomePage from './HomePage';
 
+const axios = require('axios');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,22 +21,31 @@ class App extends React.Component {
   }
 
   fetchHomeData() {
-    this.setState({
-      data: [{
-        id: 1,
-        author: {
-          id: 1,
-          username: 'username',
-          profile_pic: 'url',
-        },
-        skill_level: 'Beginner',
-        craft_type: 'Crochet',
-        description: 'Lorem Ipsum test test 1234',
-        price: 17.95,
-        images: ['https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg'],
-        name: 'Name',
-      }],
-    });
+    axios.get('/api/patterns')
+      .then((response) => {
+        console.log(response.data);
+        const { data } = response;
+        this.setState({ data });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // this.setState({
+    //   data: [{
+    //     id: 1,
+    //     author: {
+    //       id: 1,
+    //       username: 'username',
+    //       profile_pic: 'url',
+    //     },
+    //     skill_level: 'Beginner',
+    //     craft_type: 'Crochet',
+    //     description: 'Lorem Ipsum test test 1234',
+    //     price: 17.95,
+    //     images: ['https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg'],
+    //     name: 'Name',
+    //   }],
+    // });
   }
 
   render() {
@@ -43,7 +54,7 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-          <Route path="/user" component={UserPage} />
+          <Route path="/stitchsaver/users/:user_id" component={UserPage} />
           <Route path="/patterns">
             <PatternPage />
           </Route>

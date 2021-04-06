@@ -16,12 +16,14 @@ class HomePage extends React.Component {
       <div className={`homePage ${styles.homePage}`}>
         {list.map((pattern) => (
           <PatternCard
+            key={pattern.id}
             cardWidth={210}
             imgSrc={pattern.images[0]}
             skillLevel={pattern.skill_level}
             craftType={pattern.craft_type}
-            name={pattern.name}
+            name={pattern.name || pattern.title}
             price={pattern.price}
+            id={pattern.id}
           />
         ))}
         <PatternCard
