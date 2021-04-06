@@ -5,6 +5,7 @@ import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
 import SkillTag from './SkillTag';
 import CraftTag from './CraftTag';
+import DisplayMoreOptions from '../UserPage/DisplayMoreOptions';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -42,26 +43,32 @@ class PatternCard extends React.Component {
       skillLevel,
       craftType,
       showTags,
-      name
+      id,
+      setRefresh,
+      setFavorited,
+      user,
+      name,
+      price
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
-        {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         <div className={`image-div ${styles.imageContent}`}>
+          {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
+          <DisplayMoreOptions />
           <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
-          {showHeart ? <HeartButton /> : ''}
+          {showHeart ? <HeartButton id={id} setFavorited={setFavorited} /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
             <span className={`pattern-card-footer-title ${styles.patternCardFooterContentTitle}`}>
-              <Link to="/patterns/1">
+              <Link to={`/patterns/${id}`}>
                 {name}
               </Link>
             </span>
-            <span>$Price</span>
+            <span>{ price !== '0.00' ? `$${price}` : 'Free'}</span>
           </div>
           {showTags !== false
             ? (
@@ -71,6 +78,7 @@ class PatternCard extends React.Component {
               </div>
             ) : ''}
         </div>
+        {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
       </div>
     );
   }
