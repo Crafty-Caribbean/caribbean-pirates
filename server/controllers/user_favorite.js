@@ -1,7 +1,7 @@
 const userFavoriteModels = require('../../db/models/user_favorite');
 
 module.exports = {
-  userAddFavorite(req, res) {
+  addFavorite(req, res) {
     userFavoriteModels.addFavoritePattern(req.params.user_id,
       req.body.pattern_id, (err) => {
         if (err) {
@@ -12,7 +12,7 @@ module.exports = {
       });
   },
 
-  userDeleteFavorite(req, res) {
+  deleteFavorite(req, res) {
     userFavoriteModels.deleteFavoritePattern(Number(req.params.user_id),
       Number(req.params.pattern_id), (err) => {
         if (err) {
