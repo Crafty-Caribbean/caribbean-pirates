@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
+import SearchSuggestions from '../SearchSuggestions';
 import styles from './SearchBar.css';
 
 class SearchBar extends React.Component {
@@ -57,7 +58,11 @@ class SearchBar extends React.Component {
                 autoComplete="off"
               />
               {searchedText.length > 0
-              && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
+              && (
+                <div className={styles.searchSuggestions}>
+                  <SearchSuggestions />
+                </div>
+              )}
             </div>
             <div
               className={styles.searchIconWrapper}
