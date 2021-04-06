@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* flex-flow: row wrap; */
   /* align-items: center; */
   justify-content: center;
+  /* align-content: center; */
+  max-height: 100vh;
+  /* max-width: 100vw; */
+  /* make another column */
 }

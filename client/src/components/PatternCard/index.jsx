@@ -5,6 +5,7 @@ import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
 import SkillTag from './SkillTag';
 import CraftTag from './CraftTag';
+import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class PatternCard extends React.Component {
       skillLevel,
       craftType,
       showTags,
+      name
     } = this.props;
     const { showHeart } = this.state;
     return (
@@ -44,7 +46,7 @@ class PatternCard extends React.Component {
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
             <span className={`pattern-card-footer-title ${styles.patternCardFooterContentTitle}`}>
               <Link to="/patterns/1">
-                Title
+                {name}
               </Link>
             </span>
             <span>$Price</span>
