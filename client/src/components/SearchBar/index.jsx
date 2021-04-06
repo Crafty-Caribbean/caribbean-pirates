@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import SearchSuggestions from '../SearchSuggestions';
 import styles from './SearchBar.css';
@@ -11,6 +12,8 @@ class SearchBar extends React.Component {
       searchHover: false,
       searchSuggestionList: ['Suggestion A', 'Suggestion B', 'Suggestion C', 'Suggestion D', 'Suggestion E', 'Suggestion F', 'Suggestion G', 'Suggestion H'],
     };
+    this.debounceSuggestions = this.debounceSuggestions.bind(this);
+    this.getSuggestions = this.getSuggestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.searchHover = this.searchHover.bind(this);
@@ -20,11 +23,37 @@ class SearchBar extends React.Component {
   // // Need suggestions
   // Suggestions for patterns, authors, tags, etc.
 
-  handleChange(event) {
-    console.log(event.target.value);
-    this.setState({
-      searchedText: event.target.value,
+  debounceSuggestions(func, delay) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+
+  getSuggestions(searchedInput) {
+    axios.get('/api/search', {
+      params: {
+        keyword: searchedInput,
+      }
+        .then((response) => {
+          const searched = response.data;
+          this.setState({ searchSuggestionList: searched });
+        })
+        .catch((error) => {
+          console.log('Error fetching search suggestions: ', error);
+        }),
     });
+  }
+
+  handleChange(event) {
+    const inputtedText = event.target.value;
+    this.setState({
+      searchedText: inputtedText,
+    });
+    this.debounceSuggestions(this.getSuggestions(inputtedText), 1000);
   }
 
   handleSearch(event) {
@@ -32,6 +61,22 @@ class SearchBar extends React.Component {
     event.preventDefault();
     console.log('Query/search database for: ', searchedText);
     this.setState({ searchedText: '' });
+
+    // API route will need to be user or author depending on clicked item
+    // const type = ???????? (Will need to find a way to retrieve this info when clicked)
+    // const id = ???????????
+    // axios.get(`/${type}/${id}`, {
+    //   params: {
+    //     keyword: searchedText,
+    //   }
+    //     .then((response) => {
+    //       const searched = response.data;
+    //       this.setState({ searchSuggestionList: searched });
+    //     })
+    //     .catch((error) => {
+    //       console.log('Error fetching search results: ', error);
+    //     }),
+    // });
   }
 
   searchHover(event) {
@@ -59,6 +104,7 @@ class SearchBar extends React.Component {
                 autoComplete="off"
               />
               {searchedText.length > 0
+              // {searchSuggestionList.length > 0
               && (
                 <div className={styles.searchSuggestions}>
                   {

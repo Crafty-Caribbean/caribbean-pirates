@@ -20,7 +20,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 10px;
   top: 10px;
   box-shadow: 2px 2px 7px 3px #d5d5d5;
 }
