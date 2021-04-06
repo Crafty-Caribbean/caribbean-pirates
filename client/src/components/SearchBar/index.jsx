@@ -97,8 +97,12 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { searchedText, searchHover, searchSuggestionList, authorSuggestionList } = this.state;
-    console.log(authorSuggestionList);
+    const {
+      searchedText,
+      searchHover,
+      searchSuggestionList,
+      authorSuggestionList,
+    } = this.state;
     return (
       <div className={styles.searchBar}>
         <form onSubmit={this.handleSearch}>
@@ -114,7 +118,7 @@ class SearchBar extends React.Component {
                 autoComplete="off"
               />
 
-              {/* if searchedText > 0, show the search suggestions
+              {/* If searchedText > 0, show the search suggestions
               otherwise, show "no results found" in a div that looks like search suggestions */}
 
               {searchedText.length > 0
