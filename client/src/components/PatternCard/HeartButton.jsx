@@ -10,24 +10,18 @@ class HeartButton extends React.Component {
       fillHeart: false,
     };
     this.toggleHeart = this.toggleHeart.bind(this);
-    // this.handleToggledHeart = this.handleToggledHeart.bind(this);
   }
 
   toggleHeart() {
     const { fillHeart } = this.state;
+    let liked;
     this.setState({
       fillHeart: !fillHeart,
     });
-    // this.handleToggledHeart();
-  }
 
-  // handleToggledHeart() {
-  //   if(this.state.fillHeart) {
-  //   axios.delete(`/users/${this.props.user}/favorite/${this.props.id}`)
-  //   .then((response) => {
-  //     axios.get(`/users/${user}`)
-  //   })
-  // }
+    liked = this.state.fillHeart;
+    this.props.setFavorited({liked: liked, id: this.props.id})
+  }
 
   render() {
     const { fillHeart } = this.state;
