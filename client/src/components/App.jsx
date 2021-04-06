@@ -38,9 +38,12 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path="/stitchsaver/users/:user_id" component={UserPage} />
-          <Route path="/patterns">
-            <PatternPage />
-          </Route>
+          <Route
+            path="/patterns/:pattern_id"
+            render={({ match, location, history }) => (
+              <PatternPage match={match} location={location} history={history} />
+            )}
+          />
           <Route path="/">
             <HomePage list={data} />
           </Route>

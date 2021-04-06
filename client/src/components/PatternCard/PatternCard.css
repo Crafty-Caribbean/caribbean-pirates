@@ -11,6 +11,7 @@
 .imageContent {
   display: grid;
   grid-template-columns: 100% auto;
+  position: relative;
 }
 
 .imageContent img {

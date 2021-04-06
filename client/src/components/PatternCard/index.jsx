@@ -5,6 +5,7 @@ import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
 import SkillTag from './SkillTag';
 import CraftTag from './CraftTag';
+import DisplayMoreOptions from '../UserPage/DisplayMoreOptions';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class PatternCard extends React.Component {
       showTags,
       id,
       setRefresh,
+      setFavorited,
       user,
       name,
       price
@@ -54,8 +56,10 @@ class PatternCard extends React.Component {
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
+          {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
+          <DisplayMoreOptions />
           <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
-          {showHeart ? <HeartButton id={id} user={user} setRefresh={setRefresh} /> : ''}
+          {showHeart ? <HeartButton id={id} setFavorited={setFavorited} /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>

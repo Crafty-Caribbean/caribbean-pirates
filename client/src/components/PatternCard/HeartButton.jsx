@@ -1,6 +1,8 @@
 import React from 'react';
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import styles from './HeartButton.css';
 
 class HeartButton extends React.Component {
@@ -15,10 +17,13 @@ class HeartButton extends React.Component {
 
   toggleHeart() {
     const { fillHeart } = this.state;
+    const { setFavorited, id } = this.props;
     this.setState({
       fillHeart: !fillHeart,
     });
-    // this.handleToggledHeart();
+
+    const liked = fillHeart;
+    setFavorited({ liked, id });
   }
 
   // handleToggledHeart() {
@@ -43,4 +48,13 @@ HeartButton.displayName = 'heart-button';
 
 export default HeartButton;
 
-// onMouseEnter={this.toggleHeart} onMouseLeave={this.toggleHeart}
+
+HeartButton.propTypes = {
+  id: PropTypes.number,
+  setFavorited: PropTypes.func,
+}
+
+HeartButton.defaultProps = {
+  id: PropTypes.number,
+  setFavorited: PropTypes.func,
+}
