@@ -10,34 +10,46 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      data: [],
     };
   }
 
+  componentDidMount() {
+    this.fetchHomeData();
+  }
+
+  fetchHomeData() {
+    this.setState({
+      data: [{
+        id: 1,
+        author: {
+          id: 1,
+          username: 'username',
+          profile_pic: 'url',
+        },
+        skill_level: 'Beginner',
+        craft_type: 'Crochet',
+        description: 'Lorem Ipsum test test 1234',
+        price: 17.95,
+        images: ['https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg'],
+        name: 'Name',
+      }],
+    });
+  }
+
   render() {
+    const { data } = this.state;
     return (
       <Router>
         <Header />
         <Switch>
           <Route path="/user" component={UserPage} />
-          <Route path="/pattern">
-            <PatternPage />
-          </Route>
-          {/* <Route path="/" component={UserPage} /> */}
-
-          <Route path="/user" component={UserPage} />
           <Route path="/patterns">
             <PatternPage />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage list={data} />
           </Route>
-          {/* <Route path="/">
-            Put your app here
-            <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />
-            <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat14932_440x661.jpg" />
-            <PatternCard cardWidth={252} imgSrc="https://i.pinimg.com/564x/51/c8/70/51c8705b6915d2560748f03939201d3b.jpg" />
-          </Route> */}
         </Switch>
       </Router>
     );

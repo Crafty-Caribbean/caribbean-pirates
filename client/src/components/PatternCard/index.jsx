@@ -42,7 +42,8 @@ class PatternCard extends React.Component {
       skillLevel,
       craftType,
       showTags,
-      name
+      name,
+      price
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
@@ -61,7 +62,7 @@ class PatternCard extends React.Component {
                 {name}
               </Link>
             </span>
-            <span>$Price</span>
+            <span>{ price !== 0 ? `$${price}` : 'Free'}</span>
           </div>
           {showTags !== false
             ? (

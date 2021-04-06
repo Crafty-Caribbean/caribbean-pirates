@@ -10,8 +10,20 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { list } = this.props;
+    console.log(list);
     return (
       <div className={`homePage ${styles.homePage}`}>
+        {list.map((pattern) => (
+          <PatternCard
+            cardWidth={210}
+            imgSrc={pattern.images[0]}
+            skillLevel={pattern.skill_level}
+            craftType={pattern.craft_type}
+            name={pattern.name}
+            price={pattern.price}
+          />
+        ))}
         <PatternCard
           cardWidth={210}
           imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg"
