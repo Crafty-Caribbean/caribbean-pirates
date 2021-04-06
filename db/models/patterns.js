@@ -14,8 +14,8 @@ module.exports = {
                         p.description,
                         p.price,
                         p.images
-                      FROM patterns p
-                      WHERE p.id=${patternId};`;
+                   FROM patterns p
+                   WHERE p.id=${patternId};`;
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting user information', err.stack);
