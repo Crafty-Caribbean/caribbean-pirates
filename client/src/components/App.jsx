@@ -19,15 +19,18 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-          <Route path="/stitchsaver/users/:user_id" component={UserPage} />
-          <Route path="/">
-            {/* <PatternPage /> */}
-            Put your app here
-            {/* <HomePage /> */}
-            {/* <UserPage /> */}
-          </Route>
+          {/* <Route path="/stitchsaver/users/:user_id" component={UserPage} /> */}
           {/* <Route path="/pattern">
             <PatternPage />
+          </Route> */}
+          {/* <Route path="/" component={UserPage} /> */}
+
+          {/* <Route path="/user" component={UserPage} />
+          <Route path="/patterns">
+            <PatternPage />
+          </Route> */}
+          {/* <Route path="/">
+            <HomePage />
           </Route> */}
           {/* <Route path="/">
             Put your app here
