@@ -5,6 +5,7 @@ import axios from 'axios';
 // import dummyData from './dummyData/dummyData';
 import PatternList from './PatternList';
 import styles from './userPage.module.css';
+import OptionsModal from './OptionsModal';
 
 const UserPage = () => {
   const [purchased, setPurchased] = useState([]);
@@ -14,19 +15,30 @@ const UserPage = () => {
   const [inProgress, setProgress] = useState([]);
   const [refresh, setRefresh] = useState('');
   const [favorited, setFavorited] = useState({ liked: false, id: '' });
-  const [deleted, setDeleted] = useState({list: '', id: ''});
-  const [startProgress, setStartProgress] = useState({list: '', id: ''});
+  const [collectListId, setCollectListId] = useState('');
   const [user, setUser] = useState(0);
+  const [showOptions, setOptions] = useState(false);
+  const [coordinates, setCoordinates] = useState({ x: '', y: '' });
+
+  const showModal = (event, id, title) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setCollectListId({ id, list: title });
+    const x = event.clientX;
+    const y = event.clientY;
+    setCoordinates({ x, y });
+    setOptions(!showOptions);
+  };
 
   const getUserData = (userId) => {
     axios.get(`/api/users/${userId}`)
       .then(({ data }) => {
         console.log(data);
-        setPurchased(data.patterns.purchased);
-        setFavorites(data.patterns.favorites);
-        setCreated(data.patterns.created);
-        setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
-        setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
+        setPurchased(data.patterns.purchased || []);
+        setFavorites(data.patterns.favorites || []);
+        setCreated(data.patterns.created || []);
+        setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100) || []);
+        setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100) || []);
         setUser(data.id);
       })
       .catch((error) => {
@@ -63,17 +75,20 @@ const UserPage = () => {
     }
   };
 
-  const removePatternCard = (patternObj) => {
-    axios.delete(`/users/${user}/${patternObj.list}/${patternObj.id}`)
+  const removePatternCard = (list, id) => {
+    axios.delete(`/users/${user}/${list}/${id}`)
       .then(() => {
         getUserData(user);
       });
   };
 
-  const initiateProgress = (patternObj) => {
-    axios.put(`/api/users/${user}/projects/${patternObj.id}/progress`, { progress: 0 })
+  const initiateProgress = (list, id) => {
+    axios.put(`/api/users/${user}/projects/${id}/progress`, { progress: 0 })
       .then(() => {
-        axios.delete(`/users/${user}/${patternObj.list}/${patternObj.id}`);
+        axios.delete(`/users/${user}/${list}/${id}`)
+          .then(() => {
+            getUserData(user);
+          });
       });
   };
 
@@ -95,24 +110,27 @@ const UserPage = () => {
     }
   }, [favorited]);
 
-  useEffect(() => {
-    removePatternCard(deleted);
-  }, [deleted]);
-
-  useEffect(() => {
-    initiateProgress(startProgress);
-  }, [startProgress]);
-
   return (
     <div>
+      {showOptions ? (
+        <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
+          <OptionsModal
+            showModal={showModal}
+            initiateProgress={initiateProgress}
+            removePatternCard={removePatternCard}
+            list={collectListId.list}
+            id={collectListId.id}
+          />
+        </div>
+      ) : null}
       <div className={styles.userPageContainer}>
         <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
-          {/* <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} /> */}
-          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
-          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
-          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
-          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
+          <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
+          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
         </div>
       </div>
     </div>
@@ -131,10 +149,10 @@ UserPage.displayName = 'UserPage';
 //   userId: PropTypes.number,
 // };
 
-  // handleToggledHeart() {
-  //   if(this.state.fillHeart) {
-  //   axios.delete(`/users/${this.props.user}/favorite/${this.props.id}`)
-  //   .then((response) => {
-  //     axios.get(`/users/${user}`)
-  //   })
-  // }
+// handleToggledHeart() {
+//   if(this.state.fillHeart) {
+//   axios.delete(`/users/${this.props.user}/favorite/${this.props.id}`)
+//   .then((response) => {
+//     axios.get(`/users/${user}`)
+//   })
+// }

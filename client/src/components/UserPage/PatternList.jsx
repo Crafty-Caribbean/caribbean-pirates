@@ -7,7 +7,7 @@ import styles from './PatternList.module.css';
 import PatternCard from '../PatternCard/index';
 
 const PatternList = ({
-  title, list, setRefresh, user, setFavorited,
+  title, list, setRefresh, user, setFavorited, showModal,
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
@@ -29,6 +29,7 @@ const PatternList = ({
           skillLevel={pattern.difficulty}
           cardWidth={210}
           name={pattern.title}
+          showModal={showModal}
         />
       ))}
     </div>
@@ -44,6 +45,7 @@ PatternList.propTypes = {
   setRefresh: PropTypes.func,
   setFavorited: PropTypes.func,
   user: PropTypes.number,
+  showModal: PropTypes.func,
 };
 
 PatternList.defaultProps = {
@@ -52,4 +54,5 @@ PatternList.defaultProps = {
   setRefresh: PropTypes.func,
   setFavorited: PropTypes.func,
   user: PropTypes.number,
+  showModal: PropTypes.func,
 };

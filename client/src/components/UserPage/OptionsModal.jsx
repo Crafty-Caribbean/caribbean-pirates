@@ -3,7 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './OptionsModal.module.css';
 
-const OptionsModal = ({ showModal, coordinates, setDeleted, setStartProgress, list, id }) => (
+const OptionsModal = ({
+  showModal, removePatternCard, initiateProgress, list, id,
+}) => (
   <div
     className={styles.modal}
     onClick={(event) => showModal(event)}
@@ -11,8 +13,8 @@ const OptionsModal = ({ showModal, coordinates, setDeleted, setStartProgress, li
     role="button"
     tabIndex={0}
   >
-    <button type="button" className={styles.startProgress} onClick={() => setStartProgress({ list, id })}> Start Project</button>
-    <button type="button" className={styles.delete} onClick={() => setDeleted({ list, id })}>Delete</button>
+    <button type="button" className={styles.startProgress} onClick={() => initiateProgress(list, id)}> Start Project</button>
+    <button type="button" className={styles.delete} onClick={() => removePatternCard(list, id)}>Delete</button>
   </div>
 );
 

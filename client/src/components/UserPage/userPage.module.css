@@ -70,3 +70,9 @@
   transform: translateY(25%);
   -webkit-transform: rotate(45deg);
 }
+
+.modalContainer {
+  background: white;
+  position: absolute;
+  z-index:10000;
+}

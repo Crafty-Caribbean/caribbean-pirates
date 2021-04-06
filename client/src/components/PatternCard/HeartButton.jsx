@@ -40,9 +40,9 @@ export default HeartButton;
 HeartButton.propTypes = {
   id: PropTypes.number,
   setFavorited: PropTypes.func,
-}
+};
 
 HeartButton.defaultProps = {
   id: PropTypes.number,
   setFavorited: PropTypes.func,
-}
+};
