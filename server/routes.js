@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const users = require('./controllers/users');
 const patterns = require('./controllers/patterns');
+const search = require('./controllers/search');
 const userFavorite = require('./controllers/user_favorite');
 const userProjects = require('./controllers/user_projects');
 const userPurchased = require('./controllers/user_purchased');
@@ -53,5 +54,6 @@ router.delete('/users/:user_id/projects/:pattern_id');
 router.post('/users/:user_id/purchased/', userPurchased.addPurchasePattern);
 
 // SEARCH BAR ==================================
+router.get('/search', search.getSearchResult);
 
 module.exports = router;
