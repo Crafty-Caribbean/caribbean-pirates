@@ -23,29 +23,12 @@ class App extends React.Component {
   fetchHomeData() {
     axios.get('/api/patterns')
       .then((response) => {
-        console.log(response.data);
         const { data } = response;
         this.setState({ data });
       })
       .catch((error) => {
         console.error(error);
       });
-    // this.setState({
-    //   data: [{
-    //     id: 1,
-    //     author: {
-    //       id: 1,
-    //       username: 'username',
-    //       profile_pic: 'url',
-    //     },
-    //     skill_level: 'Beginner',
-    //     craft_type: 'Crochet',
-    //     description: 'Lorem Ipsum test test 1234',
-    //     price: 17.95,
-    //     images: ['https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg'],
-    //     name: 'Name',
-    //   }],
-    // });
   }
 
   render() {
