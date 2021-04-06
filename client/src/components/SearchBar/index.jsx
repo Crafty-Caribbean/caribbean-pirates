@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
+import _ from 'lodash';
 import SearchSuggestions from '../SearchSuggestions';
+import AuthorSuggestions from '../AuthorSuggestions';
 import styles from './SearchBar.css';
 
 class SearchBar extends React.Component {
@@ -10,50 +12,28 @@ class SearchBar extends React.Component {
     this.state = {
       searchedText: '',
       searchHover: false,
-      searchSuggestionList: ['Suggestion A', 'Suggestion B', 'Suggestion C', 'Suggestion D', 'Suggestion E', 'Suggestion F', 'Suggestion G', 'Suggestion H'],
+      searchSuggestionList: [{ id: 1, title: 'Boop' }, { id: 2, title: 'Booper' }, { id: 3, title: 'Bob' }, { id: 4, title: 'Booooooooooba' }],
+      authorSuggestionList: [{ id: 1, username: '' }, { id: 2, username: 'Cooper' }, { id: 3, username: 'Booper' }],
     };
-    this.debounceSuggestions = this.debounceSuggestions.bind(this);
+    this.debounceSuggestions = _.debounce(this.getSuggestions, 399);
     this.getSuggestions = this.getSuggestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.searchHover = this.searchHover.bind(this);
+    this.toggleShowSuggestions = this.toggleShowSuggestions.bind(this);
   }
 
   // Get request for searchbar
   // // Need suggestions
   // Suggestions for patterns, authors, tags, etc.
 
-  debounceSuggestions(func, delay) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  }
-
-  getSuggestions(searchedInput) {
-    axios.get('/api/search', {
-      params: {
-        keyword: searchedInput,
-      }
-        .then((response) => {
-          const searched = response.data;
-          this.setState({ searchSuggestionList: searched });
-        })
-        .catch((error) => {
-          console.log('Error fetching search suggestions: ', error);
-        }),
-    });
-  }
-
   handleChange(event) {
     const inputtedText = event.target.value;
     this.setState({
       searchedText: inputtedText,
+    }, () => {
+      this.debounceSuggestions();
     });
-    this.debounceSuggestions(this.getSuggestions(inputtedText), 1000);
   }
 
   handleSearch(event) {
@@ -79,15 +59,46 @@ class SearchBar extends React.Component {
     // });
   }
 
+  getSuggestions(searchedInput) {
+    console.log('DEEEEbouncbeed');
+    // axios.get('/api/search', {
+    //   params: {
+    //     keyword: searchedInput,
+    //   }
+    //     .then((response) => {
+    //       const searched = response.data;
+    //       const searchSuggestions = [];
+    //       const authorSuggestions = [];
+    //        for (let i = 0; i < response.data.length; i++) {
+    //          searchSuggestions.push({ id: response.data[i].pattern_id, title: response.data[i].pattern_title });
+    //          authorSuggestions.push({id: response.data[i].user_id, username: response.data[i].user_title});
+    //        }
+    //       this.setState({
+    //         searchSuggestionList: searchSuggestions
+    //          authorSuggestionList: authorSuggestions
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.log('Error fetching search suggestions: ', error);
+    //     }),
+    // });
+  }
+
   searchHover(event) {
     event.preventDefault();
     const { searchHover } = this.state;
     this.setState({ searchHover: !searchHover });
   }
 
-  render() {
-    const { searchedText, searchHover, searchSuggestionList } = this.state;
+  toggleShowSuggestions() {
+    this.setState({
+      searchedText: '',
+    });
+  }
 
+  render() {
+    const { searchedText, searchHover, searchSuggestionList, authorSuggestionList } = this.state;
+    console.log(authorSuggestionList);
     return (
       <div className={styles.searchBar}>
         <form onSubmit={this.handleSearch}>
@@ -95,7 +106,6 @@ class SearchBar extends React.Component {
             <div>
               <input
                 className={styles.searchInput}
-                // placeholder="Search"
                 placeholder="Search"
                 type="text"
                 name="searchedText"
@@ -103,14 +113,45 @@ class SearchBar extends React.Component {
                 onChange={this.handleChange}
                 autoComplete="off"
               />
+
+              {/* if searchedText > 0, show the search suggestions
+              otherwise, show "no results found" in a div that looks like search suggestions */}
+
               {searchedText.length > 0
               && (
                 <div className={styles.searchSuggestions}>
-                  {
-                    searchSuggestionList.map((suggestion) => (
-                      <SearchSuggestions suggestion={suggestion} />
-                    ))
-                  }
+                  {searchSuggestionList.length > 0
+                    && (
+                      <div className={styles.suggestionTitle}>
+                        Patterns
+                      </div>
+                    )}
+                  <div>
+                    {
+                      searchSuggestionList.map((suggestion) => (
+                        <SearchSuggestions
+                          suggestion={suggestion}
+                          toggleShowSuggestions={this.toggleShowSuggestions}
+                        />
+                      ))
+                    }
+                  </div>
+                  {authorSuggestionList.length > 0
+                    && (
+                      <div className={styles.suggestionTitle}>
+                        Users and Authors
+                      </div>
+                    )}
+                  <div>
+                    {
+                      authorSuggestionList.map((author) => (
+                        <AuthorSuggestions
+                          author={author}
+                          toggleShowSuggestions={this.toggleShowSuggestions}
+                        />
+                      ))
+                    }
+                  </div>
                 </div>
               )}
             </div>
@@ -128,7 +169,7 @@ class SearchBar extends React.Component {
             </div>
           </div>
         </form>
-</div>
+      </div>
     );
   }
 }

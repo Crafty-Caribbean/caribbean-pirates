@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './SearchSuggestions.css';
 
 class SearchSuggestions extends React.Component {
@@ -10,10 +11,12 @@ class SearchSuggestions extends React.Component {
   }
 
   render() {
-    const { suggestion } = this.props;
+    const { suggestion, toggleShowSuggestions } = this.props;
     return (
-      <div>
-        <div className={styles.suggestionItems}>{suggestion}</div>
+      <div className={styles.suggestionItems}>
+        <Link onClick={toggleShowSuggestions} to={`/patterns/${suggestion.id}`}>
+          {suggestion.title}
+        </Link>
       </div>
     );
   }
