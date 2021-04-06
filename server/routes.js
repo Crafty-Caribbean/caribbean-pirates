@@ -23,6 +23,10 @@ router.post('/users', users.addUser);
 // (user edit profile/upload profile pic)
 router.put('/users/:user_id');
 
+// "Comments"  ==========================================
+router.get('/comments/:pattern_id');
+router.post('/comments/:pattern_id');
+
 /* "User-Favorite" ================================== */
 // unfavorite a pattern, remove from user favorite list
 // (favorite a pattern, add to user favorite list)
@@ -47,5 +51,7 @@ router.delete('/users/:user_id/projects/:pattern_id');
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
 router.post('/users/:user_id/purchased/', userPurchased.addPurchasePattern);
+
+// SEARCH BAR ==================================
 
 module.exports = router;
