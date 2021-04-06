@@ -7,6 +7,7 @@ const userPurchased = require('./controllers/user_purchased');
 /* "Pattern" ========================================= */
 // (load patterns)
 router.get('/patterns/:pattern_id', patterns.getOnePattern);
+router.get('/patterns/', patterns.getAllPatterns);
 // (add pattern)
 router.post('/patterns');
 // (report pattern)

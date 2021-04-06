@@ -29,4 +29,23 @@ module.exports = {
       });
     });
   },
+
+  getAllPatterns(count, offset, callback) {
+    const query = `SELECT * FROM patterns
+                   WHERE reported=false
+                   ORDER BY created_at DESC
+                   LIMIT ${count} OFFSET ${offset};`;
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error getting patterns', err.stack);
+      }
+      client.query(query, (error, result) => {
+        release();
+        if (error) {
+          callback(err.stack);
+        }
+        callback(null, result);
+      });
+    });
+  },
 };
