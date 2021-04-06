@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 import Login from '../Login';
 import AppModal from '../AppModal';
 
@@ -10,9 +11,17 @@ class PatternPage extends React.Component {
     super(props);
     this.state = {
       showModal: false,
+      patterninfo: {},
     };
 
     this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  componentDidMount() {
+    // console.log('hello');
+    axios.get('/api/patterns/2')
+    .then((res) => {this.setState({patterninfo: res.data})})
+    .catch((err) => console.log(err));
   }
 
   toggleModal(e) {
@@ -25,6 +34,7 @@ class PatternPage extends React.Component {
     });
   }
 
+
   loginUser(data) {
     console.log('login');
     console.log(data);
@@ -35,6 +45,7 @@ class PatternPage extends React.Component {
     console.log(data);
   }
 
+
   render() {
     const { showModal } = this.state;
 
@@ -43,7 +54,7 @@ class PatternPage extends React.Component {
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
             <div className={styles.imageGallery}>Image Gallery</div>
-            <div className={styles.patternSummary}><PatternSummary /></div>
+            <div className={styles.patternSummary}><PatternSummary patterninfo={this.state.patterninfo}/></div>
           </div>
         </div>
         <div className={styles.relatedPatterns}>
