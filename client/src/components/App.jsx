@@ -6,38 +6,47 @@ import PatternCard from './PatternCard';
 import UserPage from './UserPage/UserPage';
 import HomePage from './HomePage';
 
+const axios = require('axios');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      data: [],
     };
   }
 
+  componentDidMount() {
+    this.fetchHomeData();
+  }
+
+  fetchHomeData() {
+    axios.get('/api/patterns')
+      .then((response) => {
+        const { data } = response;
+        this.setState({ data });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
+    const { data } = this.state;
     return (
       <Router>
         <Header />
         <Switch>
           <Route path="/stitchsaver/users/:user_id" component={UserPage} />
-          {/* <Route path="/pattern">
-            <PatternPage />
-          </Route> */}
-          {/* <Route path="/" component={UserPage} /> */}
-
-          {/* <Route path="/user" component={UserPage} />
-          <Route path="/patterns">
-            <PatternPage />
-          </Route> */}
-          {/* <Route path="/">
-            <HomePage />
-          </Route> */}
-          {/* <Route path="/">
-            Put your app here
-            <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />
-            <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat14932_440x661.jpg" />
-            <PatternCard cardWidth={252} imgSrc="https://i.pinimg.com/564x/51/c8/70/51c8705b6915d2560748f03939201d3b.jpg" />
-          </Route> */}
+          <Route
+            path="/patterns/:pattern_id"
+            render={({ match, location, history }) => (
+              <PatternPage match={match} location={location} history={history} />
+            )}
+          />
+          <Route path="/">
+            <HomePage list={data} />
+          </Route>
         </Switch>
       </Router>
     );

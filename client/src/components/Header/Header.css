@@ -3,10 +3,12 @@
   position: sticky;
   top: 0px;
   height: 100px;
-  grid-template-columns: 120px 15% auto 10% 10% 5%;
+  grid-template-columns: 90px 170px auto 150px 80px;
   background-color: white;
-  opacity: 0.9;
+  opacity: 0.975;
   margin: 10px 0px;
+  align-content: center;
+  z-index: 9000;
 }
 
 .logoImage {
@@ -18,20 +20,24 @@
   border: none;
   outline: none;
   cursor: pointer;
+  border-radius: 10px;
+  top: 10px;
+  box-shadow: 2px 2px 7px 3px #d5d5d5;
 }
 
 .logoImage:hover,
 .logoImage:focus {
   cursor: pointer;
   color: white;
-  box-shadow: 2px 2px 7px 1px #d5d5d5;
+  box-shadow: 2px 2px 7px 5px #d5d5d5;
 }
 
 .logoName {
   font-family: "montserrat", sans-serif;
+  min-width: 100px;
   font-size: 25px;
   font-weight: 700;
-    height: 50px;
+  height: 50px;
   border: none;
   position: relative;
   outline: none;
@@ -83,10 +89,8 @@
   outline: none;
   cursor: pointer;
   color: white;
-  /* border: 2px solid #cccc; */
   box-shadow: 2px 2px 7px 1px #EBEBEB;
   border-radius: 50px;
-  /* border: solid 5px white; */
   border: solid 5px #EBEBEB;
   background-color: #EBEBEB;
 }
@@ -96,17 +100,7 @@
   position: relative;
   border-radius: 50px;
   height: 100px;
-  width: 100px;
+  width: 80px;
   justify-content: center;
   align-content: center;
-  /* border: solid 10px white; */
-  margin: 0px 20px;
-  /* box-shadow: 2px 2px 7px 1px #EBEBEB; */
-}
-
-.profileIconWrapper:hover,
-.profileIconWrapper:focus {
-  /* background-color: #EBEBEB; */
-  /* border: solid 1px #EBEBEB; */
-  /* color: white; */
 }

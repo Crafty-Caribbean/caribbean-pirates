@@ -7,7 +7,7 @@
 .searchContainer {
   position: relative;
   display: grid;
-  grid-template-columns: 85% auto;
+  grid-template-columns: auto 50px;
   align-content: center;
   height: 80px;
   width: auto;
@@ -47,14 +47,13 @@
   font-weight: 700;
   position: relative;
   margin: 0px;
-  padding: 0px;
   outline: none;
   border: none;
   background-color: #EBEBEB;
   color: #6E6E6E;
   border-radius: 50px;
   height: 50px;
-  width: 90%;
+  width: calc(100% - 50px);
   padding: 0px 15px 0px 35px;
   z-index: 5;
   justify-self: center;
@@ -80,15 +79,16 @@
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  right: 17%;
+  right: 50px;
   padding: 20px;
-  width: 70%;
+  width: calc(100% - 130px);
   height: auto;
   border-radius: 0px 0px 5px 5px;
   z-index: 5;
   justify-content: center;
   color: #6E6E6E;
-  box-shadow: 2px 2px 7px 1px #EBEBEB;
   justify-self: center;
   align-self: center;
+  background: white;
+  opacity: 1;
 }

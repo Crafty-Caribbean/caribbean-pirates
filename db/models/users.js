@@ -13,6 +13,7 @@ module.exports = {
                           p.craft_type,
                           p.skill_level AS difficulty,
                           p.images,
+                          p.price,
                            (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                                 uf.created_at AS liked_at
                       FROM patterns p, user_favorite uf
@@ -24,6 +25,7 @@ module.exports = {
                           p.craft_type,
                           p.skill_level AS difficulty,
                           p.images,
+                          p.price,
                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                               up.progress,
                               up.created_at AS started_at,
@@ -37,6 +39,7 @@ module.exports = {
                           p.craft_type,
                           p.skill_level AS difficulty,
                           p.images,
+                          p.price,
                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                              p.created_at
                       FROM patterns p
@@ -59,16 +62,18 @@ module.exports = {
   },
 
   addUser(email, username, age, password, callback) {
-    const query = `INSERT INTO users (email, username, age, password, image) VALUES
-    (${email}, ${username}, ${age}, ${password}, '');`;
+    const query = {
+      text: 'INSERT INTO users (email, username, age, password, image) VALUES ($1, $2, $3, $4, $5);',
+      values: [email, username, age, password, ''],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding user', err.stack);
       }
       client.query(query, (error, results) => {
         release();
-        if (err) {
-          callback(err.stack);
+        if (error) {
+          callback(error.stack);
         }
         callback(null, results);
       });
