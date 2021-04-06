@@ -22,7 +22,7 @@ class App extends React.Component {
           <Route path="/stitchsaver/users/:user_id" component={UserPage} />
           <Route path="/patterns">
             <PatternPage />
-          </Route>
+          </Route> */}
           <Route path="/">
             <HomePage />
           </Route>

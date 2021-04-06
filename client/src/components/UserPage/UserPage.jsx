@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import PropTypes from 'prop-types';
-import dummyData from './dummyData/dummyData';
+// import dummyData from './dummyData/dummyData';
 import PatternList from './PatternList';
 import styles from './userPage.module.css';
 
@@ -13,6 +13,7 @@ const UserPage = () => {
   const [completed, setCompleted] = useState([]);
   const [inProgress, setProgress] = useState([]);
   const [refresh, setRefresh] = useState('');
+  const [favorited, setFavorited] = useState({ liked: false, id: '' });
   const [user, setUser] = useState(0);
 
   const getUserData = (userId) => {
@@ -43,6 +44,23 @@ const UserPage = () => {
     }
   };
 
+  const handleToggledHeart = (favoritedObj) => {
+    if (favoritedObj.liked) {
+      axios.post(`/users/${user}/favorite/`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios.delete(`/users/${user}/favorite/${favoritedObj.id}`)
+        .then(() => {
+          getUserData(user);
+        });
+    }
+  };
+
   const handleToggledHeart = () => {
 
   }
@@ -60,8 +78,10 @@ const UserPage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    handleToggledHeart()
-  }, [refresh])
+    if (favorited.id) {
+      handleToggledHeart(favorited);
+    }
+  }, [favorited]);
 
   return (
     <div>
@@ -69,10 +89,10 @@ const UserPage = () => {
         <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
           {/* <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} /> */}
-          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} user={user} />
-          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} user={user} />
-          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} user={user} />
-          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} user={user} />
+          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
+          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
+          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
+          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} setFavorited={setFavorited} user={user} />
         </div>
       </div>
     </div>
@@ -90,3 +110,11 @@ UserPage.displayName = 'UserPage';
 // UserPage.defaultProps = {
 //   userId: PropTypes.number,
 // };
+
+  // handleToggledHeart() {
+  //   if(this.state.fillHeart) {
+  //   axios.delete(`/users/${this.props.user}/favorite/${this.props.id}`)
+  //   .then((response) => {
+  //     axios.get(`/users/${user}`)
+  //   })
+  // }

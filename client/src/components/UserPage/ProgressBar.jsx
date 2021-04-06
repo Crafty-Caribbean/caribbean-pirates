@@ -10,15 +10,13 @@ const ProgressBar = ({
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const debounce = (func, delay = 500) => {
-    let timeoutId;
+  const debounce = (func, delay) => {
+    let timerId;
     return (...args) => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (timerId) {
+        clearTimeout(timerId);
       }
-      timeoutId = setTimeout(() => {
-        func.call(null, ...args);
-      }, delay);
+      timerId = setTimeout(() => func.apply(this, args), delay);
     };
   };
 
@@ -32,9 +30,11 @@ const ProgressBar = ({
       });
   };
 
+  const sendData = debounce(updateProgress, 1000);
+
   const handleChange = (event) => {
     setValue(event.target.value);
-    debounce(updateProgress, 500);
+    sendData();
     if (event.target.value === '100') {
       setShowConfirmation(true);
     }
@@ -55,14 +55,14 @@ const ProgressBar = ({
   };
 
   return (
-    <div className="">
+    <div className={styles.confirmation}>
       {showConfirmation ? (
-        <div className={styles.confirmation}>
+        <div className="">
           Complete?
           <button onClick={(event) => completed(event)} type="button">✓</button>
           <button onClick={(event) => cancel(event)} type="button">x</button>
         </div>
-      ) : <input type="range" min="0" max="100" value={value} step="1" onChange={(event) => handleChange(event)} />}
+      ) : <input className="" type="range" min="0" max="100" value={value} step="1" onChange={(event) => handleChange(event)} />}
     </div>
 
   );
