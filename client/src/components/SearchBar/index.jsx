@@ -9,6 +9,7 @@ class SearchBar extends React.Component {
     this.state = {
       searchedText: '',
       searchHover: false,
+      searchSuggestionList: ['Suggestion A', 'Suggestion B', 'Suggestion C', 'Suggestion D', 'Suggestion E', 'Suggestion F', 'Suggestion G', 'Suggestion H'],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -40,7 +41,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { searchedText, searchHover } = this.state;
+    const { searchedText, searchHover, searchSuggestionList } = this.state;
 
     return (
       <div className={styles.searchBar}>
@@ -60,7 +61,11 @@ class SearchBar extends React.Component {
               {searchedText.length > 0
               && (
                 <div className={styles.searchSuggestions}>
-                  <SearchSuggestions />
+                  {
+                    searchSuggestionList.map((suggestion) => (
+                      <SearchSuggestions suggestion={suggestion} />
+                    ))
+                  }
                 </div>
               )}
             </div>
