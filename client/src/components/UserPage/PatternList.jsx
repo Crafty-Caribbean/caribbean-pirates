@@ -11,9 +11,9 @@ const PatternList = ({
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
-    <TopArrow id={title}/>
+    <TopArrow id={title} />
     <div id={title} className={styles.patternList}>
-      {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} id={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} setRefresh={setRefresh} user={user} />)}
+      {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} id={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} setRefresh={setRefresh} user={user} showTags craftType={pattern.craft_type} skillLevel={pattern.difficulty} cardWidth={210} />)}
     </div>
     <DownArrow id={title} listLength={list.length} />
   </div>

@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './ProgressBar.module.css';
 
-const ProgressBar = ({ progress, setRefresh, id, user }) => {
-  console.log(progress);
+const ProgressBar = ({
+  progress, setRefresh, id, user,
+}) => {
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
 

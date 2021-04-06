@@ -43,6 +43,10 @@ const UserPage = () => {
     }
   };
 
+  const handleToggledHeart = () => {
+
+  }
+
   const { location } = window;
   useEffect(() => {
     console.log(location);
@@ -54,6 +58,10 @@ const UserPage = () => {
   useEffect(() => {
     updateProjectData(refresh);
   }, [refresh]);
+
+  useEffect(() => {
+    handleToggledHeart()
+  }, [refresh])
 
   return (
     <div>

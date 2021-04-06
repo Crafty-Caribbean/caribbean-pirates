@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './userPage.module.css';
 
 const TopArrow = ({ id }) => {
@@ -19,3 +20,10 @@ const TopArrow = ({ id }) => {
 };
 
 export default TopArrow;
+
+TopArrow.propTypes = {
+  id: PropTypes.string,
+};
+TopArrow.defaultProps = {
+  id: PropTypes.string,
+};

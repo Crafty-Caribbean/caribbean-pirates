@@ -19,17 +19,16 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-          {/* <Route path="/stitchsaver/users/:user_id" component={UserPage} /> */}
+          <Route path="/stitchsaver/users/:user_id" component={UserPage} />
           <Route path="/">
             {/* <PatternPage /> */}
             Put your app here
             {/* <HomePage /> */}
             {/* <UserPage /> */}
           </Route>
-          <Route path="/user" component={UserPage} />
-          <Route path="/pattern">
+          {/* <Route path="/pattern">
             <PatternPage />
-          </Route>
+          </Route> */}
           {/* <Route path="/">
             Put your app here
             <PatternCard cardWidth={252} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" />
