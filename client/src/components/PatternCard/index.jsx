@@ -5,15 +5,25 @@ import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
 import SkillTag from './SkillTag';
 import CraftTag from './CraftTag';
-import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
 
 class PatternCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showHeart: false,
+      dimensions: {},
     };
+    this.onImgLoad = this.onImgLoad.bind(this);
     this.toggleShowHeart = this.toggleShowHeart.bind(this);
+  }
+
+  onImgLoad({ target: img }) {
+    this.setState({
+      dimensions: {
+        height: img.offsetHeight,
+        width: img.offsetWidth,
+      },
+    });
   }
 
   toggleShowHeart() {
@@ -34,12 +44,14 @@ class PatternCard extends React.Component {
       showTags,
       name
     } = this.props;
-    const { showHeart } = this.state;
+    const { dimensions, showHeart } = this.state;
+    const { height } = dimensions;
+    const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
     return (
-      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px` }}>
+      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
         {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         <div className={`image-div ${styles.imageContent}`}>
-          <img src={imgSrc} alt="pattern" />
+          <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           {showHeart ? <HeartButton /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
