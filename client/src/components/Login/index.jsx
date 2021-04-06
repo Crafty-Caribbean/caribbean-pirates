@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import styles from './Login.css';
@@ -72,7 +73,7 @@ class Login extends React.Component {
           {
             mode === SIGNUP && (
               <>
-                <label htmlFor='username' className={styles.a11yHidden}>Username:</label>
+                <label htmlFor="username" className={styles.a11yHidden}>Username:</label>
                 <input
                   className={styles.loginFormInput}
                   name="username"
@@ -84,7 +85,7 @@ class Login extends React.Component {
             )
           }
 
-          <label htmlFor='email' className={styles.a11yHidden}>Email:</label>
+          <label htmlFor="email" className={styles.a11yHidden}>Email:</label>
           <input
             className={styles.loginFormInput}
             name="email"
@@ -93,9 +94,10 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor='password' className={styles.a11yHidden}>Password:</label>
+          <label htmlFor="password" className={styles.a11yHidden}>Password:</label>
           <input
             className={styles.loginFormInput}
+            autoComplete="false"
             name="password"
             type="password"
             placeholder="password"
@@ -105,7 +107,7 @@ class Login extends React.Component {
           {
             mode === SIGNUP && (
               <>
-                <label htmlFor='age' className={styles.a11yHidden}>Age:</label>
+                <label htmlFor="age" className={styles.a11yHidden}>Age:</label>
                 <input
                   className={styles.loginFormInput}
                   name="age"
@@ -119,7 +121,7 @@ class Login extends React.Component {
 
           <button className={styles.submitButton} type="button" onClick={this.handleSubmit}>
             {
-              (mode === LOGIN && "Log in") || "Sign up"
+              (mode === LOGIN && 'Log in') || 'Sign up'
             }
           </button>
         </form>
