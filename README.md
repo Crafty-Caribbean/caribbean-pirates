@@ -21,4 +21,4 @@ When reviewing someone else's PR:
 3. Checkout the branch you are reviewing
 4. Test the code, look at the code, etc.
 5. Click merge button on Github if you approve the code.
-6. If you do not approve, make comment on Github PR. For reviewer: only merge after all comments are resolved and the code has been reviewed.
+6. If you do not approve, make comment on Github PR. For reviewer: only merge after all comments are resolved and the code has been r

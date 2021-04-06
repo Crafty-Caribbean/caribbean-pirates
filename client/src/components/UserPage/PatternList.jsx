@@ -11,11 +11,11 @@ const PatternList = ({
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
-    <TopArrow />
-    <div id="patternList" className={styles.patternList}>
+    <TopArrow id={title}/>
+    <div id={title} className={styles.patternList}>
       {list.map((pattern) => <PatternCard info={pattern} key={pattern.id} id={pattern.id} imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg" progress={pattern.progress} title={title} setRefresh={setRefresh} user={user} />)}
     </div>
-    <DownArrow />
+    <DownArrow id={title} listLength={list.length} />
   </div>
 );
 
