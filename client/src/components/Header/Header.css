@@ -3,11 +3,11 @@
   position: sticky;
   top: 0px;
   height: 100px;
-  grid-template-columns: 100px 200px auto 150px 80px;
-  /* grid-template-columns: 100px 150px auto 10% 10%; */
+  grid-template-columns: 90px 170px auto 150px 80px;
   background-color: white;
   opacity: 0.975;
   margin: 10px 0px;
+  align-content: center;
 }
 
 .logoImage {
@@ -19,13 +19,16 @@
   border: none;
   outline: none;
   cursor: pointer;
+  border-radius: 50px;
+  top: 10px;
+  box-shadow: 2px 2px 7px 3px #d5d5d5;
 }
 
 .logoImage:hover,
 .logoImage:focus {
   cursor: pointer;
   color: white;
-  box-shadow: 2px 2px 7px 1px #d5d5d5;
+  box-shadow: 2px 2px 7px 5px #d5d5d5;
 }
 
 .logoName {
