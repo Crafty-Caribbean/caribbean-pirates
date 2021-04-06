@@ -3,6 +3,7 @@ const users = require('./controllers/users');
 const patterns = require('./controllers/patterns');
 const userFavorite = require('./controllers/user_favorite');
 const userProjects = require('./controllers/user_projects');
+const userPurchased = require('./controllers/user_purchased');
 /* "Pattern" ========================================= */
 // (load patterns)
 router.get('/patterns/:pattern_id', patterns.getOnePattern);
@@ -44,6 +45,6 @@ router.delete('/users/:user_id/projects/:pattern_id');
 
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
-router.post('/users/:user_id/purchased/');
+router.post('/users/:user_id/purchased/', userPurchased.addPurchasePattern);
 
 module.exports = router;
