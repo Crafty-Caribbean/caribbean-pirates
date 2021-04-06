@@ -25,6 +25,16 @@ class PatternPage extends React.Component {
     });
   }
 
+  loginUser(data) {
+    console.log('login');
+    console.log(data);
+  }
+
+  signupUser(data) {
+    console.log('signup');
+    console.log(data);
+  }
+
   render() {
     const { showModal } = this.state;
 
@@ -44,7 +54,10 @@ class PatternPage extends React.Component {
           showModal
           && (
             <AppModal outsideClickHandler={this.toggleModal}>
-              <Login />
+              <Login
+                login={(data) => this.loginUser(data)}
+                signup={(data) => this.signupUser(data)}
+              />
             </AppModal>
           )
         }

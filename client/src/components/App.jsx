@@ -20,14 +20,15 @@ class App extends React.Component {
         <Header />
         <Switch>
           {/* <Route path="/" component={UserPage} /> */}
+
+          <Route path="/user" component={UserPage} />
+          <Route path="/patterns">
+            <PatternPage />
+          </Route>
           <Route path="/">
             {/* <PatternPage /> */}
             Put your app here
             {/* <HomePage /> */}
-          </Route>
-          <Route path="/user" component={UserPage} />
-          <Route path="/pattern">
-            <PatternPage />
           </Route>
           {/* <Route path="/">
             Put your app here
