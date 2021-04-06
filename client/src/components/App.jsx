@@ -30,9 +30,7 @@ class App extends React.Component {
             <PatternPage />
           </Route>
           <Route path="/">
-            {/* <PatternPage /> */}
-            Put your app here
-            {/* <HomePage /> */}
+            <HomePage />
           </Route>
           {/* <Route path="/">
             Put your app here
