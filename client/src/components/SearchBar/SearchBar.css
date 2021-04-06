@@ -7,7 +7,7 @@
 .searchContainer {
   position: relative;
   display: grid;
-  grid-template-columns: 85% auto;
+  grid-template-columns: auto 50px;
   align-content: center;
   height: 80px;
   width: auto;
