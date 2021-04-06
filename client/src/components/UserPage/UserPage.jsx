@@ -7,51 +7,74 @@ import PatternList from './PatternList';
 import styles from './userPage.module.css';
 
 const UserPage = () => {
-  // console.log(dummyData);
-  const [purchased, setPurchased] = useState(dummyData.patterns.purchased);
-  const [favorites, setFavorites] = useState(dummyData.patterns.favorites);
-  const [created, setCreated] = useState(dummyData.patterns.created);
-  const [completed, setCompleted] = useState(
-    dummyData.patterns.projects.filter((pattern) => pattern.progress === 100),
-  );
-  const [inProgress, setProgress] = useState(
-    dummyData.patterns.projects.filter((pattern) => pattern.progress !== 100),
-  );
+  const [purchased, setPurchased] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [created, setCreated] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [inProgress, setProgress] = useState([]);
+  const [refresh, setRefresh] = useState('');
+  const [user, setUser] = useState(0);
 
   const getUserData = (userId) => {
-    console.log(userId);
-    // axios.get(`/users/${userId}`)
-    //   .then(({ data }) => {
-    //     setPurchased(data.patterns.purchased);
-    //     setFavorites(data.patterns.favorites);
-    //     setCreated(data.owned);
-    //     setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
-    //     setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios.get(`/api/users/${userId}`)
+      .then(({ data }) => {
+        console.log(data);
+        setPurchased(data.patterns.purchased);
+        setFavorites(data.patterns.favorites);
+        setCreated(data.patterns.created);
+        setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100));
+        setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100));
+        setUser(data.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  const updateProjectData = (patternId) => {
+    if (patternId) {
+      axios.put(`/api/users/${user}/projects/${patternId}/progress`, { progress: 100 })
+        .then(() => {
+          getUserData(user);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const handleToggledHeart = () => {
+
+  }
 
   const { location } = window;
   useEffect(() => {
+    console.log(location);
     if (location) {
-      getUserData(`${location.pathname.split('/')[2]}`);
+      getUserData(`${location.pathname.split('/')[3]}`);
     }
   }, []);
 
+  useEffect(() => {
+    updateProjectData(refresh);
+  }, [refresh]);
+
+  useEffect(() => {
+    handleToggledHeart()
+  }, [refresh])
+
   return (
     <div>
-    <div className={styles.userPageContainer}>
-      <div className="user-static">IM</div>
-      <div className={styles.patternsContainer}>
-        <PatternList className="Purchased" list={purchased} title="Purchased" />
-        <PatternList className="Favorites" list={favorites} title="Favorites" />
-        <PatternList className="Created" list={created} title="Created" />
-        <PatternList className="In-Progress" list={inProgress} title="In Progress" />
-        <PatternList className="Completed" list={completed} title="Completed" />
+      <div className={styles.userPageContainer}>
+        <div className="user-static">IM</div>
+        <div className={styles.patternsContainer}>
+          {/* <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} /> */}
+          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} user={user} />
+          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} user={user} />
+          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} user={user} />
+          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} user={user} />
+        </div>
       </div>
-    </div>
     </div>
   );
 };

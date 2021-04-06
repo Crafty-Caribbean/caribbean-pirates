@@ -42,6 +42,9 @@ class PatternCard extends React.Component {
       skillLevel,
       craftType,
       showTags,
+      id,
+      setRefresh,
+      user,
       name
     } = this.props;
     const { dimensions, showHeart } = this.state;
@@ -49,10 +52,9 @@ class PatternCard extends React.Component {
     const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
-        {title === 'In Progress' ? <ProgressBar progress={progress} /> : null}
         <div className={`image-div ${styles.imageContent}`}>
           <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
-          {showHeart ? <HeartButton /> : ''}
+          {showHeart ? <HeartButton id={id} user={user} setRefresh={setRefresh} /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
@@ -71,6 +73,7 @@ class PatternCard extends React.Component {
               </div>
             ) : ''}
         </div>
+        {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
       </div>
     );
   }

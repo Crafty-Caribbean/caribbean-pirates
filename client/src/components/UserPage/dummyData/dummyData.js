@@ -55,7 +55,7 @@ module.exports = {
         difficulty: 'string',
         author: 'string',
         progress: 10,
-      }
+      },
     ],
 
     projects: [
