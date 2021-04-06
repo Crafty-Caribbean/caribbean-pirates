@@ -48,6 +48,7 @@ class PatternCard extends React.Component {
       setFavorited,
       user,
       name,
+      price
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
@@ -63,11 +64,11 @@ class PatternCard extends React.Component {
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
             <span className={`pattern-card-footer-title ${styles.patternCardFooterContentTitle}`}>
-              <Link to="/patterns/1">
+              <Link to={`/patterns/${id}`}>
                 {name}
               </Link>
             </span>
-            <span>$Price</span>
+            <span>{ price !== '0.00' ? `$${price}` : 'Free'}</span>
           </div>
           {showTags !== false
             ? (
