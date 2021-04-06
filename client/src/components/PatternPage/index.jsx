@@ -12,16 +12,36 @@ class PatternPage extends React.Component {
     this.state = {
       showModal: false,
       patterninfo: {},
+      pattern_id: undefined,
     };
 
     this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
-    // console.log('hello');
-    axios.get('/api/patterns/2')
-    .then((res) => {this.setState({patterninfo: res.data})})
-    .catch((err) => console.log(err));
+    const { match } = this.props;
+
+    if (match.params.pattern_id) {
+      axios.get('/api/patterns/2')
+        .then((res) => this.setState({ patterninfo: res.data }))
+        .catch(console.err);
+
+      this.setState({
+        pattern_id: match.params.pattern_id,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevId = prevProps.match && prevProps.match.pattern_id;
+    const pattern_id = this.props.match && this.props.match.pattern_id;
+
+    if (prevId !== pattern_id) {
+      console.log('componentUpdated, pattern_id changed: ', pattern_id);
+      this.setState({
+        pattern_id,
+      });
+    }
   }
 
   toggleModal(e) {
@@ -34,7 +54,6 @@ class PatternPage extends React.Component {
     });
   }
 
-
   loginUser(data) {
     console.log('login');
     console.log(data);
@@ -45,16 +64,21 @@ class PatternPage extends React.Component {
     console.log(data);
   }
 
-
   render() {
-    const { showModal } = this.state;
+    const {
+      showModal,
+      pattern_id,
+      patterninfo,
+    } = this.state;
 
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
             <div className={styles.imageGallery}>Image Gallery</div>
-            <div className={styles.patternSummary}><PatternSummary patterninfo={this.state.patterninfo}/></div>
+            <div className={styles.patternSummary}>
+              <PatternSummary patterninfo={patterninfo} />
+            </div>
           </div>
         </div>
         <div className={styles.relatedPatterns}>
