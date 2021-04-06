@@ -9,9 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use('/api', router);
 app.use('/*', express.static(path.join(__dirname, '/../client/dist')));
-
-app.use('/', router);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

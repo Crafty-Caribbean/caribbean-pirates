@@ -12,7 +12,7 @@ const TopArrow = () => {
   };
 
   return (
-    <button id="topArrow" className={styles.topArrow} onClick={handleClick} onKeyPress={handleClick} tag={0}>
+    <button id="topArrow" className={styles.topArrow} onClick={handleClick} onKeyPress={handleClick} tag={0} type="button">
       <i id="arrowTop" className={styles.hide} />
     </button>
   );
