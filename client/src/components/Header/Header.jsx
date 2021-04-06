@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoPersonCircle } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import styles from './Header.css';
 
@@ -26,26 +27,25 @@ class Header extends React.Component {
     this.setState({ profileHover: !profileHover });
   }
 
-  navToHomePage(event) {
-    event.preventDefault();
-    console.log('Take user to home/search page');
-  }
-
   render() {
     const { profileHover } = this.state;
 
     return (
       <div id="header" className={styles.header}>
-        <div onClick={this.navToHomePage}>
+        <Link to="/">
           <img
             className={styles.logoImage}
             src="/images/StitchSaverLogo.png"
             alt="StitchSaver Logo"
           />
-        </div>
-        <button className={styles.logoName} type="submit">StitchSaver</button>
+        </Link>
+        <Link to="/" className={styles.logoName}>
+          <span className={styles.logoNameText}>StitchSaver</span>
+        </Link>
         <SearchBar />
-        <button onClick={this.navToHomePage} className={styles.homeButton} type="submit">Home</button>
+        <Link to="/" className={styles.homeButton}>
+          <span>Home</span>
+        </Link>
         <div
           className={styles.profileIconWrapper}
         >
