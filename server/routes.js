@@ -18,7 +18,7 @@ router.delete('/patterns/:pattern_id');
 // (user login)
 router.get('/users/:user_id', users.getUserPatternList);
 // (user sign up)
-router.post('/users');
+router.post('/users', users.addUser);
 // (user edit profile/upload profile pic)
 router.put('/users/:user_id');
 

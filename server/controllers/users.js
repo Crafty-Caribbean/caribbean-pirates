@@ -9,4 +9,8 @@ module.exports = {
       res.status(200).send(results.rows[0]);
     });
   },
+
+  addUser(req, res) {
+
+  },
 };
