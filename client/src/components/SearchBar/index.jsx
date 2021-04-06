@@ -23,15 +23,15 @@ class SearchBar extends React.Component {
   // // Need suggestions
   // Suggestions for patterns, authors, tags, etc.
 
-  // debounceSuggestions(func, delay) {
-  //   let timer;
-  //   return (...args) => {
-  //     clearTimeout(timer);
-  //     timer = setTimeout(() => {
-  //       func.apply(this, args);
-  //     }, delay);
-  //   };
-  // }
+  debounceSuggestions(func, delay) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
 
   getSuggestions(searchedInput) {
     axios.get('/api/search', {
