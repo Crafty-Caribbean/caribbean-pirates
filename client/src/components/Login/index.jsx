@@ -5,6 +5,12 @@ import styles from './Login.css';
 const LOGIN = 0;
 const SIGNUP = 1;
 
+/**
+* Renders a <Login /> component
+* @param  props
+* @param  props.login - login function to call when login button is clicked
+* @param  props.signup - signup function to call when signup button is clicked
+*/
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -40,11 +46,6 @@ class Login extends React.Component {
     const { login, signup } = this.props;
     const { mode } = this.state;
 
-    // const data = {
-    //   email: this.email.current.value,
-    //   password: this.password.current.value,
-    // };
-
     if (mode === LOGIN) {
       login(this.state);
     } else {
@@ -54,8 +55,6 @@ class Login extends React.Component {
 
   toggleMode() {
     const { mode } = this.state;
-
-    console.log('toggle', mode);
 
     this.setState({
       mode: mode === LOGIN ? SIGNUP : LOGIN,
