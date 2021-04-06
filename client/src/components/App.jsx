@@ -6,15 +6,33 @@ import PatternCard from './PatternCard';
 import UserPage from './UserPage/UserPage';
 import HomePage from './HomePage';
 
+const axios = require('axios');
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      data: [],
     };
   }
 
+  componentDidMount() {
+    this.fetchHomeData();
+  }
+
+  fetchHomeData() {
+    axios.get('/api/patterns')
+      .then((response) => {
+        const { data } = response;
+        this.setState({ data });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
+    const { data } = this.state;
     return (
       <Router>
         <Header />
@@ -27,7 +45,7 @@ class App extends React.Component {
             )}
           />
           <Route path="/">
-            <HomePage />
+            <HomePage list={data} />
           </Route>
         </Switch>
       </Router>

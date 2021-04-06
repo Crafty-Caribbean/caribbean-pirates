@@ -61,10 +61,6 @@ const UserPage = () => {
     }
   };
 
-  const handleToggledHeart = () => {
-
-  }
-
   const { location } = window;
   useEffect(() => {
     console.log(location);
