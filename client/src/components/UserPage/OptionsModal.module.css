@@ -1,7 +1,24 @@
 .modal {
   display: flex;
   flex-flow: column;
-  background: black;
+  background: #F5F8FA;
   width: 10vw;
   height: 10vh;
+  border: 1px solid #F5F8FA;
+  border-radius: 55px;
+}
+
+.startProgress {
+  background: #F5F8FA;
+  border-bottom: 1px solid #657786;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  height: 5vh;
+}
+
+.delete {
+  background: #F5F8FA;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  height: 5vh;
 }
