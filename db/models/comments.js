@@ -2,9 +2,10 @@ const db = require('../index.js');
 
 module.exports = {
   getComments(patternId, callback) {
-    const query = `SELECT id, username, content, created_at
-                   FROM comments
-                   WHERE pattern_id=${patternId}`;
+    const query = {
+      text: 'SELECT id, username, content, created_at FROM comments WHERE pattern_id=$1',
+      values: [patternId],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting comment', err.stack);
