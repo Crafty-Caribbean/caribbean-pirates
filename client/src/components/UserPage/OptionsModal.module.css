@@ -14,14 +14,17 @@
   border: none;
   background: none;
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.65vw;
   height: 5vh;
+  outline: none;
 }
 
 .startProgress {
   border-bottom: 1px solid rgb(200, 200, 200);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  outline: none;
 }
 
 .delete {
