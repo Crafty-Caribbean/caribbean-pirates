@@ -5,6 +5,7 @@ import AppModal from '../AppModal';
 
 import styles from './PatternPage.css';
 import PatternSummary from './PatternSummary';
+import CommentsSection from './CommentsSection';
 
 class PatternPage extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class PatternPage extends React.Component {
     const { match } = this.props;
 
     if (match.params.pattern_id) {
-      axios.get('/api/patterns/2')
+      axios.get(`/api/patterns/${match.params.pattern_id}`)
         .then((res) => this.setState({ patterninfo: res.data }))
         .catch(console.err);
 
@@ -81,6 +82,7 @@ class PatternPage extends React.Component {
             </div>
           </div>
         </div>
+
         <div className={styles.relatedPatterns}>
           Related Patterns
           <button type="button" onClick={this.toggleModal}>Modal</button>
@@ -96,6 +98,11 @@ class PatternPage extends React.Component {
             </AppModal>
           )
         }
+        <div className={styles.commentsSectionHolder}>
+          <div className={styles.commentsSection}>
+            <CommentsSection />
+          </div>
+        </div>
       </div>
     );
   }
