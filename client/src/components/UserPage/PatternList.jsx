@@ -7,7 +7,7 @@ import styles from './PatternList.module.css';
 import PatternCard from '../PatternCard/index';
 
 const PatternList = ({
-  title, list, setRefresh, user, setFavorited, showModal,
+  title, list, user, setFavorited, showModal, forceUpdate,
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
@@ -16,20 +16,22 @@ const PatternList = ({
       {list.map((pattern) => (
         <PatternCard
           info={pattern}
-          key={pattern.id}
+          key={pattern.project_id ? pattern.project_id : `${pattern.id}${title}`}
           id={pattern.id}
+          projectId={pattern.project_id}
           imgSrc={pattern.images[0]}
           progress={pattern.progress}
           title={title}
-          setRefresh={setRefresh}
           setFavorited={setFavorited}
           user={user}
           showTags
           craftType={pattern.craft_type}
           skillLevel={pattern.difficulty}
-          cardWidth={210}
+          cardWidth="210px"
           name={pattern.title}
           showModal={showModal}
+          price={pattern.price}
+          forceUpdate={forceUpdate}
         />
       ))}
     </div>
@@ -42,7 +44,7 @@ export default PatternList;
 PatternList.propTypes = {
   title: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.object),
-  setRefresh: PropTypes.func,
+  forceUpdate: PropTypes.func,
   setFavorited: PropTypes.func,
   user: PropTypes.number,
   showModal: PropTypes.func,
@@ -51,7 +53,7 @@ PatternList.propTypes = {
 PatternList.defaultProps = {
   title: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.object),
-  setRefresh: PropTypes.func,
+  forceUpdate: PropTypes.func,
   setFavorited: PropTypes.func,
   user: PropTypes.number,
   showModal: PropTypes.func,
