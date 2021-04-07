@@ -10,14 +10,6 @@ class PatternSummary extends React.Component {
   }
 
   render() {
-    console.log(this.props.patterninfo)
-    if(this.props.patterninfo.author === undefined) {
-      this.props.patterninfo.author = {};
-    }
-    if(this.props.patterninfo.author.username === undefined) {
-      this.props.patterninfo.author.username = 'PatternLover123';
-    }
-    // console.log(this.props.patterninfo.author.username)
     return (
       <div className={styles.patternSummaryContainer}>
         <div className={styles.header}>
