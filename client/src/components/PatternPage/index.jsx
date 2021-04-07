@@ -89,12 +89,8 @@ class PatternPage extends React.Component {
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
             <div className={styles.imageGallery}>
-
-              {/* <div className={styles.firstImg}> */}
-                <img className={styles.firstImg} src='https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065' alt='hello'/>
-              {/* </div> */}
+              <img className={styles.firstImg} src='https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065'/>
             </div>
-
             <div className={styles.patternSummary}>
               <PatternSummary patterninfo={patterninfo} />
             </div>

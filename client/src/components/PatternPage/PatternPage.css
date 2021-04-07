@@ -58,15 +58,9 @@
   justify-content: center;
 }
 
-.firstImg {
-  /* max-height: 100px; */
-  /* max-width: 100px; */
-  /* position:relative; */
-  height:100%;
-  width:100%;
-  /* border: 1px solid red; */
-  background-color: red;
-  /* z-index: 9999; */
-  /* object-fit:contain; */
+.firstImg{
+  width: 100%;
+  height: 100%;
   border-radius: 32px 0px 0px 32px;
+  background-color: red;
 }

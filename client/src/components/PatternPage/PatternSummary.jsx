@@ -10,7 +10,6 @@ class PatternSummary extends React.Component {
   }
 
   render() {
-    console.log(this.props.patterninfo);
     return (
       <div className={styles.patternSummaryContainer}>
         <div className={styles.header}>
