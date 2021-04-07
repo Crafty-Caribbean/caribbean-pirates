@@ -23,7 +23,7 @@ module.exports = {
       (err) => {
         if (err) {
           console.error(err);
-          res.status(400).send('Failed updating progress', err);
+          res.status(400).send('Failed updating progress');
         }
         if (Number(req.body.progress) < 100) {
           res.status(201).send('Project progress updated!');
@@ -34,7 +34,7 @@ module.exports = {
             (error) => {
               if (error) {
                 console.error(error);
-                res.status(400).send('Failed updating complete time', error);
+                res.status(400).send('Failed updating complete time');
               }
               res.status(201).send('Project completed!');
             },
@@ -42,5 +42,15 @@ module.exports = {
         }
       },
     );
+  },
+
+  deleteProject(req, res) {
+    userProjectsModels.deleteProject(Number(req.params.project_id), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(401).send('Error deleting project');
+      }
+      res.status(201).send('Project deleted');
+    });
   },
 };

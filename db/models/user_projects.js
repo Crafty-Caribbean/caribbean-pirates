@@ -57,4 +57,23 @@ module.exports = {
       });
     });
   },
+
+  deleteProject(projectId, callback) {
+    const query = {
+      text: 'UPDATE public.user_projects SET deleted=true WHERE id=$1;',
+      values: [projectId],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error deleting project', err.stack);
+      }
+      client.query(query, (error, results) => {
+        release();
+        if (error) {
+          callback(error.stack);
+        }
+        callback(null, results);
+      });
+    });
+  },
 };

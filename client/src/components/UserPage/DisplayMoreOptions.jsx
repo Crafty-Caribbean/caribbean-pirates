@@ -7,12 +7,17 @@ const DisplayMoreOptions = ({
 }) => (
   <div
     className={styles.moreOptionsContainer}
-    onClick={(event) => showModal(event, id, title)}
-    onKeyPress={(event) => showModal(event, id, title)}
-    role="button"
-    tabIndex={0}
   >
-    <button className={styles.moreOptionsButton} type="button" aria-label="image" style={{ height: '32px', width: '32px' }}><svg className="elipses" height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" /></svg></button>
+    <button
+      onClick={(event) => showModal(event, id, title)}
+      onKeyPress={(event) => showModal(event, id, title)}
+      className={styles.moreOptionsButton}
+      type="button"
+      aria-label="image"
+      style={{ height: '32px', width: '32px' }}
+    >
+      <svg className="elipses" height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" /></svg>
+    </button>
   </div>
 );
 

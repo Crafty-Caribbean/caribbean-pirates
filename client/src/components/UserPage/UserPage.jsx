@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import PropTypes from 'prop-types';
-// import dummyData from './dummyData/dummyData';
 import PatternList from './PatternList';
 import styles from './userPage.module.css';
 import OptionsModal from './OptionsModal';
@@ -13,19 +11,20 @@ const UserPage = () => {
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [inProgress, setProgress] = useState([]);
-  const [refresh, setRefresh] = useState('');
   const [favorited, setFavorited] = useState({ liked: false, id: '' });
   const [collectListId, setCollectListId] = useState('');
   const [user, setUser] = useState(0);
   const [showOptions, setOptions] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: '', y: '' });
+  const [state, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const showModal = (event, id, title) => {
     event.preventDefault();
     event.stopPropagation();
     setCollectListId({ id, list: title });
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = (event.clientX / window.innerWidth) * 100;
+    const y = (event.clientY / window.innerHeight) * 100;
     setCoordinates({ x, y });
     setOptions(!showOptions);
   };
@@ -46,9 +45,18 @@ const UserPage = () => {
       });
   };
 
-  const updateProjectData = (patternId) => {
-    if (patternId) {
-      axios.put(`/api/users/${user}/projects/${patternId}/progress`, { progress: 100 })
+  const handleToggledHeart = (favoritedObj) => {
+    if (favoritedObj.liked) {
+      axios.post(`api/users/${user}/favorite/`)
+        .then((response) => {
+          console.log(response);
+          getUserData(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios.delete(`api/users/${user}/favorite/${favoritedObj.id}`)
         .then(() => {
           getUserData(user);
         })
@@ -58,37 +66,29 @@ const UserPage = () => {
     }
   };
 
-  const handleToggledHeart = (favoritedObj) => {
-    if (favoritedObj.liked) {
-      axios.post(`api/users/${user}/favorite/`)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      axios.delete(`/users/${user}/favorite/${favoritedObj.id}`)
-        .then(() => {
-          getUserData(user);
-        });
-    }
-  };
-
   const removePatternCard = (list, id) => {
     // if list is in progress or completed it needs to be projects
     // if purchased dont send this
-    axios.delete(`api/users/${user}/${list}/${id}`)
+    let title = list;
+    if (title === 'In Progress' || title === 'Completed') {
+      title = 'projects';
+    }
+    title.toLowerCase();
+    axios.delete(`api/users/${user}/${title}/${id}`)
       .then(() => {
         getUserData(user);
       });
   };
 
   const initiateProgress = (list, id) => {
-    axios.post(`api/users/${user}/projects`, { progress: 0 })
+    let title = list;
+    axios.post(`/api/users/${user}/projects/`, { pattern_id: id })
       .then(() => {
-        // axios delete needs to be projects
-        axios.delete(`/users/${user}/${list}/${id}`)
+        if (title === 'In Progress' || title === 'Completed') {
+          title = 'projects';
+        }
+        title.toLowerCase();
+        axios.delete(`api/users/${user}/${title}/${id}`)
           .then(() => {
             getUserData(user);
           });
@@ -104,36 +104,38 @@ const UserPage = () => {
   }, []);
 
   useEffect(() => {
-    updateProjectData(refresh);
-  }, [refresh]);
-
-  useEffect(() => {
     if (favorited.id) {
       handleToggledHeart(favorited);
     }
   }, [favorited]);
 
+  useEffect(() => {
+    getUserData(user);
+    setOptions(false);
+  }, [state]);
+
   return (
-    <div onClick={(event) => { event.stopPropagation(event); showModal(event);}} >
+    <div onClick={(event) =>  setOptions(false)} >
       <div className={styles.header}>IM</div>
       {showOptions ? (
-        <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
+        <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
           <OptionsModal
             showModal={showModal}
             initiateProgress={initiateProgress}
             removePatternCard={removePatternCard}
             list={collectListId.list}
             id={collectListId.id}
+            forceUpdate={forceUpdate}
           />
         </div>
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
-          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" setFavorited={setFavorited} user={user} showModal={showModal} />
         </div>
       </div>
     </div>
@@ -143,14 +145,6 @@ const UserPage = () => {
 export default UserPage;
 
 UserPage.displayName = 'UserPage';
-
-// UserPage.propTypes = {
-//   userId: PropTypes.number,
-// };
-
-// UserPage.defaultProps = {
-//   userId: PropTypes.number,
-// };
 
 // handleToggledHeart() {
 //   if(this.state.fillHeart) {
