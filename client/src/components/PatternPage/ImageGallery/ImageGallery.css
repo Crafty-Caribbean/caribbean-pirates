@@ -1,0 +1,44 @@
+.imageGallery {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+}
+
+.mainImage {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.thumbnailContainer {
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail {
+  border-radius: 999px;
+  border: 2px solid #c1c1c1;
+  filter: brightness(.95);
+  height: 56px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  object-fit: cover;
+  overflow: hidden;
+  transform: scale3d(0.8, 0.8, 1);
+  transition-duration: 350ms;
+  transition-property: transform;
+  width: 56px;
+}
+
+.thumbnail:hover {
+  transform: scale3d(1, 1, 1);
+  filter: brightness(1);
+}

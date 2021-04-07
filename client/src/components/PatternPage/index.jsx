@@ -1,11 +1,13 @@
 import React from 'react';
-import axios from 'axios'
-import Login from '../Login';
+import axios from 'axios';
+
 import AppModal from '../AppModal';
+import CommentsSection from './CommentsSection';
+import ImageGallery from './ImageGallery';
+import Login from '../Login';
+import PatternSummary from './PatternSummary';
 
 import styles from './PatternPage.css';
-import PatternSummary from './PatternSummary';
-import CommentsSection from './CommentsSection';
 
 class PatternPage extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class PatternPage extends React.Component {
       showModal: false,
       patterninfo: {
         id: '',
+        images: [],
         name: '',
         author: {
           id: '',
@@ -82,13 +85,16 @@ class PatternPage extends React.Component {
       patterninfo,
     } = this.state;
 
+    console.log(patterninfo);
+
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
-            <div className={styles.imageGallery}>
+            {/* <div className={styles.imageGallery}>
               <img className={styles.firstImg} src='https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065'/>
-            </div>
+            </div> */}
+            <ImageGallery images={patterninfo.images} />
             <div className={styles.patternSummary}>
               <PatternSummary patterninfo={patterninfo} />
             </div>
