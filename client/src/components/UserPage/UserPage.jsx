@@ -115,7 +115,7 @@ const UserPage = () => {
   }, [state]);
 
   return (
-    <div onClick={(event) => { event.stopPropagation(event); showModal(event);}} >
+    <div onClick={(event) =>  setOptions(false)} >
       <div className={styles.header}>IM</div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
