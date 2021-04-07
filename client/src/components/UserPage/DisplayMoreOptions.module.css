@@ -9,10 +9,11 @@
   border: 1px solid white;
   border-radius: 50%;
   background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modalContainer {
-  background: white;
-  position: fixed;
-  z-index:10000;
+.moreOptionsButton:hover {
+  cursor: pointer;
 }

@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const users = require('./controllers/users');
 const patterns = require('./controllers/patterns');
+const search = require('./controllers/search');
+const comments = require('./controllers/comments');
 const userFavorite = require('./controllers/user_favorite');
 const userProjects = require('./controllers/user_projects');
 const userPurchased = require('./controllers/user_purchased');
@@ -22,6 +24,10 @@ router.get('/users/:user_id', users.getUserPatternList);
 router.post('/users', users.addUser);
 // (user edit profile/upload profile pic)
 router.put('/users/:user_id');
+
+// "Comments"  ==========================================
+router.get('/comments/:pattern_id', comments.getOnePatternComments);
+router.post('/comments/:pattern_id', comments.addComment);
 
 /* "User-Favorite" ================================== */
 // unfavorite a pattern, remove from user favorite list
@@ -47,5 +53,8 @@ router.delete('/users/:user_id/projects/:pattern_id');
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
 router.post('/users/:user_id/purchased/', userPurchased.addPurchasePattern);
+
+// SEARCH BAR ==================================
+router.get('/search', search.getSearchResult);
 
 module.exports = router;

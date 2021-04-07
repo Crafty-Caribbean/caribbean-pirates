@@ -12,7 +12,17 @@ class PatternPage extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      patterninfo: {},
+      patterninfo: {
+        id: '',
+        name: '',
+        author: {
+          id: '',
+          profile_pic: '',
+          username: '',
+        },
+        skill_level: '',
+        craft_type: '',
+      },
       pattern_id: undefined,
     };
 
@@ -76,7 +86,9 @@ class PatternPage extends React.Component {
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
-            <div className={styles.imageGallery}>Image Gallery</div>
+            <div className={styles.imageGallery}>
+              <img className={styles.firstImg} src='https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065'/>
+            </div>
             <div className={styles.patternSummary}>
               <PatternSummary patterninfo={patterninfo} />
             </div>
