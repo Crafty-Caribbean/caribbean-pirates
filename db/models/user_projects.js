@@ -20,10 +20,10 @@ module.exports = {
     });
   },
 
-  updateProgress(userId, patternId, progress, callback) {
+  updateProgress(userId, projectId, progress, callback) {
     const query = {
-      text: 'UPDATE public.user_projects SET progress=$1 WHERE user_id=$2 AND pattern_id=$3;',
-      values: [progress, userId, patternId],
+      text: 'UPDATE public.user_projects SET progress=$1 WHERE project_id=$3;',
+      values: [progress, userId, projectId],
     };
     db.connect((err, client, release) => {
       if (err) {
@@ -57,4 +57,5 @@ module.exports = {
       });
     });
   },
+
 };

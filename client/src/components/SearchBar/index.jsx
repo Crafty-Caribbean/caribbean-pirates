@@ -21,6 +21,7 @@ class SearchBar extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.searchHover = this.searchHover.bind(this);
     this.toggleShowSuggestions = this.toggleShowSuggestions.bind(this);
+    this.searchSuggestions = React.createRef();
   }
 
   // Get request for searchbar
@@ -59,29 +60,25 @@ class SearchBar extends React.Component {
     // });
   }
 
-  getSuggestions(searchedInput) {
-    console.log('DEEEEbouncbeed');
-    // axios.get('/api/search', {
-    //   params: {
-    //     keyword: searchedInput,
-    //   }
-    //     .then((response) => {
-    //       const searched = response.data;
-    //       const searchSuggestions = [];
-    //       const authorSuggestions = [];
-    //        for (let i = 0; i < response.data.length; i++) {
-    //          searchSuggestions.push({ id: response.data[i].pattern_id, title: response.data[i].pattern_title });
-    //          authorSuggestions.push({id: response.data[i].user_id, username: response.data[i].user_title});
-    //        }
-    //       this.setState({
-    //         searchSuggestionList: searchSuggestions
-    //          authorSuggestionList: authorSuggestions
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       console.log('Error fetching search suggestions: ', error);
-    //     }),
-    // });
+  getSuggestions() {
+    const { searchedText } = this.state;
+    if (searchedText.length === 0) {
+      return;
+    }
+    axios.get('/api/search', {
+      params: {
+        keyword: searchedText,
+      },
+    })
+      .then((response) => {
+        this.setState({
+          authorSuggestionList: response.data.users,
+          searchSuggestionList: response.data.patterns,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   searchHover(event) {
@@ -116,6 +113,7 @@ class SearchBar extends React.Component {
                 value={searchedText}
                 onChange={this.handleChange}
                 autoComplete="off"
+                // onBlur={this.toggleShowSuggestions}
               />
 
               {/* If searchedText > 0, show the search suggestions
@@ -130,7 +128,7 @@ class SearchBar extends React.Component {
                         Patterns
                       </div>
                     )}
-                  <div>
+                  <div className={styles.searchSuggestionsList}>
                     {
                       searchSuggestionList.map((suggestion) => (
                         <SearchSuggestions
@@ -146,7 +144,7 @@ class SearchBar extends React.Component {
                         Users and Authors
                       </div>
                     )}
-                  <div>
+                  <div className={styles.searchSuggestionsList}>
                     {
                       authorSuggestionList.map((author) => (
                         <AuthorSuggestions
