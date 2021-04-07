@@ -17,3 +17,9 @@
   font-family: 'Open Sans', sans-serif;
   height: 5vh;
 }
+
+.startProgress {
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
