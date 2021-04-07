@@ -1,7 +1,19 @@
 .modal {
   display: flex;
   flex-flow: column;
-  background: black;
+  background: none;
   width: 10vw;
   height: 10vh;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
+}
+
+.startProgress,
+.delete {
+  border-radius: 16px;
+  border: none;
+  background: none;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  height: 5vh;
 }

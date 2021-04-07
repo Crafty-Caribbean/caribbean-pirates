@@ -2,4 +2,21 @@
   position: absolute;
   top: 89%;
   left: 9%;
+  border-radius: 55px;
+  background-color: #F5F8FA;
+}
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-size: 1vw;
+}
+
+.yes {
+  border-radius: 3px;
+  color: #F3B816;
+}
+.no {
+  border-radius: 3px;
+  color: #DC244B;
 }

@@ -10,9 +10,3 @@
   border-radius: 50%;
   background: white;
 }
-
-.modalContainer {
-  background: white;
-  position: fixed;
-  z-index:10000;
-}
