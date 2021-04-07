@@ -95,10 +95,6 @@ const UserPage = () => {
       });
   };
 
-  const hideModal = () => {
-    document.getElementById(collectListId.id).className = styles.hide;
-  }
-
   const { location } = window;
   useEffect(() => {
     console.log(location);
@@ -118,8 +114,8 @@ const UserPage = () => {
   }, [favorited]);
 
   return (
-    <div>
-      <div className={styles.header} onClick={hideModal}>IM</div>
+    <div onClick={(event) => { event.stopPropagation(event); showModal(event);}} >
+      <div className={styles.header}>IM</div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
           <OptionsModal
