@@ -20,6 +20,22 @@ module.exports = {
     });
   },
 
+  getAllComments(callback) {
+    const query = 'SELECT id, username, content, created_at FROM comments;';
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error getting all comments', err.stack);
+      }
+      client.query(query, (error, result) => {
+        release();
+        if (error) {
+          callback(err.stack);
+        }
+        callback(null, result);
+      });
+    });
+  },
+
   addComment(patternId, username, content, callback) {
     const query = {
       text: 'INSERT INTO comments(pattern_id, username, content) VALUES ($1, $2, $3);',
