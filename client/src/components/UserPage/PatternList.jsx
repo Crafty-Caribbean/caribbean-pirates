@@ -17,7 +17,8 @@ const PatternList = ({
         <PatternCard
           info={pattern}
           key={pattern.project_id ? pattern.project_id : `${pattern.id}${title}`}
-          id={pattern.project_id ? pattern.project_id : pattern.id}
+          id={pattern.id}
+          projectId={pattern.project_id}
           imgSrc={pattern.images[0]}
           progress={pattern.progress}
           title={title}

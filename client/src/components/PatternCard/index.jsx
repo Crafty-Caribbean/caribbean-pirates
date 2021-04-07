@@ -50,6 +50,7 @@ class PatternCard extends React.Component {
       showModal,
       price,
       forceUpdate,
+      projectId,
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
@@ -57,7 +58,7 @@ class PatternCard extends React.Component {
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
-          {title === 'In Progress' ? <ProgressBar user={user} id={id} progress={progress} forceUpdate={forceUpdate} /> : null}
+          {title === 'In Progress' ? <ProgressBar user={user} id={projectId} progress={progress} forceUpdate={forceUpdate} /> : null}
           {title ? (
             <DisplayMoreOptions
               showModal={showModal}
