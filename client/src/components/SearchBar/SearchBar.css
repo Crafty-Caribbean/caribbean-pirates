@@ -58,7 +58,7 @@
   z-index: 5;
   justify-self: center;
   align-self: center;
-  cursor: pointer;
+  cursor: text;
 }
 
 .searchInput:hover,
