@@ -58,4 +58,23 @@ module.exports = {
       });
     });
   },
+
+  deleteOnePattern(patternId, callback) {
+    const query = {
+      text: 'UPDATE patterns SET deleted=true WHERE id=$1',
+      values: [patternId],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error deleting patterns', err.stack);
+      }
+      client.query(query, (error, result) => {
+        release();
+        if (error) {
+          callback(err.stack);
+        }
+        callback(null, result);
+      });
+    });
+  },
 };
