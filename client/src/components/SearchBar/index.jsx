@@ -113,7 +113,7 @@ class SearchBar extends React.Component {
                 value={searchedText}
                 onChange={this.handleChange}
                 autoComplete="off"
-                onBlur={this.toggleShowSuggestions}
+                // onBlur={this.toggleShowSuggestions}
               />
 
               {/* If searchedText > 0, show the search suggestions
@@ -128,7 +128,7 @@ class SearchBar extends React.Component {
                         Patterns
                       </div>
                     )}
-                  <div>
+                  <div className={styles.searchSuggestionsList}>
                     {
                       searchSuggestionList.map((suggestion) => (
                         <SearchSuggestions
@@ -144,7 +144,7 @@ class SearchBar extends React.Component {
                         Users and Authors
                       </div>
                     )}
-                  <div>
+                  <div className={styles.searchSuggestionsList}>
                     {
                       authorSuggestionList.map((author) => (
                         <AuthorSuggestions

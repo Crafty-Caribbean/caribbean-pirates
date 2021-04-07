@@ -13,11 +13,11 @@ class SearchSuggestions extends React.Component {
   render() {
     const { suggestion, toggleShowSuggestions } = this.props;
     return (
-      <div className={styles.suggestionItems}>
-        <Link onClick={toggleShowSuggestions} to={`/patterns/${suggestion.id}`}>
-          {suggestion.title}
-        </Link>
-      </div>
+      <Link className={styles.link} onClick={toggleShowSuggestions} to={`/patterns/${suggestion.id}`}>
+        <div className={styles.suggestionItems}>
+          <span className={styles.suggestionText}>{suggestion.title}</span>
+        </div>
+      </Link>
     );
   }
 }
