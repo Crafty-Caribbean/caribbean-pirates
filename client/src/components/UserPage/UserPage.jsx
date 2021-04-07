@@ -11,12 +11,13 @@ const UserPage = () => {
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [inProgress, setProgress] = useState([]);
-  const [refresh, setRefresh] = useState('');
   const [favorited, setFavorited] = useState({ liked: false, id: '' });
   const [collectListId, setCollectListId] = useState('');
   const [user, setUser] = useState(0);
   const [showOptions, setOptions] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: '', y: '' });
+  const [state, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const showModal = (event, id, title) => {
     event.preventDefault();
@@ -42,18 +43,6 @@ const UserPage = () => {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  const updateProjectData = (patternId) => {
-    if (patternId) {
-      axios.put(`/api/users/${user}/projects/${patternId}/progress`, { progress: 100 })
-        .then(() => {
-          getUserData(user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
   };
 
   const handleToggledHeart = (favoritedObj) => {
@@ -103,17 +92,14 @@ const UserPage = () => {
   }, []);
 
   useEffect(() => {
-    updateProjectData(refresh);
-  }, [refresh]);
-
-  useEffect(() => {
     if (favorited.id) {
       handleToggledHeart(favorited);
     }
   }, [favorited]);
 
   useEffect(() => {
-  }, [user]);
+    getUserData(user);
+  }, [state]);
 
   return (
     <div>
@@ -125,17 +111,18 @@ const UserPage = () => {
             removePatternCard={removePatternCard}
             list={collectListId.list}
             id={collectListId.id}
+            forceUpdate={forceUpdate}
           />
         </div>
       ) : null}
       <div className={styles.userPageContainer}>
         <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
-          <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
-          <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList className="Completed" list={completed} title="Completed" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" setFavorited={setFavorited} user={user} showModal={showModal} />
         </div>
       </div>
     </div>

@@ -44,25 +44,26 @@ class PatternCard extends React.Component {
       craftType,
       showTags,
       id,
-      setRefresh,
       setFavorited,
       user,
       name,
       showModal,
-      price
+      price,
+      forceUpdate,
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
     return (
-      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
+      <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
-          {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
+          {title === 'In Progress' ? <ProgressBar user={user} id={id} progress={progress} forceUpdate={forceUpdate} /> : null}
           {title ? (
             <DisplayMoreOptions
               showModal={showModal}
               id={id}
               title={title}
+              forceUpdate={forceUpdate}
             />
           ) : null}
           <Link to={`/patterns/${id}`}>

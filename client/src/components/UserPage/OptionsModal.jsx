@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import styles from './OptionsModal.module.css';
 
 const OptionsModal = ({
-  showModal, removePatternCard, initiateProgress, list, id,
+  showModal, removePatternCard, initiateProgress, list, id, forceUpdate,
 }) => (
   <div
     className={styles.modal}
-    onClick={(event) => showModal(event)}
+    onClick={(event) => { showModal(event); setTimeout(forceUpdate, 50); }}
     onKeyPress={(event) => showModal(event)}
     role="button"
     tabIndex={0}
