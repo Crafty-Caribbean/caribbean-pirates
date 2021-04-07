@@ -67,6 +67,8 @@ const UserPage = () => {
   };
 
   const removePatternCard = (list, id) => {
+    // if list is in progress or completed it needs to be projects
+    // if purchased dont send this
     let title = list;
     if (title === 'In Progress' || title === 'Completed') {
       title = 'projects';
@@ -113,7 +115,8 @@ const UserPage = () => {
   }, [state]);
 
   return (
-    <div>
+    <div onClick={(event) => { event.stopPropagation(event); showModal(event);}} >
+      <div className={styles.header}>IM</div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
           <OptionsModal
@@ -127,7 +130,6 @@ const UserPage = () => {
         </div>
       ) : null}
       <div className={styles.userPageContainer}>
-        <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
           <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />

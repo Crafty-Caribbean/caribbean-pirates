@@ -5,9 +5,9 @@ import styles from './userPage.module.css';
 const TopArrow = ({ id }) => {
   const handleClick = () => {
     if (document.getElementById(id).scrollTop > 0) {
-      document.getElementById(id).scrollTop -= 250;
+      document.getElementById(id).scrollTop -= 430;
     }
-    if (document.getElementById(id).scrollTop <= 250) {
+    if (document.getElementById(id).scrollTop <= 430) {
       document.getElementById(`${id}arrowTop`).className = styles.hide;
     }
   };
