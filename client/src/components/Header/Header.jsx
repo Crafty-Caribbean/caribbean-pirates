@@ -1,7 +1,10 @@
 import React from 'react';
-import { IoPersonCircle } from "react-icons/io5";
+import { IoPersonCircle } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import styles from './Header.css';
+import Login from '../Login';
+import AppModal from '../AppModal';
 
 class Header extends React.Component {
   constructor(props) {
@@ -9,14 +12,21 @@ class Header extends React.Component {
     this.state = {
       currentUser: '',
       profileHover: false,
+      showLogin: false,
+      loggedIn: false,
     };
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleProfileHover = this.handleProfileHover.bind(this);
   }
 
   handleProfileClick(event) {
-    const { currentUser } = this.state;
+    const { currentUser, showLogin, loggedIn } = this.state;
     event.preventDefault();
+    if (!loggedIn) {
+      this.setState({
+        showLogin: !showLogin,
+      });
+    }
     console.log('Take user to their page', currentUser);
   }
 
@@ -26,26 +36,25 @@ class Header extends React.Component {
     this.setState({ profileHover: !profileHover });
   }
 
-  navToHomePage(event) {
-    event.preventDefault();
-    console.log('Take user to home/search page');
-  }
-
   render() {
-    const { profileHover } = this.state;
+    const { profileHover, showLogin } = this.state;
 
     return (
       <div id="header" className={styles.header}>
-        <div onClick={this.navToHomePage}>
+        <Link to="/">
           <img
             className={styles.logoImage}
             src="/images/StitchSaverLogo.png"
             alt="StitchSaver Logo"
           />
-        </div>
-        <button className={styles.logoName} type="submit">StitchSaver</button>
+        </Link>
+        <Link to="/" className={styles.logoName}>
+          <span className={styles.logoNameText}>StitchSaver</span>
+        </Link>
         <SearchBar />
-        <button onClick={this.navToHomePage} className={styles.homeButton} type="submit">Home</button>
+        <Link to="/" className={styles.homeButton}>
+          <span>Home</span>
+        </Link>
         <div
           className={styles.profileIconWrapper}
         >
@@ -58,6 +67,17 @@ class Header extends React.Component {
             onMouseLeave={this.handleProfileHover}
           />
         </div>
+        {
+          showLogin
+          && (
+            <AppModal outsideClickHandler={this.handleProfileClick}>
+              <Login
+                login={(data) => this.loginUser(data)}
+                signup={(data) => this.signupUser(data)}
+              />
+            </AppModal>
+          )
+        }
         {/* Can use this if user has profile picture: */}
         {/* <img src="" alt="User Profile Picture"/> */}
       </div>

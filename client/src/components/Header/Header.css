@@ -8,7 +8,7 @@
   opacity: 0.975;
   margin: 10px 0px;
   align-content: center;
-  z-index: 9000;
+  z-index: 15;
 }
 
 .logoImage {
@@ -42,10 +42,18 @@
   position: relative;
   outline: none;
   align-self: center;
+  align-content: center;
   justify-self: start;
   color: #757575;
   background-color: white;
   border-radius: 50px;
+  text-decoration: none;
+}
+
+.logoNameText {
+  position: relative;
+  top: 10px;
+  left: 12px;
 }
 
 .homeButton {
@@ -63,6 +71,13 @@
   background: none;
   border-radius: 50px;
   justify-self: center;
+  text-decoration: none;
+  text-align: center;
+}
+
+.homeButton span {
+  position: relative;
+  top: 16px;
 }
 
 .homeButton:hover {
