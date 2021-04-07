@@ -2,6 +2,7 @@ const router = require('express').Router();
 const users = require('./controllers/users');
 const patterns = require('./controllers/patterns');
 const search = require('./controllers/search');
+const comments = require('./controllers/comments');
 const userFavorite = require('./controllers/user_favorite');
 const userProjects = require('./controllers/user_projects');
 const userPurchased = require('./controllers/user_purchased');
@@ -25,8 +26,8 @@ router.post('/users', users.addUser);
 router.put('/users/:user_id');
 
 // "Comments"  ==========================================
-router.get('/comments/:pattern_id');
-router.post('/comments/:pattern_id');
+router.get('/comments/:pattern_id', comments.getOnePatternComments);
+router.post('/comments/:pattern_id', comments.addComment);
 
 /* "User-Favorite" ================================== */
 // unfavorite a pattern, remove from user favorite list
