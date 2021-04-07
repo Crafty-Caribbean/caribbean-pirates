@@ -18,7 +18,7 @@ module.exports = {
   updateProjectProgress(req, res) {
     userProjectsModels.updateProgress(
       Number(req.params.user_id),
-      Number(req.params.pattern_id),
+      Number(req.params.project_id),
       Number(req.body.progress),
       (err) => {
         if (err) {
@@ -30,7 +30,7 @@ module.exports = {
         } else {
           userProjectsModels.updateCompletedTime(
             Number(req.params.user_id),
-            Number(req.params.pattern_id),
+            Number(req.params.project_id),
             (error) => {
               if (error) {
                 console.error(error);

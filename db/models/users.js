@@ -20,7 +20,7 @@ module.exports = {
                       WHERE p.id=uf.pattern_id
                       AND uf.user_id=u.id) AS favorites),
                 'projects', (SELECT COALESCE(json_agg(projects), '[]'::json)
-                   FROM (SELECT p.id AS pattern_id,
+                   FROM (SELECT p.id,
                           p.title,
                           p.craft_type,
                           p.skill_level AS difficulty,
