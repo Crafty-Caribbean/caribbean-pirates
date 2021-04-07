@@ -1,20 +1,23 @@
-/* .userPageContainer {
-  margin-left: 15%;
-  margin-right: 15%;
-} */
+.header {
+  text-align: center;
+  height: 5vw;
+  font-family: "Open Sans", sans-serif;
+  font-size: 44px;
+}
+
+.hide {
+  visibility: hidden;
+}
 
 .patternsContainer {
   display: flex;
   justify-content: center;
   text-align: center;
-  /* margin-left: 15%;
-  margin-right: 15%; */
 }
 
-
 .topArrow {
-  width: .6vw;
-  height: .6vw;
+  width: 0.6vw;
+  height: 0.6vw;
   cursor: pointer;
   background: none;
   border: none;
@@ -41,8 +44,8 @@
 
 .downArrow {
   position: relative;
-  width: .6vw;
-  height: .6vw;
+  width: 0.6vw;
+  height: 0.6vw;
   /* bottom: 2%; */
   margin-right: auto;
   margin-left: auto;
@@ -62,7 +65,7 @@
   -webkit-transform: rotate(45deg);
 }
 
-.hideDownArrow{
+.hideDownArrow {
   border: solid transparent;
   border-width: 0 3px 3px 0;
   display: inline-block;
@@ -75,5 +78,5 @@
   background: white;
   border-radius: 16px;
   position: absolute;
-  z-index:10000;
+  z-index: 10000;
 }

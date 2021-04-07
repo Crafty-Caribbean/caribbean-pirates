@@ -95,6 +95,10 @@ const UserPage = () => {
       });
   };
 
+  const hideModal = () => {
+    document.getElementById(collectListId.id).className = styles.hide;
+  }
+
   const { location } = window;
   useEffect(() => {
     console.log(location);
@@ -115,6 +119,7 @@ const UserPage = () => {
 
   return (
     <div>
+      <div className={styles.header} onClick={hideModal}>IM</div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
           <OptionsModal
@@ -127,7 +132,6 @@ const UserPage = () => {
         </div>
       ) : null}
       <div className={styles.userPageContainer}>
-        <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
           <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
           <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />

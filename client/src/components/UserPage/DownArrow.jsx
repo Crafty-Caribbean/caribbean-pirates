@@ -6,7 +6,7 @@ const DownArrow = ({ id, listLength }) => {
   const handleClick = () => {
     const maxScrollHeight = document.getElementById(id).scrollHeight;
     if (document.getElementById(id).scrollTop !== maxScrollHeight) {
-      document.getElementById(id).scrollTop += 250;
+      document.getElementById(id).scrollTop += 430;
     }
     document.getElementById(`${id}arrowTop`).className = styles.arrowTop;
   };
