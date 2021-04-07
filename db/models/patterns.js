@@ -23,7 +23,7 @@ module.exports = {
                               FROM comments c
                               WHERE c.pattern_id=p.id) AS comments) AS comments
                    FROM patterns p
-                   WHERE p.id=$1`,
+                   WHERE p.deleted=false AND p.id=$1`,
       values: [patternId],
     };
     db.connect((err, client, release) => {

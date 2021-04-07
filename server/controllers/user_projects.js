@@ -43,4 +43,14 @@ module.exports = {
       },
     );
   },
+
+  deleteProject(req, res) {
+    userProjectsModels.deleteProject(Number(req.params.project_id), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(401).send('Error deleting project');
+      }
+      res.status(201).send('Project deleted');
+    });
+  },
 };
