@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import PropTypes from 'prop-types';
-// import dummyData from './dummyData/dummyData';
 import PatternList from './PatternList';
 import styles from './userPage.module.css';
 import OptionsModal from './OptionsModal';
@@ -63,6 +61,7 @@ const UserPage = () => {
       axios.post(`/users/${user}/favorite/`)
         .then((response) => {
           console.log(response);
+          getUserData(user);
         })
         .catch((err) => {
           console.log(err);
@@ -71,6 +70,9 @@ const UserPage = () => {
       axios.delete(`/users/${user}/favorite/${favoritedObj.id}`)
         .then(() => {
           getUserData(user);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
@@ -110,6 +112,9 @@ const UserPage = () => {
     }
   }, [favorited]);
 
+  useEffect(() => {
+  }, [user]);
+
   return (
     <div>
       {showOptions ? (
@@ -126,7 +131,7 @@ const UserPage = () => {
       <div className={styles.userPageContainer}>
         <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
-          <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
+          {/* <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} /> */}
           <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
@@ -140,14 +145,6 @@ const UserPage = () => {
 export default UserPage;
 
 UserPage.displayName = 'UserPage';
-
-// UserPage.propTypes = {
-//   userId: PropTypes.number,
-// };
-
-// UserPage.defaultProps = {
-//   userId: PropTypes.number,
-// };
 
 // handleToggledHeart() {
 //   if(this.state.fillHeart) {

@@ -30,6 +30,7 @@ const PatternList = ({
           cardWidth={210}
           name={pattern.title}
           showModal={showModal}
+          price={pattern.price}
         />
       ))}
     </div>
