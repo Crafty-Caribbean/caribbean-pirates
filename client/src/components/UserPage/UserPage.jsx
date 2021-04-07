@@ -60,7 +60,7 @@ const UserPage = () => {
 
   const handleToggledHeart = (favoritedObj) => {
     if (favoritedObj.liked) {
-      axios.post(`/users/${user}/favorite/`)
+      axios.post(`api/users/${user}/favorite/`)
         .then((response) => {
           console.log(response);
         })
@@ -76,15 +76,18 @@ const UserPage = () => {
   };
 
   const removePatternCard = (list, id) => {
-    axios.delete(`/users/${user}/${list}/${id}`)
+    // if list is in progress or completed it needs to be projects
+    // if purchased dont send this
+    axios.delete(`api/users/${user}/${list}/${id}`)
       .then(() => {
         getUserData(user);
       });
   };
 
   const initiateProgress = (list, id) => {
-    axios.put(`/api/users/${user}/projects/${id}/progress`, { progress: 0 })
+    axios.post(`api/users/${user}/projects`, { progress: 0 })
       .then(() => {
+        // axios delete needs to be projects
         axios.delete(`/users/${user}/${list}/${id}`)
           .then(() => {
             getUserData(user);
