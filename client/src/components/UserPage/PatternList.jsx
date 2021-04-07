@@ -16,8 +16,8 @@ const PatternList = ({
       {list.map((pattern) => (
         <PatternCard
           info={pattern}
-          key={pattern.id}
-          id={pattern.id}
+          key={pattern.project_id ? pattern.project_id : `${pattern.id}${title}`}
+          id={pattern.project_id ? pattern.project_id : pattern.id}
           imgSrc={pattern.images[0]}
           progress={pattern.progress}
           title={title}
