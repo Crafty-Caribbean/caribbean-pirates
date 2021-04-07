@@ -26,4 +26,14 @@ module.exports = {
       res.status(201).send('Added comment');
     });
   },
+
+  getAllComments(req, res) {
+    commentsModels.getAllComments((err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(404).send('Error getting all comments');
+      }
+      res.status(200).send(results.rows);
+    });
+  },
 };
