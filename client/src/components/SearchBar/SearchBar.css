@@ -58,7 +58,7 @@
   z-index: 5;
   justify-self: center;
   align-self: center;
-  cursor: pointer;
+  cursor: text;
 }
 
 .searchInput:hover,
@@ -80,15 +80,21 @@
   margin-right: auto;
   left: 0;
   right: 50px;
-  padding: 20px;
+  /* padding: 20px; */
   width: calc(100% - 130px);
+  /* width: 80%; */
   height: auto;
   border-radius: 0px 0px 5px 5px;
   z-index: 5;
   justify-content: center;
-  color: #6E6E6E;
+  color: #C72054;
   justify-self: center;
   align-self: center;
   background: white;
   opacity: 1;
+  box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%)
+}
+
+.suggestionTitle {
+  padding: 10px;
 }

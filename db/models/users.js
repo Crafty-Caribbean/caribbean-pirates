@@ -27,6 +27,7 @@ module.exports = {
                           p.images,
                           p.price,
                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
+                              up.id AS project_id,
                               up.progress,
                               up.created_at AS started_at,
                               up.completed_at

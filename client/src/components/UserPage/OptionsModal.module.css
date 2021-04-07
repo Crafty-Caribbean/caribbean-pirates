@@ -26,3 +26,14 @@
   border-bottom-right-radius: 0;
   outline: none;
 }
+
+.delete {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.startProgress:hover,
+.delete:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}

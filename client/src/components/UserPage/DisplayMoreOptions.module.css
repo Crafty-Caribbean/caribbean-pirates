@@ -13,3 +13,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.moreOptionsButton:hover {
+  cursor: pointer;
+}
