@@ -9,4 +9,11 @@
   border: 1px solid white;
   border-radius: 50%;
   background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreOptionsButton:hover {
+  cursor: pointer;
 }
