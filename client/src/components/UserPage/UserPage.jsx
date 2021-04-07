@@ -47,7 +47,7 @@ const UserPage = () => {
 
   const handleToggledHeart = (favoritedObj) => {
     if (favoritedObj.liked) {
-      axios.post(`/users/${user}/favorite/`)
+      axios.post(`api/users/${user}/favorite/`)
         .then((response) => {
           console.log(response);
           getUserData(user);
@@ -56,7 +56,7 @@ const UserPage = () => {
           console.log(err);
         });
     } else {
-      axios.delete(`/users/${user}/favorite/${favoritedObj.id}`)
+      axios.delete(`api/users/${user}/favorite/${favoritedObj.id}`)
         .then(() => {
           getUserData(user);
         })
@@ -67,16 +67,26 @@ const UserPage = () => {
   };
 
   const removePatternCard = (list, id) => {
-    axios.delete(`/users/${user}/${list}/${id}`)
+    let title = list;
+    if (title === 'In Progress' || title === 'Completed') {
+      title = 'projects';
+    }
+    title.toLowerCase();
+    axios.delete(`api/users/${user}/${title}/${id}`)
       .then(() => {
         getUserData(user);
       });
   };
 
   const initiateProgress = (list, id) => {
-    axios.put(`/api/users/${user}/projects/${id}/progress`, { progress: 0 })
+    let title = list;
+    axios.post(`/api/users/${user}/projects/`, { pattern_id: id })
       .then(() => {
-        axios.delete(`/users/${user}/${list}/${id}`)
+        if (title === 'In Progress' || title === 'Completed') {
+          title = 'projects';
+        }
+        title.toLowerCase();
+        axios.delete(`api/users/${user}/${title}/${id}`)
           .then(() => {
             getUserData(user);
           });
@@ -99,6 +109,7 @@ const UserPage = () => {
 
   useEffect(() => {
     getUserData(user);
+    setOptions(false);
   }, [state]);
 
   return (
