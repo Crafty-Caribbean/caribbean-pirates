@@ -2,7 +2,8 @@ const db = require('../index.js');
 
 module.exports = {
   getOnePattern(patternId, callback) {
-    const query = `SELECT p.id,
+    const query = {
+      text: `SELECT p.id,
                           p.title AS name,
                           json_build_object(
                             'id', (SELECT u.id FROM users u WHERE u.id=p.author_id),
@@ -13,9 +14,18 @@ module.exports = {
                         p.craft_type,
                         p.description,
                         p.price,
-                        p.images
+                        p.images,
+                        (SELECT COALESCE(json_agg(comments), '[]'::json)
+                        FROM (SELECT c.id,
+                                     c.username,
+                                     c.content,
+                                     c.created_at
+                              FROM comments c
+                              WHERE c.pattern_id=p.id) AS comments) AS comments
                    FROM patterns p
-                   WHERE p.id=${patternId};`;
+                   WHERE p.id=$1`,
+      values: [patternId],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting user information', err.stack);
