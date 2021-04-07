@@ -1,22 +1,45 @@
 .confirmation {
   position: absolute;
-  top: 89%;
-  left: 9%;
-  border-radius: 55px;
-  background-color: #F5F8FA;
+  top: 82.3%;
+  left: 6%;
+  border: none;
+}
+
+.container {
+  display: flex;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
 }
 
 .text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-size: 1vw;
+  padding-left: 0.71vw;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.6vw;
+  border-radius: 20px;
+  border: none;
 }
 
 .yes {
-  border-radius: 3px;
-  color: #F3B816;
+  color: #f3b816;
+  border: none;
+  background-color: white;
+  padding: 0px 10px 0px 10px;
+  cursor: pointer;
+  outline: none;
 }
+
 .no {
-  border-radius: 3px;
-  color: #DC244B;
+  color: #dc244b;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  background: none;
+  padding: 0px 0.71vw 0px 0px;
+  cursor: pointer;
+  outline: none;
+}
+
+.bar {
+  margin-top: 1vw;
 }

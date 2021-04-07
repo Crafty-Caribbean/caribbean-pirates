@@ -50,14 +50,15 @@ const ProgressBar = ({
   return (
     <div className={styles.confirmation}>
       {showConfirmation ? (
-        <div className={styles.text}>
-          Complete?
-          <button className={styles.y} onClick={(event) => completed(event)} type="button">✓</button>
-          <button className={styles.yes} onClick={(event) => cancel(event)} type="button">x</button>
+        <div className={styles.container}>
+          <p className={styles.text}>completed?</p>
+          <button className={styles.yes} onClick={(event) => completed(event)} type="button">✓</button>
+          <button className={styles.no} onClick={(event) => cancel(event)} type="button">x</button>
         </div>
-      ) : <input className="" type="range" min="0" max="100" value={value} step="1" onChange={(event) => handleChange(event)} />}
+      ) :
+      <input className={styles.bar} type="range" min="0" max="100px" value={value} step="1" onChange={(event) => handleChange(event)} />
+      }
     </div>
-
   );
 };
 

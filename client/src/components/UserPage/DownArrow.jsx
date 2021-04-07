@@ -6,13 +6,13 @@ const DownArrow = ({ id, listLength }) => {
   const handleClick = () => {
     const maxScrollHeight = document.getElementById(id).scrollHeight;
     if (document.getElementById(id).scrollTop !== maxScrollHeight) {
-      document.getElementById(id).scrollTop += 250;
+      document.getElementById(id).scrollTop += 430;
     }
     document.getElementById(`${id}arrowTop`).className = styles.arrowTop;
   };
   return (
     <button className={styles.downArrow} onClick={handleClick} onKeyPress={handleClick} tag={0} type="button">
-      <i id="arrowDown" className={listLength > 3 ? styles.arrowDown : styles.hideDownArrow} />
+      <i id="arrowDown" className={listLength > 2 ? styles.arrowDown : styles.hideDownArrow} />
     </button>
   );
 };
