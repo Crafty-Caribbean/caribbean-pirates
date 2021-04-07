@@ -3,10 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './OptionsModal.module.css';
 
-const OptionsModal = ({ showModal }) => (
-  <div className={styles.modal} onMouseLeave={(event) => showModal(event)}>
-    <button type="button" className={styles.startProgress}> Start Project</button>
-    <button type="button" className={styles.delete}>Delete</button>
+const OptionsModal = ({
+  showModal, removePatternCard, initiateProgress, list, id,
+}) => (
+  <div
+    className={styles.modal}
+    onClick={(event) => showModal(event)}
+    onKeyPress={(event) => showModal(event)}
+    role="button"
+    tabIndex={0}
+  >
+    <button type="button" className={styles.startProgress} onClick={() => initiateProgress(list, id)}> Start Project</button>
+    <button type="button" className={styles.delete} onClick={() => removePatternCard(list, id)}>Delete</button>
   </div>
 );
 

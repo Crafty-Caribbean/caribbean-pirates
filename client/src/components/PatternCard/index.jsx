@@ -48,6 +48,7 @@ class PatternCard extends React.Component {
       setFavorited,
       user,
       name,
+      showModal,
       price
     } = this.props;
     const { dimensions, showHeart } = this.state;
@@ -57,7 +58,13 @@ class PatternCard extends React.Component {
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}px`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
           {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
-          <DisplayMoreOptions />
+          {title ? (
+            <DisplayMoreOptions
+              showModal={showModal}
+              id={id}
+              title={title}
+            />
+          ) : null}
           <Link to={`/patterns/${id}`}>
             <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           </Link>
@@ -80,7 +87,6 @@ class PatternCard extends React.Component {
               </div>
             ) : ''}
         </div>
-        {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
       </div>
     );
   }
