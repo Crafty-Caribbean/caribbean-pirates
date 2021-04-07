@@ -73,6 +73,7 @@
 
 .modalContainer {
   background: white;
+  border-radius: 16px;
   position: absolute;
   z-index:10000;
 }

@@ -85,7 +85,6 @@ class PatternCard extends React.Component {
               </div>
             ) : ''}
         </div>
-        {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
       </div>
     );
   }
