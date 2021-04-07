@@ -43,7 +43,7 @@ router.delete('/users/:user_id/favorite/:pattern_id', userFavorite.deleteFavorit
 // (create a project, add to project in progress list)
 router.post('/users/:user_id/projects/', userProjects.addProject);
 // (update project progress)
-router.put('/users/:user_id/projects/:pattern_id/progress', userProjects.updateProjectProgress);
+router.put('/users/:user_id/projects/:project_id/progress', userProjects.updateProjectProgress);
 // (delete a project, remove from project in progress/completed list)
 // Favorite and project are in two table
 router.delete('/users/:user_id/projects/:pattern_id');
