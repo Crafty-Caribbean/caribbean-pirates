@@ -13,7 +13,14 @@ module.exports = {
                         p.craft_type,
                         p.description,
                         p.price,
-                        p.images
+                        p.images,
+                        (SELECT COALESCE(json_agg(comments), '[]'::json)
+                        FROM (SELECT c.id,
+                                     c.username,
+                                     c.content,
+                                     c.created_at
+                              FROM comments c
+                              WHERE c.pattern_id=p.id) AS comments) AS comments
                    FROM patterns p
                    WHERE p.id=${patternId};`;
     db.connect((err, client, release) => {
