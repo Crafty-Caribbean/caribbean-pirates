@@ -17,13 +17,14 @@
 }
 
 .patternDetailCard {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   border-radius: 32px;
+  box-shadow: 0px 1px 20px 0px slategray;
 }
 
 .imageGallery {
-  height: 400px;
+  height: 500px;
   width: 400px;
   /* border: 1px solid black; */
   /* border-right: 1px solid black; */
@@ -31,8 +32,8 @@
 
 .patternSummary {
   /* border: 1px solid blue; */
-  height: 400px;
-  width: 300px;
+  height: 500px;
+  width: 400px;
   /* margin-left: 30px; */
 }
 
@@ -55,4 +56,17 @@
 .commentsSectionHolder {
   display:flex;
   justify-content: center;
+}
+
+.firstImg {
+  /* max-height: 100px; */
+  /* max-width: 100px; */
+  /* position:relative; */
+  height:100%;
+  width:100%;
+  /* border: 1px solid red; */
+  background-color: red;
+  /* z-index: 9999; */
+  /* object-fit:contain; */
+  border-radius: 32px 0px 0px 32px;
 }

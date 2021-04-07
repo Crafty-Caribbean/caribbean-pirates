@@ -10,14 +10,7 @@ class PatternSummary extends React.Component {
   }
 
   render() {
-    console.log(this.props.patterninfo)
-    if(this.props.patterninfo.author === undefined) {
-      this.props.patterninfo.author = {};
-    }
-    if(this.props.patterninfo.author.username === undefined) {
-      this.props.patterninfo.author.username = 'PatternLover123';
-    }
-    // console.log(this.props.patterninfo.author.username)
+    console.log(this.props.patterninfo);
     return (
       <div className={styles.patternSummaryContainer}>
         <div className={styles.header}>
@@ -55,7 +48,9 @@ class PatternSummary extends React.Component {
 
         <div className={styles.footer}>
           <div className={styles.priceAndBuy}>
-            <div className={styles.priceText}>${this.props.patterninfo.price}</div>
+            <div className={styles.priceText}>
+              ${this.props.patterninfo.price}
+            </div>
             <button type="button" className={styles.buybutton}>Buy</button>
           </div>
 
