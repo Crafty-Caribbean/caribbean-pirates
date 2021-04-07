@@ -15,7 +15,7 @@ router.post('/patterns');
 // (report pattern)
 router.put('/patterns/:pattern_id/reported');
 // (delete pattern)
-router.delete('/patterns/:pattern_id');
+router.delete('/users/:user_id/created/:pattern_id');
 
 // "Users"  =========================================*/
 // (user login)
@@ -27,6 +27,7 @@ router.put('/users/:user_id');
 
 // "Comments"  ==========================================
 router.get('/comments/:pattern_id', comments.getOnePatternComments);
+router.get('/comments', comments.getAllComments);
 router.post('/comments/:pattern_id', comments.addComment);
 
 /* "User-Favorite" ================================== */
