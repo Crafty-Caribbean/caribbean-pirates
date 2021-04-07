@@ -22,8 +22,8 @@ module.exports = {
 
   updateProgress(userId, projectId, progress, callback) {
     const query = {
-      text: 'UPDATE public.user_projects SET progress=$1 WHERE project_id=$3;',
-      values: [progress, userId, projectId],
+      text: 'UPDATE public.user_projects SET progress=$1 WHERE id=$2;',
+      values: [progress, projectId],
     };
     db.connect((err, client, release) => {
       if (err) {
@@ -57,5 +57,4 @@ module.exports = {
       });
     });
   },
-
 };
