@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './OptionsModal.module.css';
 
 const OptionsModal = ({
-  removePatternCard, initiateProgress, list, id,
+  showModal, removePatternCard, initiateProgress, list, id,
 }) => (
   <div
     className={styles.modal}
+    onClick={(event) => showModal(event)}
+    onKeyPress={(event) => showModal(event)}
+    role="button"
+    tabIndex={0}
   >
     <button type="button" className={styles.startProgress} onClick={() => initiateProgress(list, id)}> Start Project</button>
     <button type="button" className={styles.delete} onClick={() => removePatternCard(list, id)}>Delete</button>
@@ -17,15 +21,11 @@ const OptionsModal = ({
 export default OptionsModal;
 
 OptionsModal.propTypes = {
-  removePatternCard: PropTypes.func,
-  initiateProgress: PropTypes.func,
-  list: PropTypes.string,
-  id: PropTypes.number,
+  showModal: PropTypes.func,
 };
 
 OptionsModal.defaultProps = {
-  removePatternCard: PropTypes.func,
-  initiateProgress: PropTypes.func,
-  list: PropTypes.string,
-  id: PropTypes.number,
+  showModal: null,
 };
+
+PropTypes.checkPropTypes(OptionsModal.propTypes, OptionsModal.propTypes.showModal, 'showModal', 'OptionsModal');

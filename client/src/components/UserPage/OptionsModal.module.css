@@ -1,7 +1,7 @@
 .modal {
   display: flex;
   flex-flow: column;
-  background: none;
+  background: white;
   width: 10vw;
   height: 10vh;
   border-radius: 16px;

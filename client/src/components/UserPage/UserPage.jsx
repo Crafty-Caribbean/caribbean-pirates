@@ -22,8 +22,8 @@ const UserPage = () => {
     event.preventDefault();
     event.stopPropagation();
     setCollectListId({ id, list: title });
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = (event.clientX / window.innerWidth) * 100;
+    const y = (event.clientY / window.innerHeight) * 100;
     setCoordinates({ x, y });
     setOptions(!showOptions);
   };
@@ -118,7 +118,7 @@ const UserPage = () => {
   return (
     <div>
       {showOptions ? (
-        <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
+        <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
           <OptionsModal
             showModal={showModal}
             initiateProgress={initiateProgress}
@@ -131,7 +131,7 @@ const UserPage = () => {
       <div className={styles.userPageContainer}>
         <div className="user-static">IM</div>
         <div className={styles.patternsContainer}>
-          {/* <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} /> */}
+          <PatternList className="Purchased" list={purchased} title="Purchased" setRefresh={setRefresh} user={user} showModal={showModal} />
           <PatternList className="Favorites" list={favorites} title="Favorites" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList className="Created" list={created} title="Created" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList className="In-Progress" list={inProgress} title="In Progress" setRefresh={setRefresh} setFavorited={setFavorited} user={user} showModal={showModal} />
