@@ -1,7 +1,7 @@
 .modal {
   display: flex;
   flex-flow: column;
-  background: none;
+  background: white;
   width: 10vw;
   height: 10vh;
   border-radius: 16px;
@@ -16,4 +16,10 @@
   color: black;
   font-family: 'Open Sans', sans-serif;
   height: 5vh;
+}
+
+.startProgress {
+  border-bottom: 1px solid rgb(200, 200, 200);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
