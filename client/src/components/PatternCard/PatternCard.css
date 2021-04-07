@@ -21,6 +21,10 @@
   object-fit: cover;
 }
 
+.imageContent img:hover {
+  cursor: zoom-in;
+}
+
 .patternCardFooterContent {
   display: flex;
   flex-direction: column;
