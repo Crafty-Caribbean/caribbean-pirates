@@ -58,7 +58,9 @@ class PatternCard extends React.Component {
         <div className={`image-div ${styles.imageContent}`}>
           {title === 'In Progress' ? <ProgressBar user={user} setRefresh={setRefresh} id={id} progress={progress} /> : null}
           <DisplayMoreOptions />
-          <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
+          <Link to={`/patterns/${id}`}>
+            <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
+          </Link>
           {showHeart ? <HeartButton id={id} setFavorited={setFavorited} /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
