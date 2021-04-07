@@ -16,7 +16,7 @@ class PatternPage extends React.Component {
       showModal: false,
       patterninfo: {
         id: '',
-        images: [],
+        images: ['https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065'],
         name: '',
         author: {
           id: '',
@@ -85,15 +85,10 @@ class PatternPage extends React.Component {
       patterninfo,
     } = this.state;
 
-    console.log(patterninfo);
-
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
           <div className={styles.patternDetailCard}>
-            {/* <div className={styles.imageGallery}>
-              <img className={styles.firstImg} src='https://media.istockphoto.com/vectors/shroedingers-cat-the-cat-sits-in-a-box-with-a-404-sign-page-or-file-vector-id1150658065'/>
-            </div> */}
             <ImageGallery images={patterninfo.images} />
             <div className={styles.patternSummary}>
               <PatternSummary patterninfo={patterninfo} />
