@@ -6,6 +6,7 @@ import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
 import ContentSelectorList from './ContentSelectorList';
+import BuyButton from './BuyButton';
 
 class PatternSummary extends React.Component {
   constructor(props) {
@@ -31,9 +32,6 @@ class PatternSummary extends React.Component {
         <div className={styles.content}>
 
           <div className={styles.titleAndButton}>
-            <div className={styles.patternName}>
-              {patterninfo.name}
-            </div>
             <div className={styles.favoriteButton}>
               <FavoritesButton
                 size={30}
@@ -41,6 +39,11 @@ class PatternSummary extends React.Component {
                 handleClick={() => this.setState({ isLiked: !isLiked })}
               />
             </div>
+            <div className={styles.patternName}>
+              {patterninfo.name}
+            </div>
+            <BuyButton price={patterninfo.price} handleClick={console.log} />
+
           </div>
 
           <div className={styles.authorContainer}>
@@ -87,15 +90,7 @@ class PatternSummary extends React.Component {
           )}
         </div>
 
-        <div className={styles.footer}>
-          <div className={styles.priceAndBuy}>
-            <div className={styles.priceText}>
-              ${patterninfo.price}
-            </div>
-            <button type="button" className={styles.buybutton}>Buy</button>
-          </div>
 
-        </div>
       </div>
     );
   }

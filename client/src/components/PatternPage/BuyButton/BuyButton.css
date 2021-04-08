@@ -1,0 +1,21 @@
+.buyButton {
+  background-image: linear-gradient(to right, #A11B38, #AF1D3C, #C42145, #DC244B, #FF2957);
+  background-size: 200%;
+  transition: 250ms;
+  padding: 10px;
+  justify-content: center;
+  font-weight: 700;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 25px;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
+  width: 100px;
+}
+
+.buyButton:hover {
+  background-position: right;
+  /* box-shadow: 2px 2px 7px 1px #EBEBEB; */
+}
