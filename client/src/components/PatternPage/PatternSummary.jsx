@@ -17,8 +17,8 @@ class PatternSummary extends React.Component {
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
   }
 
-  changeContentDisplay(event) {
-    this.setState({ contentDisplay: event.target.value });
+  changeContentDisplay(newContent) {
+    this.setState({ contentDisplay: newContent });
   }
 
   render() {
@@ -68,7 +68,11 @@ class PatternSummary extends React.Component {
             </div>
           </div>
 
-          <ContentSelectorList />
+          <ContentSelectorList
+            selected={contentDisplay}
+            changeContentDisplay={this.changeContentDisplay}
+          />
+
           {contentDisplay === 'description'
             && (
               <div className={styles.descriptionInfo}>

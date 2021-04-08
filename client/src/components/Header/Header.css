@@ -56,7 +56,8 @@
   left: 12px;
 }
 
-.homeButton {
+.homeButton,
+.loginButton {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 15px;
   font-weight: 700;
@@ -64,7 +65,6 @@
   position: relative;
   outline: none;
   height: 50px;
-  width: 80%;
   align-self: center;
   cursor: pointer;
   color: #3B3B3B;
@@ -75,12 +75,21 @@
   text-align: center;
 }
 
+.homeButton {
+  width: 80%;
+}
+
+.loginButton {
+  width: 100%;
+}
+
 .homeButton span {
   position: relative;
   top: 16px;
 }
 
-.homeButton:hover {
+.homeButton:hover,
+.loginButton:hover {
   outline: none;
   box-shadow: 2px 2px 7px 3px #EBEBEB;
   background: #E0E0E0;
@@ -88,7 +97,9 @@
 }
 
 .homeButton:target,
-.homeButton:focus {
+.homeButton:focus,
+.loginButton:target,
+.loginButton:focus {
   background-color: black;
   color: #E0E0E0;
 }
