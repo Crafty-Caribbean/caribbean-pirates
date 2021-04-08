@@ -1,6 +1,6 @@
 .commentsSection {
   display: grid;
-  grid: 100%;
+  grid-template-columns: 100%;
   justify-items: center;
   margin-top: 15px;
 }

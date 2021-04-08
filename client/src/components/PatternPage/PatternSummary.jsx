@@ -77,7 +77,7 @@ class PatternSummary extends React.Component {
             )}
           {contentDisplay === 'comments'
           && (
-            <CommentsSection />
+            <CommentsSection comments={patterninfo.comments} />
           )}
         </div>
 

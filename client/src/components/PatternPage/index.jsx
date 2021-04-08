@@ -26,6 +26,7 @@ class PatternPage extends React.Component {
         },
         skill_level: '',
         craft_type: '',
+        comments: [],
       },
       pattern_id: undefined,
     };
