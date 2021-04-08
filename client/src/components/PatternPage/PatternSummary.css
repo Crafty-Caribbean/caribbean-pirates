@@ -96,30 +96,6 @@
   margin: 24px 0px 6px 0px;
   display:flex;
 }
-.contentOption {
-  font-size: 15px;
-  font-weight: 500;
-  color:gray;
-  padding-bottom: 10px;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-}
-.contentOption2 {
-  /* border: 1px solid black; */
-  margin-left:16px;
-}
-
-.contentOption:hover {
-  color:black;
-  border-bottom: 3px solid black;
-}
-
-.contentOption:focus {
-  color: black;
-  border-bottom: 3px solid black;
-}
 
 .descriptionInfo{
   color:black;
