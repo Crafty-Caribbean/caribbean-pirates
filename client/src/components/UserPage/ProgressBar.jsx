@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from './ProgressBar.module.css';
 
 const ProgressBar = ({
-  progress, setRefresh, id, user,
+  progress, id, user, forceUpdate,
 }) => {
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -37,7 +37,8 @@ const ProgressBar = ({
   const completed = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setRefresh(id);
+    updateProgress();
+    setTimeout(forceUpdate, 100);
   };
 
   const cancel = (event) => {
@@ -66,14 +67,14 @@ export default ProgressBar;
 
 ProgressBar.propTypes = {
   progress: PropTypes.number,
-  setRefresh: PropTypes.func,
+  forceUpdate: PropTypes.func,
   id: PropTypes.number,
   user: PropTypes.number,
 };
 
 ProgressBar.defaultProps = {
   progress: PropTypes.number,
-  setRefresh: PropTypes.func,
+  forceUpdate: PropTypes.func,
   id: PropTypes.number,
   user: PropTypes.number,
 };

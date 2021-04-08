@@ -1,8 +1,33 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 89vh;
+}
+
 .header {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  height: 5vw;
-  font-family: "Open Sans", sans-serif;
-  font-size: 44px;
+  height: 18.69vh;
+  width: 8vw;
+  margin: 0 auto 25px auto;
+}
+
+.profilePhoto {
+  height: 8vw;
+  width: 8vw;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin-bottom: 1.4vw;
+}
+
+.header .userName {
+  font-size: 2vw;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ,
+    Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .hide {
@@ -11,8 +36,10 @@
 
 .patternsContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  height: 60vh;
 }
 
 .topArrow {
@@ -49,6 +76,7 @@
   /* bottom: 2%; */
   margin-right: auto;
   margin-left: auto;
+  margin-top: 
   cursor: pointer;
   padding: 0;
   background: none;
