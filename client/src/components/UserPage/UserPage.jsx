@@ -6,7 +6,7 @@ import styles from './userPage.module.css';
 import OptionsModal from './OptionsModal';
 
 const UserPage = () => {
-  const [purchased, setPurchased] = useState([]);
+  // const [purchased, setPurchased] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
@@ -51,7 +51,7 @@ const UserPage = () => {
     axios.get(`/api/users/${userId}`)
       .then(({ data }) => {
         console.log(data);
-        setPurchased(data.patterns.purchased || []);
+        // setPurchased(data.patterns.purchased || []);
         setFavorites(data.patterns.favorites || []);
         setCreated(data.patterns.created || []);
         setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100) || []);

@@ -56,9 +56,8 @@ const ProgressBar = ({
           <button className={styles.yes} onClick={(event) => completed(event)} type="button">✓</button>
           <button className={styles.no} onClick={(event) => cancel(event)} type="button">x</button>
         </div>
-      ) :
-      <input className={styles.bar} type="range" min="0" max="100px" value={value} step="1" onChange={(event) => handleChange(event)} />
-      }
+      )
+        : <input className={styles.bar} type="range" min="0" max="100px" value={value} step="1" onChange={(event) => handleChange(event)} />}
     </div>
   );
 };
