@@ -60,7 +60,7 @@ module.exports = {
                 const jwtToken = jwt.sign({
                   username: results.rows[0].username,
                   user_id: results.rows[0].id,
-                }, 'here-is-crafty-caribbean', {
+                }, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', {
                   expiresIn: '1h',
                 });
                 res.status(200).send({
