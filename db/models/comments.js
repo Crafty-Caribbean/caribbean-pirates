@@ -9,15 +9,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting comment', err.stack);
+      } else {
+        client.query(query, (error, result) => {
+          release();
+          if (error) {
+            callback(err.stack);
+          } else {
+            callback(null, result);
+          }
+        });
       }
-      client.query(query, (error, result) => {
-        release();
-        if (error) {
-          callback(err.stack);
-        } else {
-          callback(null, result);
-        }
-      });
     });
   },
 
@@ -26,15 +27,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting all comments', err.stack);
+      } else {
+        client.query(query, (error, result) => {
+          release();
+          if (error) {
+            callback(err.stack);
+          } else {
+            callback(null, result);
+          }
+        });
       }
-      client.query(query, (error, result) => {
-        release();
-        if (error) {
-          callback(err.stack);
-        } else {
-          callback(null, result);
-        }
-      });
     });
   },
 
@@ -46,14 +48,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding comment', err.stack);
+      } else {
+        client.query(query, (error, result) => {
+          release();
+          if (error) {
+            callback(err.stack);
+          } else {
+            callback(null, result);
+          }
+        });
       }
-      client.query(query, (error, result) => {
-        release();
-        if (error) {
-          callback(err.stack);
-        }
-        callback(null, result);
-      });
     });
   },
 };

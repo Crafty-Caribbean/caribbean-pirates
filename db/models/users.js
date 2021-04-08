@@ -51,15 +51,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting user information', err.stack);
+      } else {
+        client.query(query, (error, result) => {
+          release();
+          if (error) {
+            callback(err.stack);
+          } else {
+            callback(null, result);
+          }
+        });
       }
-      client.query(query, (error, result) => {
-        release();
-        if (error) {
-          callback(err.stack);
-        } else {
-          callback(null, result);
-        }
-      });
     });
   },
 
@@ -71,15 +72,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding user', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 
@@ -91,15 +93,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding user', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 };
