@@ -92,6 +92,7 @@
 .submitButton:hover {
   background-color: #AF1D3C;
   border: 2px solid #AF1D3C;
+  cursor: pointer;
 }
 
 .submitButton:focus {

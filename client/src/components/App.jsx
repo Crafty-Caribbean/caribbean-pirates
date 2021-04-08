@@ -25,23 +25,16 @@ class App extends React.Component {
     this.fetchHomeData();
   }
 
-  login(info) {
-    axios.post('/api/login', info)
-      .then((response) => {
-        const { token } = response.data;
-        const { username, user_id } = decode(token);
-        this.setState({
-          isLoggedIn: true,
-          token,
-          currentUser: {
-            username,
-            userId: user_id,
-          },
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  login(token) {
+    const { username, user_id } = decode(token);
+    this.setState({
+      isLoggedIn: true,
+      token,
+      currentUser: {
+        username,
+        userId: user_id,
+      },
+    });
   }
 
   fetchHomeData() {
