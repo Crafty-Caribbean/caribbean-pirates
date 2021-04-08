@@ -19,13 +19,31 @@ const UserPage = () => {
   const [state, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
+  const getXY = (xAxis, yAxis) => {
+    const limitHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight,
+    );
+    const limitWidth = Math.max(
+      document.body.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.clientWidth,
+      document.documentElement.scrollWidth,
+      document.documentElement.offsetWidth,
+    );
+    const x = (xAxis / limitWidth) * 100;
+    const y = (yAxis / limitHeight) * 100;
+    setCoordinates({ x, y });
+  };
+
   const showModal = (event, id, title) => {
     event.preventDefault();
     event.stopPropagation();
     setCollectListId({ id, list: title });
-    const x = (event.clientX / window.innerWidth) * 100;
-    const y = (event.clientY / window.innerHeight) * 100;
-    setCoordinates({ x, y });
+    getXY(event.clientX, event.clientY);
     setOptions(!showOptions);
   };
 
@@ -99,7 +117,7 @@ const UserPage = () => {
   useEffect(() => {
     console.log(location);
     if (location) {
-      getUserData(`${location.pathname.split('/')[3]}`);
+      getUserData(`${location.pathname.split('/')[2]}`);
     }
   }, []);
 
@@ -114,8 +132,25 @@ const UserPage = () => {
     setOptions(false);
   }, [state]);
 
+  const closeModal = () => {
+    setOptions(false);
+  };
+
+  useEffect(() => {
+    let unmounted = false;
+    setTimeout(() => {
+      if (!unmounted) {
+        window.addEventListener('resize', closeModal);
+      }
+    }, 50);
+    return () => {
+      unmounted = true;
+      window.removeEventListener('resize', closeModal);
+    };
+  }, []);
+
   return (
-    <div onClick={(event) =>  setOptions(false)} >
+    <div className={styles.userPage} onClick={() => setOptions(false)} onKeyPress={() => setOptions(false)} role="button" tabIndex={0}>
       <div className={styles.header}>IM</div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
@@ -131,7 +166,7 @@ const UserPage = () => {
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} />
+          {/* <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} /> */}
           <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />

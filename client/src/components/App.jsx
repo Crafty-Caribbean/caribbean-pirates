@@ -37,7 +37,7 @@ class App extends React.Component {
       <Router>
         <Header />
         <Switch>
-          <Route path="/stitchsaver/users/:user_id" component={UserPage} />
+          <Route path="/users/:user_id" component={UserPage} />
           <Route
             path="/patterns/:pattern_id"
             render={({ match, location, history }) => (

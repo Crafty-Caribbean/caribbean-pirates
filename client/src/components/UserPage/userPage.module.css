@@ -80,3 +80,7 @@
   position: absolute;
   z-index: 10000;
 }
+
+.userPage {
+  outline: none;
+}
