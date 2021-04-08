@@ -18,10 +18,11 @@ router.put('/patterns/:pattern_id/reported');
 router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 
 // "Users"  =========================================*/
-// (user login)
 router.get('/users/:user_id', users.getUserPatternList);
-// (user sign up)
-router.post('/users', users.addUser);
+
+router.post('/signup', users.signUp);
+router.post('/login', users.login);
+
 // (user edit profile/upload profile pic)
 router.put('/users/:user_id');
 
@@ -31,9 +32,9 @@ router.get('/comments', comments.getAllComments);
 router.post('/comments/:pattern_id', comments.addComment);
 
 /* "User-Favorite" ================================== */
-// unfavorite a pattern, remove from user favorite list
 // (favorite a pattern, add to user favorite list)
 router.post('/users/:user_id/favorite/', userFavorite.addFavorite);
+// unfavorite a pattern, remove from user favorite list
 router.delete('/users/:user_id/favorite/:pattern_id', userFavorite.deleteFavorite);
 
 // Favorite and project are in one tables

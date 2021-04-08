@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const usersModels = require('../../db/models/users');
 const validation = require('../../db/db_validation');
+require('dotenv').config();
 
 const saltRounds = 12;
 
@@ -14,7 +16,7 @@ module.exports = {
     });
   },
 
-  addUser(req, res) {
+  signUp(req, res) {
     if (validation.isEmail(req.body.email)
     && validation.isUsername(req.body.username)
     && !Number.isNaN(req.body.age)) {
@@ -34,7 +36,7 @@ module.exports = {
             (queryError) => {
               if (err) {
                 console.error(queryError);
-                res.status(404).send('Failed signing up the user');
+                res.status(401).send('Failed signing up the user');
               }
               res.status(201).send('Created');
             },
@@ -43,6 +45,44 @@ module.exports = {
       });
     } else {
       res.status(404).send('Please check the input format');
+    }
+  },
+
+  login(req, res) {
+    if (validation.isEmail(req.body.email)) {
+      usersModels.getOneUser(req.body.email, (err, results) => {
+        if (err) {
+          console.error(err);
+          res.status(401).send('Failed logging in');
+        } else if (results.rows.length > 0) {
+          bcrypt.compare(req.body.password, results.rows[0].password)
+            .then((result) => {
+              if (result) {
+                const jwtToken = jwt.sign({
+                  username: results.rows[0].username,
+                  user_id: results.rows[0].id,
+                }, process.env.TOPGUN, {
+                  expiresIn: '1h',
+                });
+                res.status(200).send({
+                  token: jwtToken,
+                  expiresIn: 30,
+                  msg: {
+                    username: results.rows[0].username,
+                    user_id: results.rows[0].id,
+                  },
+                });
+              } else {
+                res.status(400).send('Password not match');
+              }
+            })
+            .catch((error) => res.status(404).send(error));
+        } else {
+          res.status(401).send('User not found');
+        }
+      });
+    } else {
+      res.status(400).send('The email is not in the right format');
     }
   },
 };

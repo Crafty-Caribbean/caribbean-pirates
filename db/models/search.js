@@ -2,7 +2,7 @@ const db = require('../index.js');
 
 module.exports = {
   getResults(keyword, callback) {
-    const matchKeyword = `%${keyword}%`;
+    const matchKeyword = `${keyword}%`;
     const query = {
       text: `SELECT json_build_object(
         'users', (SELECT COALESCE(json_agg(users), '[]'::json)
@@ -23,8 +23,9 @@ module.exports = {
         release();
         if (error) {
           callback(err.stack);
+        } else {
+          callback(null, result);
         }
-        callback(null, result);
       });
     });
   },
