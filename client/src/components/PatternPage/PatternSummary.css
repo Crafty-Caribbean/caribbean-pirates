@@ -30,6 +30,20 @@
 
 }
 
+.titleAndButton{
+  display:flex;
+  justify-content: space-between;
+  /* display: grid; */
+  /* grid-template-columns: 80% auto 60px; */
+}
+
+.favoritebutton2{
+  display:flex;
+  /* justify-content: flex-end; */
+  /* align-content: center; */
+  align-items: center;
+}
+
 .patternName {
   /* color: blueviolet; */
   color:black;

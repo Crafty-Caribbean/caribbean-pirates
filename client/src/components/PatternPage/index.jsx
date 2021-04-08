@@ -38,7 +38,9 @@ class PatternPage extends React.Component {
 
     if (match.params.pattern_id) {
       axios.get(`/api/patterns/${match.params.pattern_id}`)
-        .then((res) => this.setState({ patterninfo: res.data }))
+        .then((res) => {
+          this.setState({ patterninfo: res.data });
+        })
         .catch(console.err);
 
       this.setState({
