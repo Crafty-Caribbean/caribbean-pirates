@@ -1,44 +1,38 @@
 .patternSummaryContainer {
-  /* display: flex; */
-  /* flex-direction: column; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   /* align-content: space-between; */
-  /* justify-content: space-between; */
-  display:grid;
-  grid-template-rows: 5% 75% auto ;
+  justify-content: space-between;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /* display:grid; */
+  /* grid-template-rows: 75% auto ; */
   height:100%;
-  padding: 0px 32px;
+  padding: 5% 32px;
 }
 
-/* .header{
-  height:10%;
+.titleAndButton{
+  display:flex;
+  justify-content: space-between;
+  /* display: grid; */
+  /* grid-template-columns: 80% auto 60px; */
+  align-content: center;
 }
 
-.content{
-  height: 65%;
-}
-
-.footer {
-  height:25%;
-} */
-
-.favoritebutton {
-  position: relative;
-  /* display: flex; */
+.favoriteButton{
+  display:flex;
   /* justify-content: flex-end; */
-  /* right: 0px; */
-  left: calc(100% + 25px);
-
+  /* align-content: center; */
+  align-items: center;
+  align-self: flex-start;
 }
 
 .patternName {
-  /* color: blueviolet; */
   color:black;
-  /* color:#AF1D3C; */
   display: flex;
-  /* justify-content: center; */
-  /* font-size: 50px; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 36px;
+  font-size: 24px;
+  text-transform: uppercase;
+  line-height: 32px;
 }
 
 .userpfp {
@@ -57,8 +51,11 @@
   display:flex;
   align-content: center;
   background-color: transparent;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   outline:none;
+  margin: 0;
+  padding: 0;
+  margin-left: -4px;
+  margin-right: 8px;
 }
 
 .authorLink {
@@ -75,7 +72,7 @@
 .authorContainer{
   display:flex;
   align-content: center;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  margin: 14px 0;
 }
 
 .tagContainer {
@@ -83,6 +80,7 @@
   height: 30px;
   width : 100%;
   display: flex;
+  margin-top: 10px;
 }
 
 .craftTypeTag {
@@ -97,24 +95,19 @@
 
 
 .descriptionInfo{
-  /* color:#50B99B; */
   color:black;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
-  max-height: 40%;
+  max-height: 300px;
   overflow: auto;
+  margin: 24px 0;
 }
 
 .descriptionParagraph{
-  /* overflow:auto; */
-  /* max-height: 30%; */
+  margin: 0;
 }
 
 .priceAndBuy {
-  height: 50px;
-  width: 100%;
-  /* border: 1px solid brown; */
-  /* bottom: 10px; */
+
 }
 
 .priceText {
@@ -124,16 +117,32 @@
 /* buy button stuff */
 .buybutton{
   /* color:green; */
-  background-color: #AF1D3C;
+  /* background-color: #AF1D3C;
   outline:none;
   border: 1px solid #AF1D3C;
   height: 30px;
   border-radius: 9000px;
   color:white;
+  width: 100px; */
+
+  background-image: linear-gradient(to right, #A11B38, #AF1D3C, #C42145, #DC244B, #FF2957);
+  /* background-image: linear-gradient(to right, #F5268E, #F53C8E, #F5508E, #F5628E, #F5738E, #F57D8E, #F58A8E, #F58A8E, #F5958E); */
+  background-size: 200%;
+  transition: 250ms;
+  padding: 10px;
+  justify-content: center;
+  font-weight: 700;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 25px;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
   width: 100px;
 }
 
 .buybutton:hover {
-  background-color: #DC244B;
-  /* outline:none; */
+  background-position: right;
+  box-shadow: 2px 2px 7px 1px #EBEBEB;
 }

@@ -6,6 +6,7 @@ import CommentsSection from './CommentsSection';
 import ImageGallery from './ImageGallery';
 import Login from '../Login';
 import PatternSummary from './PatternSummary';
+// import CraftTag from '../PatternCard/CraftTag';
 
 import styles from './PatternPage.css';
 
@@ -37,7 +38,9 @@ class PatternPage extends React.Component {
 
     if (match.params.pattern_id) {
       axios.get(`/api/patterns/${match.params.pattern_id}`)
-        .then((res) => this.setState({ patterninfo: res.data }))
+        .then((res) => {
+          this.setState({ patterninfo: res.data });
+        })
         .catch(console.err);
 
       this.setState({
@@ -106,11 +109,6 @@ class PatternPage extends React.Component {
             </AppModal>
           )
         }
-        <div className={styles.commentsSectionHolder}>
-          <div className={styles.commentsSection}>
-            <CommentsSection />
-          </div>
-        </div>
       </div>
     );
   }
