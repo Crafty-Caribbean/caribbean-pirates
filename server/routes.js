@@ -15,7 +15,7 @@ router.post('/patterns');
 // (report pattern)
 router.put('/patterns/:pattern_id/reported');
 // (delete pattern)
-router.delete('/users/:user_id/created/:pattern_id');
+router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 
 // "Users"  =========================================*/
 // (user login)
@@ -46,7 +46,7 @@ router.post('/users/:user_id/projects/', userProjects.addProject);
 router.put('/users/:user_id/projects/:project_id/progress', userProjects.updateProjectProgress);
 // (delete a project, remove from project in progress/completed list)
 // Favorite and project are in two table
-router.delete('/users/:user_id/projects/:pattern_id');
+router.delete('/users/:user_id/projects/:project_id', userProjects.deleteProject);
 
 // Favorite and project are in one tables
 // router.put('/users/:user_id/projects/:pattern_id')

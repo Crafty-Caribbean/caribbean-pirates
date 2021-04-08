@@ -95,11 +95,6 @@ class PatternPage extends React.Component {
             </div>
           </div>
         </div>
-
-        <div className={styles.relatedPatterns}>
-          Related Patterns
-          <button type="button" onClick={this.toggleModal}>Modal</button>
-        </div>
         {
           showModal
           && (

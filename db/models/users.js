@@ -18,7 +18,7 @@ module.exports = {
                                 uf.created_at AS liked_at
                       FROM patterns p, user_favorite uf
                       WHERE p.id=uf.pattern_id
-                      AND uf.user_id=u.id) AS favorites),
+                      AND p.deleted=false AND uf.user_id=u.id) AS favorites),
                 'projects', (SELECT COALESCE(json_agg(projects), '[]'::json)
                    FROM (SELECT p.id,
                           p.title,
@@ -33,7 +33,7 @@ module.exports = {
                               up.completed_at
                       FROM patterns p, user_projects up
                       WHERE p.id=up.pattern_id
-                      AND up.user_id=u.id) AS projects),
+                      AND p.deleted=false AND up.deleted=false AND up.user_id=u.id) AS projects),
                  'created', (SELECT COALESCE(json_agg(created), '[]'::json)
                    FROM (SELECT p.id,
                           p.title,
@@ -44,7 +44,7 @@ module.exports = {
                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                              p.created_at
                       FROM patterns p
-                      WHERE u.id=p.author_id) AS created)
+                      WHERE p.deleted=false AND u.id=p.author_id) AS created)
                ) patterns
     FROM users u
     WHERE u.id=${userId};`;
