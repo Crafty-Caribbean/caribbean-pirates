@@ -72,6 +72,7 @@ class PatternSummary extends React.Component {
             selected={contentDisplay}
             changeContentDisplay={this.changeContentDisplay}
           />
+
           {contentDisplay === 'description'
             && (
               <div className={styles.descriptionInfo}>

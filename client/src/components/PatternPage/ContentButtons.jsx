@@ -1,32 +1,23 @@
 import React from 'react';
-import styles from './ContentButtons.css'
+import styles from './ContentButtons.css';
 
-class ContentButtons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { };
-    this.clickHandler = this.clickHandler.bind(this);
+const ContentButtons = (props) => {
+  const { buttonName, selected, changeContentDisplay } = props;
+  // console.log(changeContentDisplay);
+  let isSelected = '';
+  if (buttonName === selected) {
+    isSelected = styles.selected;
   }
-
-  clickHandler(event) {
-    console.log(event.target.value);
-    this.setState({isSelected: event.target.value});
-    this.props.changeContentDisplay(event.target.value);
-  }
-
-  render() {
-    // console.log(this.props);
-    // const isSelected = this.props.buttonName === this.props.selected
-    //  ? isSelected = 'styles.selected'
-    //  : isSelected = '';
-    let isSelected = '';
-    if(this.props.buttonName ===  this.props.selected) {
-      isSelected = styles.selected;
-    }
-    return(
-      <button className={`${styles.contentOption} ${isSelected}`} onClick={this.clickHandler} value={this.props.buttonName}>{this.props.buttonName}</button>
-    )
-  }
-}
+  return (
+    <button
+      className={`${styles.contentOption} ${isSelected}`}
+      onClick={(event) => { changeContentDisplay(event.target.value); }}
+      type="button"
+      value={buttonName}
+    >
+      { buttonName }
+    </button>
+  );
+};
 
 export default ContentButtons;
