@@ -1,11 +1,12 @@
 .suggestionItems {
   padding: 10px;
-  color: black;
-  font-weight: normal;
+  color: #3B3B3B;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .suggestionItems:hover {
-  background-color: #eee;
+  background-color: #E0E0E0;
 }
 
 .link {
