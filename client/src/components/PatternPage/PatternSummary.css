@@ -122,6 +122,10 @@
   border-bottom: 3px solid black;
 }
 
+.selected{
+  border-bottom: 3px solid black;
+}
+
 .descriptionInfo{
   color:black;
   font-size: 14px;
