@@ -36,6 +36,7 @@ class CommentsSection extends React.Component {
     this.handleCommentInput = this.handleCommentInput.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getComments = this.getComments.bind(this);
   }
 
   handleCommentInput(event) {
@@ -59,13 +60,29 @@ class CommentsSection extends React.Component {
 
   getComments() {
     const { patternId } = this.props;
-    axios.get('/comments/${patternId}')
-      .then((response) => {
-        this.setState({ comments: response.data });
+    axios.get(`/comments/${patternId}`)
+      .then((res) => {
+        this.setState({ comments: res.data });
       })
       .catch((error) => {
         console.log('Error retrieving comments: ', error);
-      }),
+      })
+  }
+
+  addComments(commentContent) {
+    const { patternId } = this.props;
+    const commentsObject = {
+      username: '',
+      content: commentContent,
+    };
+    axios.post(`/comments/${patternId}`, commentsObject)
+      .then((res) => {
+        console.log('Post res: ', res);
+        this.getComments();
+      })
+      .catch((error) => {
+        console.log('Error posting comments: ', error);
+      })
   }
 
   render() {
