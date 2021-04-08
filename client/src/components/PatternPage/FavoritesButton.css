@@ -1,5 +1,4 @@
 .FavoritesButton {
-  /* color: plum; */
   display: flex;
   align-items: center;
   height: 100%;
@@ -9,10 +8,6 @@
   background-color: transparent;
 }
 
-.FavoritesButton:focus {
-}
-
 .FavoritesButton:hover {
   transform: scale3d(1.25, 1.25, 1);
-  /* color: purple; */
 }
