@@ -1,8 +1,8 @@
 .confirmation {
   position: absolute;
-  top: 82.3%;
-  left: 6%;
   border: none;
+  bottom: 12px;
+  left: 7px;
 }
 
 .container {
@@ -15,7 +15,7 @@
 .text {
   padding-left: 0.71vw;
   font-family: "Open Sans", sans-serif;
-  font-size: 0.6vw;
+  font-size: 12px;
   border-radius: 20px;
   border: none;
 }
