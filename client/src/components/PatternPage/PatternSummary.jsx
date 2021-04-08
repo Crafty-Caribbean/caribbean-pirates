@@ -2,24 +2,40 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PatternSummary.css';
 import HeartButton from '../PatternCard/HeartButton';
+import FavoritesButton from './FavoritesButton';
 
 class PatternSummary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isLiked: false,
+    };
   }
 
   render() {
+    const { isLiked } = this.state;
     return (
       <div className={styles.patternSummaryContainer}>
         <div className={styles.header}>
-          <div className={styles.favoritebutton}>
-            <HeartButton />
+          <div className={styles.favoritebutton2}>
+            {/* <HeartButton /> */}
           </div>
         </div>
 
         <div className={styles.content}>
-          <div className={styles.patternName}>{this.props.patterninfo.name}</div>
+
+          <div className={styles.titleAndButton}>
+            <div className={styles.patternName}>{this.props.patterninfo.name}</div>
+            <div className={styles.favoritebutton2}>
+              {/* <div>Hello</div> */}
+              <FavoritesButton
+                size={30}
+                isLiked={isLiked}
+                handleClick={() => this.setState({ isLiked: !isLiked })}
+              />
+            </div>
+          </div>
+
           <div className={styles.authorContainer}>
             <button className={styles.authorName} type="button">
               <Link to={`/user/${this.props.patterninfo.author.id}`}>
@@ -47,7 +63,9 @@ class PatternSummary extends React.Component {
 
         <div className={styles.footer}>
           <div className={styles.priceAndBuy}>
-            <div className={styles.priceText}>${this.props.patterninfo.price}</div>
+            <div className={styles.priceText}>
+              ${this.props.patterninfo.price}
+            </div>
             <button type="button" className={styles.buybutton}>Buy</button>
           </div>
 
