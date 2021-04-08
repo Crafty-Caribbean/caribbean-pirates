@@ -14,18 +14,22 @@ class Header extends React.Component {
       currentUser: '',
       profileHover: false,
       showLogin: false,
-      loggedIn: false,
     };
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleProfileHover = this.handleProfileHover.bind(this);
   }
 
   handleProfileClick(event) {
-    const { currentUser, showLogin, loggedIn } = this.state;
+    const { isLoggedIn } = this.props;
+    const { currentUser, showLogin } = this.state;
     event.preventDefault();
-    if (!loggedIn) {
+    if (!isLoggedIn) {
       this.setState({
         showLogin: !showLogin,
+      });
+    } else {
+      this.setState({
+        showLogin: false,
       });
     }
     console.log('Take user to their page', currentUser);
@@ -37,7 +41,14 @@ class Header extends React.Component {
     this.setState({ profileHover: !profileHover });
   }
 
+  handleLogin() {
+    const { login } = this.props;
+    login();
+    // add callback to close modal
+  }
+
   render() {
+    const { login, isLoggedIn } = this.props;
     const { profileHover, showLogin } = this.state;
 
     return (
@@ -59,6 +70,7 @@ class Header extends React.Component {
         <div
           className={styles.profileIconWrapper}
         >
+          {isLoggedIn ? 'logged in' : 'not logged in'}
           <IoPersonCircle
             className={styles.profileIcon}
             size="50"
@@ -73,7 +85,7 @@ class Header extends React.Component {
           && (
             <AppModal outsideClickHandler={this.handleProfileClick}>
               <Login
-                login={(data) => this.loginUser(data)}
+                login={login}
                 signup={(data) => this.signupUser(data)}
               />
             </AppModal>
