@@ -80,4 +80,24 @@ module.exports = {
       });
     });
   },
+
+  addOnePattern(authorId, title, craftType, skillLevel, price, description, images, callback) {
+    const query = {
+      text: 'INSERT INTO public.patterns(author_id, title, craft_type, skill_level, price, description, images) VALUES ($1, $2, $3, $4, $5, $6, $7);',
+      values: [authorId, title, craftType, skillLevel, price, description, images],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error adding pattern', err);
+      }
+      client.query(query, (error, result) => {
+        release();
+        if (error) {
+          callback(error);
+        } else {
+          callback(null, result);
+        }
+      });
+    });
+  },
 };

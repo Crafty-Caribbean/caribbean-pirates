@@ -37,4 +37,22 @@ module.exports = {
       res.status(201).send('Project deleted');
     });
   },
+
+  addPattern(req, res) {
+    patternsModels.addOnePattern(
+      Number(req.body.user_id),
+      req.body.title,
+      req.body.craft_type,
+      req.body.skill_level,
+      req.body.price,
+      req.body.description,
+      req.body.images, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(401).send('Error adding pattern');
+        }
+        res.status(201).send('Pattern created');
+      },
+    );
+  },
 };
