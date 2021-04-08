@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const usersModels = require('../../db/models/users');
 const validation = require('../../db/db_validation');
+require('dotenv').config();
 
 const saltRounds = 12;
 
@@ -60,7 +61,7 @@ module.exports = {
                 const jwtToken = jwt.sign({
                   username: results.rows[0].username,
                   user_id: results.rows[0].id,
-                }, 'here-is-crafty-caribbean', {
+                }, process.env.TOPGUN, {
                   expiresIn: '1h',
                 });
                 res.status(200).send({
