@@ -1,19 +1,14 @@
 .contentOption {
-  /* border: 1px solid black; */
-  height: 20px;
-  /* font-size: 14px; */
+  font-size: 15px;
   font-weight: 500;
   color:gray;
-  padding-bottom: 4px;
+  padding-bottom: 10px;
   background-color: transparent;
   outline: none;
   border: none;
   margin-right:16px;
   text-transform: capitalize;
-}
-.contentOption2 {
-  /* border: 1px solid black; */
-  margin-left:16px;
+  border-bottom: 3px solid transparent;
 }
 
 .contentOption:hover {
@@ -21,11 +16,6 @@
   font-weight:700;
   border-bottom: 3px solid black;
 }
-
-/* .contentOption:focus {
-  color: black;
-  border-bottom: 3px solid black;
-} */
 
 .selected{
   color:black;
