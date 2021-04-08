@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './AuthorSuggestions.css';
 
 const AuthorSuggestions = (props) => {
-  const { author, toggleShowSuggestions } = props;
+  const { author, clearSearchSuggestions } = props;
   return (
-    <Link className={styles.link} onClick={toggleShowSuggestions} to={`/stitchsaver/users/${author.id}`}>
+    <Link className={styles.link} onClick={clearSearchSuggestions} to={`/stitchsaver/users/${author.id}`}>
       <div className={styles.suggestionItems}>
         <span className={styles.suggestionText}>{author.username}</span>
       </div>

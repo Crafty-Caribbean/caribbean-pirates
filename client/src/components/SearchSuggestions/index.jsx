@@ -11,9 +11,9 @@ class SearchSuggestions extends React.Component {
   }
 
   render() {
-    const { suggestion, toggleShowSuggestions } = this.props;
+    const { suggestion, clearSearchSuggestions } = this.props;
     return (
-      <Link className={styles.link} onClick={toggleShowSuggestions} to={`/patterns/${suggestion.id}`}>
+      <Link className={styles.link} onClick={clearSearchSuggestions} to={`/patterns/${suggestion.id}`}>
         <div className={styles.suggestionItems}>
           <span className={styles.suggestionText}>{suggestion.title}</span>
         </div>
