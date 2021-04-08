@@ -11,7 +11,7 @@ const PatternList = ({
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
-    <TopArrow id={title} />
+    <TopArrow id={title} listLength={list.length}/>
     <div id={title} className={styles.patternList}>
       {list.map((pattern) => (
         <PatternCard
