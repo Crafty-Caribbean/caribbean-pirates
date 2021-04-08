@@ -44,8 +44,12 @@ const UserPage = () => {
   };
 
   const handleToggledHeart = (favoritedObj) => {
+    console.log("pattern id", favoritedObj.id)
+    console.log("pattern liked?", favoritedObj.liked)
     if (favoritedObj.liked) {
-      axios.post(`api/users/${user}/favorite/`)
+      axios.post(`/users/${user}/favorite/`, {
+        pattern_id: favoritedObj.id
+       })
         .then((response) => {
           console.log(response);
           getUserData(user);
@@ -154,6 +158,7 @@ const UserPage = () => {
           <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" setFavorited={setFavorited} user={user} showModal={showModal} />
         </div>
+        <div className={styles.footer}></div>
       </div>
     </div>
   );
