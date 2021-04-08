@@ -18,10 +18,11 @@ router.put('/patterns/:pattern_id/reported');
 router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 
 // "Users"  =========================================*/
-// (user login)
 router.get('/users/:user_id', users.getUserPatternList);
-// (user sign up)
-router.post('/users', users.addUser);
+
+router.post('/signup', users.signUp);
+router.post('/login', users.login);
+
 // (user edit profile/upload profile pic)
 router.put('/users/:user_id');
 

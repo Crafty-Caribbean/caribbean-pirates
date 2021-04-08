@@ -80,4 +80,23 @@ module.exports = {
       });
     });
   },
+
+  getOneUser(email, callback) {
+    const query = {
+      text: 'SELECT * FROM users WHERE email=$1',
+      values: [email],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error adding user', err.stack);
+      }
+      client.query(query, (error, results) => {
+        release();
+        if (error) {
+          callback(error.stack);
+        }
+        callback(null, results);
+      });
+    });
+  },
 };
