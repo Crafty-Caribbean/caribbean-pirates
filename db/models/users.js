@@ -2,7 +2,8 @@ const db = require('../index.js');
 
 module.exports = {
   getUserPatterns(userId, callback) {
-    const query = `
+    const query = {
+      text: `
     SELECT u.id,
            u.image,
            u.username,
@@ -33,7 +34,7 @@ module.exports = {
                               up.completed_at
                       FROM patterns p, user_projects up
                       WHERE p.id=up.pattern_id
-                      AND p.deleted=false AND up.deleted=false AND up.user_id=u.id) AS projects),
+                      AND up.deleted=false AND up.user_id=u.id) AS projects),
                  'created', (SELECT COALESCE(json_agg(created), '[]'::json)
                    FROM (SELECT p.id,
                           p.title,
@@ -47,7 +48,9 @@ module.exports = {
                       WHERE p.deleted=false AND u.id=p.author_id) AS created)
                ) patterns
     FROM users u
-    WHERE u.id=${userId};`;
+    WHERE u.id=$1;`,
+      values: [userId],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting user information', err.stack);

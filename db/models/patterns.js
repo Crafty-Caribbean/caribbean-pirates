@@ -43,10 +43,10 @@ module.exports = {
   },
 
   getAllPatterns(count, offset, callback) {
-    const query = `SELECT * FROM patterns
-                   WHERE reported=false
-                   ORDER BY created_at DESC
-                   LIMIT ${count} OFFSET ${offset};`;
+    const query = {
+      text: 'SELECT * FROM patterns WHERE reported=false AND deleted=false ORDER BY created_at DESC LIMIT $1 OFFSET $2;',
+      values: [count, offset],
+    };
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting patterns', err.stack);
