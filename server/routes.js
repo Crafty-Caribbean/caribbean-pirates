@@ -15,7 +15,7 @@ router.post('/patterns');
 // (report pattern)
 router.put('/patterns/:pattern_id/reported');
 // (delete pattern)
-router.delete('/users/:user_id/created/:pattern_id');
+router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 
 // "Users"  =========================================*/
 // (user login)

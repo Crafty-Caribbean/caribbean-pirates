@@ -115,8 +115,11 @@ const UserPage = () => {
   }, [state]);
 
   return (
-    <div onClick={(event) =>  setOptions(false)} >
-      <div className={styles.header}>IM</div>
+    <div className={styles.app} onClick={(event) =>  setOptions(false)} >
+      <div className={styles.header}>
+        <span className={styles.profilePhoto}></span>
+        <span className={styles.userName}>Mika</span>
+      </div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
           <OptionsModal
@@ -131,7 +134,7 @@ const UserPage = () => {
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} />
+          {/* <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} /> */}
           <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" setFavorited={setFavorited} user={user} showModal={showModal} />
           <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />

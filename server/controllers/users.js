@@ -1,5 +1,8 @@
+const bcrypt = require('bcrypt');
 const usersModels = require('../../db/models/users');
 const validation = require('../../db/db_validation');
+
+const saltRounds = 12;
 
 module.exports = {
   getUserPatternList(req, res) {
@@ -15,19 +18,29 @@ module.exports = {
     if (validation.isEmail(req.body.email)
     && validation.isUsername(req.body.username)
     && !Number.isNaN(req.body.age)) {
-      usersModels.addUser(
-        req.body.email,
-        req.body.username,
-        req.body.age,
-        req.body.password,
-        (err) => {
-          if (err) {
-            console.error(err);
-            res.status(404).send('Failed signing up the user');
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+          console.error(err);
+        }
+        bcrypt.hash(req.body.password, salt, (error, hash) => {
+          if (error) {
+            console.error(error);
           }
-          res.status(201).send('Created');
-        },
-      );
+          usersModels.addUser(
+            req.body.email,
+            req.body.username,
+            req.body.age,
+            hash,
+            (queryError) => {
+              if (err) {
+                console.error(queryError);
+                res.status(404).send('Failed signing up the user');
+              }
+              res.status(201).send('Created');
+            },
+          );
+        });
+      });
     } else {
       res.status(404).send('Please check the input format');
     }
