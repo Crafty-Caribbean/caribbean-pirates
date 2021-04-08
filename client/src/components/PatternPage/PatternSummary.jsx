@@ -61,6 +61,14 @@ class PatternSummary extends React.Component {
               <Tag type={patterninfo.skill_level} />
             </div>
           </div>
+          <div className={styles.contentSelector}>
+            <button className={styles.contentOption} type="button">
+              Description
+            </button>
+            <button className={`${styles.contentOption} ${styles.contentOption2}`} type="button">
+              Comments (5)
+            </button>
+          </div>
           <div className={styles.descriptionInfo}>
             <p className={styles.descriptionParagraph}>
               {patterninfo.description}

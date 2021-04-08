@@ -92,14 +92,42 @@
   color:black
 }
 
+.contentSelector {
+  margin: 10px 0px;
+  display:flex;
+}
+.contentOption {
+  /* border: 1px solid black; */
+  height: 20px;
+  /* font-size: 14px; */
+  font-weight: 500;
+  color:gray;
+  padding-bottom: 4px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.contentOption2 {
+  /* border: 1px solid black; */
+  margin-left:16px;
+}
 
+.contentOption:hover {
+  color:black;
+  border-bottom: 3px solid black;
+}
+
+.contentOption:focus {
+  color: black;
+  border-bottom: 3px solid black;
+}
 
 .descriptionInfo{
   color:black;
   font-size: 14px;
   max-height: 300px;
   overflow: auto;
-  margin: 24px 0;
+  /* margin: 24px 0; */
 }
 
 .descriptionParagraph{
