@@ -73,6 +73,7 @@ module.exports = {
                   },
                 });
               } else {
+                console.log('password not match');
                 res.status(400).send('Password not match');
               }
             })
@@ -82,6 +83,7 @@ module.exports = {
         }
       });
     } else {
+      console.log('the email is not riight');
       res.status(400).send('The email is not in the right format');
     }
   },

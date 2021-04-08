@@ -93,10 +93,9 @@
 }
 
 .contentSelector {
-  margin: 10px 0px;
+  margin: 24px 0px 6px 0px;
   display:flex;
 }
-
 
 .descriptionInfo{
   color:black;
