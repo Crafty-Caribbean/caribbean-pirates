@@ -37,6 +37,7 @@ class CommentsSection extends React.Component {
     this.handleReset = this.handleReset.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getComments = this.getComments.bind(this);
+    this.addComments = this.addComments.bind(this);
   }
 
   handleCommentInput(event) {
@@ -55,12 +56,12 @@ class CommentsSection extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const { commentText } = this.state;
-    console.log('Comment posted: ', commentText);
+    this.addComments(commentText);
   }
 
   getComments() {
     const { patternId } = this.props;
-    axios.get(`/comments/${patternId}`)
+    axios.get(`/api/comments/${patternId}`)
       .then((res) => {
         this.setState({ comments: res.data });
       })
@@ -70,12 +71,12 @@ class CommentsSection extends React.Component {
   }
 
   addComments(commentContent) {
-    const { patternId } = this.props;
+    const { patternId, username } = this.props;
     const commentsObject = {
-      username: '',
+      username: username || 'Anonymous',
       content: commentContent,
     };
-    axios.post(`/comments/${patternId}`, commentsObject)
+    axios.post(`/api/comments/${patternId}`, commentsObject)
       .then((res) => {
         console.log('Post res: ', res);
         this.getComments();
