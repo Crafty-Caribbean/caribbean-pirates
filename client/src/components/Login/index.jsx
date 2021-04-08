@@ -69,7 +69,7 @@ class Login extends React.Component {
       <div className={styles.loginModal}>
         <div className={styles.logo}>S</div>
         <h1 className={styles.header}>{this.title[mode]}</h1>
-        <form className={styles.loginForm}>
+        <form className={styles.loginForm} onSubmit={this.handleSubmit}>
           {
             mode === SIGNUP && (
               <>
@@ -80,6 +80,7 @@ class Login extends React.Component {
                   type="text"
                   placeholder="username"
                   onChange={this.handleChange}
+                  required
                 />
               </>
             )
@@ -92,6 +93,7 @@ class Login extends React.Component {
             type="text"
             placeholder="email"
             onChange={this.handleChange}
+            required
           />
 
           <label htmlFor="password" className={styles.a11yHidden}>Password:</label>
@@ -102,6 +104,8 @@ class Login extends React.Component {
             type="password"
             placeholder="password"
             onChange={this.handleChange}
+            required
+            minLength="8"
           />
 
           {
@@ -114,12 +118,13 @@ class Login extends React.Component {
                   type="number"
                   placeholder="age"
                   onChange={this.handleChange}
+                  required
                 />
               </>
             )
           }
 
-          <button className={styles.submitButton} type="button" onClick={this.handleSubmit}>
+          <button className={styles.submitButton} type="submit">
             {
               (mode === LOGIN && 'Log in') || 'Sign up'
             }

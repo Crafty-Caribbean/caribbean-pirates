@@ -11,7 +11,7 @@ const userPurchased = require('./controllers/user_purchased');
 router.get('/patterns/:pattern_id', patterns.getOnePattern);
 router.get('/patterns/', patterns.getAllPatterns);
 // (add pattern)
-router.post('/patterns');
+router.post('/patterns', patterns.addPattern);
 // (report pattern)
 router.put('/patterns/:pattern_id/reported');
 // (delete pattern)

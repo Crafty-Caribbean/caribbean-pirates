@@ -26,6 +26,11 @@ class PatternPage extends React.Component {
         },
         skill_level: '',
         craft_type: '',
+<<<<<<< HEAD
+=======
+        description: '',
+        price: '',
+>>>>>>> e052d7ba02a5f0531a2e46a7dd514ad329223e17
         comments: [],
       },
       pattern_id: undefined,

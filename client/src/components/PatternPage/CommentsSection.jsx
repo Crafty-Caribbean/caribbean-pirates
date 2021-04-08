@@ -38,14 +38,6 @@ class CommentsSection extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getComments() {
-    const { patternId } = this.props;
-    axios.get('/comments/${patternId}')
-      .then((response) => {
-        this.setState({ })
-      })
-  }
-
   handleCommentInput(event) {
     this.setState({
       commentText: event.target.value,
@@ -65,6 +57,17 @@ class CommentsSection extends React.Component {
     console.log('Comment posted: ', commentText);
   }
 
+  getComments() {
+    const { patternId } = this.props;
+    axios.get('/comments/${patternId}')
+      .then((response) => {
+        this.setState({ comments: response.data });
+      })
+      .catch((error) => {
+        console.log('Error retrieving comments: ', error);
+      }),
+  }
+
   render() {
     const { comments, commentText } = this.state;
 
@@ -73,11 +76,11 @@ class CommentsSection extends React.Component {
         <div className={styles.commentTiles}>
           {
             comments.map((comment) => (
-              <CommentTiles comment={comment} />
+              <CommentTiles key={comment.id} comment={comment} />
             ))
           }
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form className={styles.commentForm} onSubmit={this.handleSubmit}>
           <input
             className={styles.commentInput}
             onChange={this.handleCommentInput}

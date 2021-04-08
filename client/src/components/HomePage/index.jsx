@@ -18,10 +18,10 @@ class HomePage extends React.Component {
           ? list.map((pattern) => (
             <PatternCard
               key={pattern.id}
-              cardWidth={210}
+              cardWidth="210px"
               id={pattern.id}
               name={pattern.name || pattern.title}
-              price={pattern.price}
+              price={Number(pattern.price).toFixed(2)}
               imgSrc={pattern.images[0]}
               skillLevel={pattern.skill_level}
               craftType={pattern.craft_type}
