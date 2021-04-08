@@ -58,7 +58,7 @@ module.exports = {
             .then((result) => {
               if (result) {
                 const jwtToken = jwt.sign({
-                  email: results.rows[0].email,
+                  username: results.rows[0].username,
                   user_id: results.rows[0].id,
                 }, 'here-is-crafty-caribbean', {
                   expiresIn: '1h',
@@ -67,7 +67,7 @@ module.exports = {
                   token: jwtToken,
                   expiresIn: 30,
                   msg: {
-                    email: results.rows[0].email,
+                    username: results.rows[0].username,
                     user_id: results.rows[0].id,
                   },
                 });
