@@ -29,15 +29,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error deleting favorite pattern', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 };

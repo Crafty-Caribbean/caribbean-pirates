@@ -32,9 +32,9 @@ router.get('/comments', comments.getAllComments);
 router.post('/comments/:pattern_id', comments.addComment);
 
 /* "User-Favorite" ================================== */
-// unfavorite a pattern, remove from user favorite list
 // (favorite a pattern, add to user favorite list)
 router.post('/users/:user_id/favorite/', userFavorite.addFavorite);
+// unfavorite a pattern, remove from user favorite list
 router.delete('/users/:user_id/favorite/:pattern_id', userFavorite.deleteFavorite);
 
 // Favorite and project are in one tables
