@@ -132,6 +132,7 @@ class SearchBar extends React.Component {
                     {
                       searchSuggestionList.map((suggestion) => (
                         <SearchSuggestions
+                          key={`${suggestion.id}-suggestion`}
                           suggestion={suggestion}
                           toggleShowSuggestions={this.toggleShowSuggestions}
                         />
@@ -148,6 +149,7 @@ class SearchBar extends React.Component {
                     {
                       authorSuggestionList.map((author) => (
                         <AuthorSuggestions
+                          key={`${author.id}-suggestion`}
                           author={author}
                           toggleShowSuggestions={this.toggleShowSuggestions}
                         />

@@ -23,7 +23,7 @@ module.exports = {
                               FROM comments c
                               WHERE c.pattern_id=p.id) AS comments) AS comments
                    FROM patterns p
-                   WHERE p.id=$1`,
+                   WHERE p.deleted=false AND p.id=$1`,
       values: [patternId],
     };
     db.connect((err, client, release) => {
@@ -48,6 +48,25 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting patterns', err.stack);
+      }
+      client.query(query, (error, result) => {
+        release();
+        if (error) {
+          callback(err.stack);
+        }
+        callback(null, result);
+      });
+    });
+  },
+
+  deleteOnePattern(patternId, callback) {
+    const query = {
+      text: 'UPDATE patterns SET deleted=true WHERE id=$1',
+      values: [patternId],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error deleting patterns', err.stack);
       }
       client.query(query, (error, result) => {
         release();

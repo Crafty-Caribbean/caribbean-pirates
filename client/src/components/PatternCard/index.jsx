@@ -16,12 +16,13 @@ class PatternCard extends React.Component {
     };
     this.onImgLoad = this.onImgLoad.bind(this);
     this.toggleShowHeart = this.toggleShowHeart.bind(this);
+    this.footer = React.createRef();
   }
 
   onImgLoad({ target: img }) {
     this.setState({
       dimensions: {
-        height: img.offsetHeight,
+        height: img.offsetHeight + this.footer.current.offsetHeight,
         width: img.offsetWidth,
       },
     });
@@ -54,7 +55,7 @@ class PatternCard extends React.Component {
     } = this.props;
     const { dimensions, showHeart } = this.state;
     const { height } = dimensions;
-    const gridSpan = Math.round((height / 10) + 8.7 + 1.6);
+    const gridSpan = Math.round((height / 10) + 1.6);
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
@@ -72,11 +73,11 @@ class PatternCard extends React.Component {
           </Link>
           {showHeart ? <HeartButton id={id} setFavorited={setFavorited} /> : ''}
         </div>
-        <div className={`pattern-card-footer ${styles.patternCardFooter}`}>
+        <div className={`pattern-card-footer ${styles.patternCardFooter}`} ref={this.footer}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
             <span className={`pattern-card-footer-title ${styles.patternCardFooterContentTitle}`}>
               <Link to={`/patterns/${id}`}>
-                {name}
+                {name.toUpperCase()}
               </Link>
             </span>
             <span>{ price !== '0.00' ? `$${price}` : 'Free'}</span>
