@@ -70,11 +70,11 @@ class CommentsSection extends React.Component {
         <div className={styles.commentTiles}>
           {
             comments.map((comment) => (
-              <CommentTiles comment={comment} />
+              <CommentTiles key={comment.id} comment={comment} />
             ))
           }
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form className={styles.commentForm} onSubmit={this.handleSubmit}>
           <input
             className={styles.commentInput}
             onChange={this.handleCommentInput}
