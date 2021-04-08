@@ -19,31 +19,12 @@ const UserPage = () => {
   const [state, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
-  const getXY = (xAxis, yAxis) => {
-    const limitHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight,
-    );
-    const limitWidth = Math.max(
-      document.body.scrollWidth,
-      document.body.offsetWidth,
-      document.documentElement.clientWidth,
-      document.documentElement.scrollWidth,
-      document.documentElement.offsetWidth,
-    );
-    const x = (xAxis / limitWidth) * 100;
-    const y = (yAxis / limitHeight) * 100;
-    setCoordinates({ x, y });
-  };
-
   const showModal = (event, id, title) => {
     event.preventDefault();
     event.stopPropagation();
+    setOptions(false);
     setCollectListId({ id, list: title });
-    getXY(event.clientX, event.clientY);
+    setCoordinates({ x: event.clientX + window.scrollX, y: event.clientY + window.scrollY });
     setOptions(!showOptions);
   };
 
@@ -51,7 +32,6 @@ const UserPage = () => {
     axios.get(`/api/users/${userId}`)
       .then(({ data }) => {
         console.log(data);
-        // setPurchased(data.patterns.purchased || []);
         setFavorites(data.patterns.favorites || []);
         setCreated(data.patterns.created || []);
         setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100) || []);
@@ -115,7 +95,6 @@ const UserPage = () => {
 
   const { location } = window;
   useEffect(() => {
-    console.log(location);
     if (location) {
       getUserData(`${location.pathname.split('/')[2]}`);
     }
@@ -156,7 +135,7 @@ const UserPage = () => {
         <span className={styles.userName}>Mika</span>
       </div>
       {showOptions ? (
-        <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
+        <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
           <OptionsModal
             showModal={showModal}
             initiateProgress={initiateProgress}
