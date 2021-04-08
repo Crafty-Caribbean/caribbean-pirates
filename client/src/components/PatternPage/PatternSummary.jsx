@@ -6,6 +6,7 @@ import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
 import { IoPersonCircle } from 'react-icons/io5';
+import ContentSelectorList from './ContentSelectorList';
 
 class PatternSummary extends React.Component {
   constructor(props) {
@@ -62,15 +63,8 @@ class PatternSummary extends React.Component {
             </div>
           </div>
 
-          <div className={styles.contentSelector}>
-            <button className={styles.contentOption} type="button">
-              Description
-            </button>
-            <button className={`${styles.contentOption} ${styles.contentOption2}`} type="button">
-              Comments (5)
-            </button>
+          <ContentSelectorList />
 
-          </div>
           <div className={styles.descriptionInfo}>
             <p className={styles.descriptionParagraph}>
               {patterninfo.description}
