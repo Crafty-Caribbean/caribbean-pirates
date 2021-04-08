@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 89vh;
+  outline: none;
 }
 
 .header {
@@ -9,20 +10,20 @@
   flex-direction: column;
   text-align: center;
   height: 18.69vh;
-  width: 8vw;
+  width: 134px;
   margin: 0 auto 25px auto;
 }
 
 .profilePhoto {
-  height: 8vw;
-  width: 8vw;
+  height: 134px;
+  width: 134px;
   background-color: #bbb;
   border-radius: 50%;
   margin-bottom: 1.4vw;
 }
 
 .header .userName {
-  font-size: 2vw;
+  font-size: 28px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
     Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ,
@@ -49,6 +50,7 @@
   background: none;
   border: none;
   outline: none;
+  margin-bottom: 10px;
 }
 
 .arrowTop {
@@ -81,6 +83,7 @@
   background: none;
   border: none;
   outline: none;
+  margin-top: 10px;
 }
 
 .arrowDown {

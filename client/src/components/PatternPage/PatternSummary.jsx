@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IoPersonCircle } from 'react-icons/io5';
 import styles from './PatternSummary.css';
-import HeartButton from '../PatternCard/HeartButton';
 import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
-import { IoPersonCircle } from 'react-icons/io5';
 import ContentSelectorList from './ContentSelectorList';
 
 class PatternSummary extends React.Component {
@@ -13,11 +12,17 @@ class PatternSummary extends React.Component {
     super(props);
     this.state = {
       isLiked: false,
+      contentDisplay: 'comments', // 'description' or 'comments'
     };
+    this.changeContentDisplay = this.changeContentDisplay.bind(this);
+  }
+
+  changeContentDisplay(event) {
+    this.setState({ contentDisplay: event.target.value });
   }
 
   render() {
-    const { isLiked } = this.state;
+    const { isLiked, contentDisplay } = this.state;
     const { patterninfo } = this.props;
 
     return (
@@ -64,16 +69,19 @@ class PatternSummary extends React.Component {
           </div>
 
           <ContentSelectorList />
-
-          <div className={styles.descriptionInfo}>
-            <p className={styles.descriptionParagraph}>
-              {patterninfo.description}
-            </p>
-          </div>
+          {contentDisplay === 'description'
+            && (
+              <div className={styles.descriptionInfo}>
+                <p className={styles.descriptionParagraph}>
+                  {patterninfo.description}
+                </p>
+              </div>
+            )}
+          {contentDisplay === 'comments'
+          && (
+            <CommentsSection />
+          )}
         </div>
-
-
-
 
         <div className={styles.footer}>
           <div className={styles.priceAndBuy}>
@@ -90,5 +98,3 @@ class PatternSummary extends React.Component {
 }
 
 export default PatternSummary;
-
-

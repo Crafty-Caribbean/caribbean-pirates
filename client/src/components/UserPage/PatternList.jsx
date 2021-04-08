@@ -5,14 +5,20 @@ import TopArrow from './TopArrow';
 import DownArrow from './DownArrow';
 import styles from './PatternList.module.css';
 import PatternCard from '../PatternCard/index';
+import PlaceHolderCard from '../PatternCard/PlaceHolderCard';
 
 const PatternList = ({
   title, list, user, setFavorited, showModal, forceUpdate,
 }) => (
   <div>
     <div className={styles.title}>{title}</div>
-    <TopArrow id={title} />
+    <TopArrow id={title} listLength={list.length} />
     <div id={title} className={styles.patternList}>
+      {list.length === 0 ? (
+        <PlaceHolderCard
+          cardWidth="210px"
+        />
+      ) : null}
       {list.map((pattern) => (
         <PatternCard
           info={pattern}

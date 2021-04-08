@@ -73,3 +73,19 @@
   margin-right: 10px;
 }
 
+.placeHolder {
+  background: #F5F5F5;
+  height: 315.47px;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:zoom-in;
+}
+
+.plusIcon {
+  transform: scale(6.5);
+  stroke: black;
+  cursor: zoom-in;
+  color: black;
+}
