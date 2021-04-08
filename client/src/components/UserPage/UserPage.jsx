@@ -150,8 +150,11 @@ const UserPage = () => {
   }, []);
 
   return (
-    <div className={styles.userPage} onClick={() => setOptions(false)} onKeyPress={() => setOptions(false)} role="button" tabIndex={0}>
-      <div className={styles.header}>IM</div>
+    <div className={styles.app} onClick={() => setOptions(false)} onKeyPress={() => setOptions(false)} role="button" tabIndex={0}>
+      <div className={styles.header}>
+        <span className={styles.profilePhoto} />
+        <span className={styles.userName}>Mika</span>
+      </div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}%`, left: `${coordinates.x}%` }}>
           <OptionsModal
