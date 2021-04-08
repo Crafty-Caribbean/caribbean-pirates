@@ -13,10 +13,12 @@ class PatternCard extends React.Component {
     this.state = {
       showHeart: false,
       dimensions: {},
+      fillHeart: false,
     };
     this.onImgLoad = this.onImgLoad.bind(this);
     this.toggleShowHeart = this.toggleShowHeart.bind(this);
     this.footer = React.createRef();
+    this.toggleHeart = this.toggleHeart.bind(this);
   }
 
   onImgLoad({ target: img }) {
@@ -26,6 +28,17 @@ class PatternCard extends React.Component {
         width: img.offsetWidth,
       },
     });
+  }
+
+  toggleHeart() {
+    const { setFavorited, id } = this.props;
+    const { fillHeart } = this.state;
+    this.setState({
+      fillHeart: !fillHeart,
+    });
+
+    const liked = fillHeart;
+    setFavorited({ liked, id });
   }
 
   toggleShowHeart() {
@@ -53,7 +66,7 @@ class PatternCard extends React.Component {
       forceUpdate,
       projectId,
     } = this.props;
-    const { dimensions, showHeart } = this.state;
+    const { dimensions, showHeart, fillHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 1.6);
     return (
@@ -71,7 +84,7 @@ class PatternCard extends React.Component {
           <Link to={`/patterns/${id}`}>
             <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           </Link>
-          {showHeart ? <HeartButton id={id} setFavorited={setFavorited} /> : ''}
+          {showHeart ? <HeartButton id={id} toggleHeart={this.toggleHeart} fillHeart={fillHeart} /> : ''}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`} ref={this.footer}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
