@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import styles from './Header.css';
 import Login from '../Login';
+import logo from '../../../dist/images/StitchSaverLogo.png';
 import AppModal from '../AppModal';
 
 class Header extends React.Component {
@@ -44,7 +45,7 @@ class Header extends React.Component {
         <Link to="/">
           <img
             className={styles.logoImage}
-            src="/images/StitchSaverLogo.png"
+            src={logo}
             alt="StitchSaver Logo"
           />
         </Link>
