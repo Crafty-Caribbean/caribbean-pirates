@@ -65,6 +65,7 @@ class PatternCard extends React.Component {
     const { dimensions, showHeart, fillHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 1.6);
+    // console.log(title);
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
@@ -110,35 +111,35 @@ PatternCard.displayName = 'pattern-card';
 export default PatternCard;
 
 PatternCard.propTypes = {
-  cardWidth: PropTypes.string,
+  cardWidth: PropTypes.null || PropTypes.string,
   imgSrc: PropTypes.string,
   progress: PropTypes.null || PropTypes.number,
-  title: PropTypes.string,
+  title: PropTypes.null || PropTypes.string,
   skillLevel: PropTypes.string,
   craftType: PropTypes.string,
-  showTags: PropTypes.bool,
+  showTags: PropTypes.null || PropTypes.bool,
   id: PropTypes.number,
-  user: PropTypes.number,
+  user: PropTypes.null || PropTypes.number,
   name: PropTypes.string,
   showModal: PropTypes.func,
-  price: PropTypes.number,
-  forceUpdate: PropTypes.func,
+  price: PropTypes.null || PropTypes.string,
+  forceUpdate: PropTypes.null || PropTypes.func,
   projectId: PropTypes.null || PropTypes.number,
 };
 
 PatternCard.defaultProps = {
-  cardWidth: PropTypes.string,
+  cardWidth: PropTypes.null,
   imgSrc: PropTypes.string,
   progress: PropTypes.null,
-  title: PropTypes.string,
+  title: PropTypes.null,
   skillLevel: PropTypes.string,
   craftType: PropTypes.string,
-  showTags: PropTypes.bool,
+  showTags: PropTypes.null,
   id: PropTypes.number,
-  user: PropTypes.number,
+  user: PropTypes.null,
   name: PropTypes.string,
   showModal: PropTypes.func,
-  price: PropTypes.number,
+  price: PropTypes.null,
   forceUpdate: PropTypes.func,
   projectId: PropTypes.null,
 };

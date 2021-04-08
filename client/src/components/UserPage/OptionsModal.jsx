@@ -8,8 +8,8 @@ const OptionsModal = ({
 }) => (
   <div
     className={styles.modal}
-    onClick={(event) => { showModal(event); setTimeout(forceUpdate, 100); }}
-    onKeyPress={(event) => { showModal(event); setTimeout(forceUpdate, 100); }}
+    onClick={(event) => { showModal(event); setTimeout(forceUpdate, 200); }}
+    onKeyPress={(event) => { showModal(event); setTimeout(forceUpdate, 200); }}
     role="button"
     tabIndex={0}
   >

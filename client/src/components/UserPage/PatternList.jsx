@@ -36,7 +36,7 @@ const PatternList = ({
           cardWidth="210px"
           name={pattern.title}
           showModal={showModal}
-          price={pattern.price}
+          price={pattern.price.toFixed(2)}
           forceUpdate={forceUpdate}
         />
       ))}
