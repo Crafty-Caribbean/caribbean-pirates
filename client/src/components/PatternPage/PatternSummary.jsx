@@ -12,11 +12,17 @@ class PatternSummary extends React.Component {
     super(props);
     this.state = {
       isLiked: false,
+      contentDisplay: 'comments', // 'description' or 'comments'
     };
+    this.changeContentDisplay = this.changeContentDisplay.bind(this);
+  }
+
+  changeContentDisplay(event) {
+    this.setState({ contentDisplay: event.target.value });
   }
 
   render() {
-    const { isLiked } = this.state;
+    const { isLiked, contentDisplay } = this.state;
     const { patterninfo } = this.props;
 
     return (
@@ -61,11 +67,18 @@ class PatternSummary extends React.Component {
               <Tag type={patterninfo.skill_level} />
             </div>
           </div>
-          <div className={styles.descriptionInfo}>
-            <p className={styles.descriptionParagraph}>
-              {patterninfo.description}
-            </p>
-          </div>
+          {contentDisplay === 'description'
+            && (
+              <div className={styles.descriptionInfo}>
+                <p className={styles.descriptionParagraph}>
+                  {patterninfo.description}
+                </p>
+              </div>
+            )}
+          {contentDisplay === 'comments'
+          && (
+            <CommentsSection />
+          )}
         </div>
 
 
