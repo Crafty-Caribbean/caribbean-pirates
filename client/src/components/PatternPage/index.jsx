@@ -91,6 +91,7 @@ class PatternPage extends React.Component {
       patterninfo,
     } = this.state;
 
+    console.log(this.state.patterninfo)
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
