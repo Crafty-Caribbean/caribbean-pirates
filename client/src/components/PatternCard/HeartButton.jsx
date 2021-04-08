@@ -47,11 +47,11 @@ HeartButton.displayName = 'heart-button';
 export default HeartButton;
 
 HeartButton.propTypes = {
-  id: PropTypes.number,
-  setFavorited: PropTypes.func,
+  fillHeart: PropTypes.bool,
+  toggleHeart: PropTypes.func,
 };
 
 HeartButton.defaultProps = {
-  id: PropTypes.number,
-  setFavorited: PropTypes.func,
+  fillHeart: PropTypes.bool,
+  toggleHeart: PropTypes.func,
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import HeartButton from './HeartButton';
 import styles from './PatternCard.css';
 import ProgressBar from '../UserPage/ProgressBar';
@@ -31,14 +32,10 @@ class PatternCard extends React.Component {
   }
 
   toggleHeart() {
-    const { setFavorited, id } = this.props;
     const { fillHeart } = this.state;
     this.setState({
       fillHeart: !fillHeart,
     });
-
-    const liked = fillHeart;
-    setFavorited({ liked, id });
   }
 
   toggleShowHeart() {
@@ -58,7 +55,6 @@ class PatternCard extends React.Component {
       craftType,
       showTags,
       id,
-      setFavorited,
       user,
       name,
       showModal,
@@ -77,6 +73,7 @@ class PatternCard extends React.Component {
             <DisplayMoreOptions
               showModal={showModal}
               id={id}
+              projectId={projectId}
               title={title}
               forceUpdate={forceUpdate}
             />
@@ -111,3 +108,37 @@ class PatternCard extends React.Component {
 PatternCard.displayName = 'pattern-card';
 
 export default PatternCard;
+
+PatternCard.propTypes = {
+  cardWidth: PropTypes.string,
+  imgSrc: PropTypes.string,
+  progress: PropTypes.null || PropTypes.number,
+  title: PropTypes.string,
+  skillLevel: PropTypes.string,
+  craftType: PropTypes.string,
+  showTags: PropTypes.bool,
+  id: PropTypes.number,
+  user: PropTypes.number,
+  name: PropTypes.string,
+  showModal: PropTypes.func,
+  price: PropTypes.number,
+  forceUpdate: PropTypes.func,
+  projectId: PropTypes.null || PropTypes.number,
+};
+
+PatternCard.defaultProps = {
+  cardWidth: PropTypes.string,
+  imgSrc: PropTypes.string,
+  progress: PropTypes.null,
+  title: PropTypes.string,
+  skillLevel: PropTypes.string,
+  craftType: PropTypes.string,
+  showTags: PropTypes.bool,
+  id: PropTypes.number,
+  user: PropTypes.number,
+  name: PropTypes.string,
+  showModal: PropTypes.func,
+  price: PropTypes.number,
+  forceUpdate: PropTypes.func,
+  projectId: PropTypes.null,
+};

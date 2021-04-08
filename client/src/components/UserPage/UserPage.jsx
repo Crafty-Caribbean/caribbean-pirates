@@ -11,19 +11,18 @@ const UserPage = () => {
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [inProgress, setProgress] = useState([]);
-  const [favorited, setFavorited] = useState({ liked: false, id: '' });
   const [collectListId, setCollectListId] = useState('');
   const [user, setUser] = useState(0);
   const [showOptions, setOptions] = useState(false);
   const [coordinates, setCoordinates] = useState({ x: '', y: '' });
-  const [state, updateState] = React.useState();
+  const [state, updateState] = useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
-  const showModal = (event, id, title) => {
+  const showModal = (event, id, title, projectId) => {
     event.preventDefault();
     event.stopPropagation();
     setOptions(false);
-    setCollectListId({ id, list: title });
+    setCollectListId({ id, list: title, projectId });
     setCoordinates({ x: event.clientX + window.scrollX, y: event.clientY + window.scrollY });
     setOptions(!showOptions);
   };
@@ -68,32 +67,31 @@ const UserPage = () => {
     }
   };
 
-  const removePatternCard = (list, id) => {
-    // if list is in progress or completed it needs to be projects
-    // if purchased dont send this
+  const removePatternCard = (list, id, projectId ) => {
     let title = list;
     if (title === 'In Progress' || title === 'Completed') {
       title = 'projects';
     }
+    let reference;
+    if (projectId) {
+      reference = projectId;
+    } else {
+      reference = id;
+    }
     title.toLowerCase();
-    axios.delete(`api/users/${user}/${title}/${id}`)
+    axios.delete(`/api/users/${user}/${title}/${reference}`)
       .then(() => {
         getUserData(user);
       });
   };
 
-  const initiateProgress = (list, id) => {
-    let title = list;
+  const initiateProgress = (id) => {
     axios.post(`/api/users/${user}/projects/`, { pattern_id: id })
-      .then(() => {
-        if (title === 'In Progress' || title === 'Completed') {
-          title = 'projects';
-        }
-        title.toLowerCase();
-        axios.delete(`api/users/${user}/${title}/${id}`)
-          .then(() => {
-            getUserData(user);
-          });
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -103,12 +101,6 @@ const UserPage = () => {
       getUserData(`${location.pathname.split('/')[2]}`);
     }
   }, []);
-
-  useEffect(() => {
-    if (favorited.id) {
-      handleToggledHeart(favorited);
-    }
-  }, [favorited]);
 
   useEffect(() => {
     getUserData(user);
@@ -147,16 +139,17 @@ const UserPage = () => {
             list={collectListId.list}
             id={collectListId.id}
             forceUpdate={forceUpdate}
+            projectId={collectListId.projectId}
           />
         </div>
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          {/* <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" setFavorited={setFavorited} user={user} showModal={showModal} /> */}
-          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" setFavorited={setFavorited} user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" setFavorited={setFavorited} user={user} showModal={showModal} />
+          {/* <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> */}
+          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" user={user} showModal={showModal} />
         </div>
         <div className={styles.footer} />
       </div>
