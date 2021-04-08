@@ -9,15 +9,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error adding favorite pattern', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 
@@ -29,15 +30,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error updating project progress', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 
@@ -49,15 +51,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error updating project complete time', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 
@@ -69,15 +72,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error deleting project', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
       }
-      client.query(query, (error, results) => {
-        release();
-        if (error) {
-          callback(error.stack);
-        } else {
-          callback(null, results);
-        }
-      });
     });
   },
 };

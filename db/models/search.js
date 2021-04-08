@@ -18,15 +18,16 @@ module.exports = {
     db.connect((err, client, release) => {
       if (err) {
         console.error('Error getting data', err.stack);
+      } else {
+        client.query(query, (error, result) => {
+          release();
+          if (error) {
+            callback(err.stack);
+          } else {
+            callback(null, result);
+          }
+        });
       }
-      client.query(query, (error, result) => {
-        release();
-        if (error) {
-          callback(err.stack);
-        } else {
-          callback(null, result);
-        }
-      });
     });
   },
 };
