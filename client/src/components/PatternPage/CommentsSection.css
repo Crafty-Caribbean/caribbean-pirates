@@ -52,9 +52,9 @@
 }
 
 .postButton {
-  background-image: linear-gradient(to right, #F5268E, #F53C8E, #F5508E, #F5628E, #F5738E, #F57D8E, #F58A8E, #F58A8E, #F5958E);
+  background-image: linear-gradient(to right, #A11B38, #AF1D3C, #C42145, #DC244B, #FF2957);
   background-size: 200%;
-  transition: 0.5s;
+  transition: 250ms;
 }
 
 .postButton:hover,
