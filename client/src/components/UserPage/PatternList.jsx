@@ -14,7 +14,7 @@ const PatternList = ({
   <div>
     <div className={styles.titleHolder}>
       <div className={styles.title}>{title}</div>
-      {title === 'Created' ? <div className={styles.createPattern}>+</div> : null}
+      {title === 'Created' ? <div className={styles.createPattern}><FiPlusSquare /></div> : null}
     </div>
     <TopArrow id={title} listLength={list.length} />
     <div id={title} className={styles.patternList}>
