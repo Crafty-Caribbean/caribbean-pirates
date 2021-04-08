@@ -23,8 +23,9 @@ module.exports = {
         release();
         if (error) {
           callback(err.stack);
+        } else {
+          callback(null, result);
         }
-        callback(null, result);
       });
     });
   },

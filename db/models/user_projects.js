@@ -14,8 +14,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },
@@ -33,8 +34,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },
@@ -52,8 +54,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },
@@ -71,8 +74,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },

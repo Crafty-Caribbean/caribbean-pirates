@@ -56,8 +56,9 @@ module.exports = {
         release();
         if (error) {
           callback(err.stack);
+        } else {
+          callback(null, result);
         }
-        callback(null, result);
       });
     });
   },
@@ -75,8 +76,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },
@@ -94,8 +96,9 @@ module.exports = {
         release();
         if (error) {
           callback(error.stack);
+        } else {
+          callback(null, results);
         }
-        callback(null, results);
       });
     });
   },
