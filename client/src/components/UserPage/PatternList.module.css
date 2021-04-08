@@ -2,6 +2,7 @@
   font-family: "adobe-clean", sans-serif;
   font-size: 20px;
   margin-bottom: 20px;
+  display: inline-block;
 }
 
 .patternList {
@@ -12,4 +13,33 @@
   scroll-behavior: smooth;
   margin-left: 40px;
   margin-right: 40px;
+}
+
+.titleHolder {
+  position: relative;
+}
+
+.createPattern {
+  border: 1px solid black;
+  position: absolute;
+  top: 8%;
+  right: 27%;
+  height: 34%;
+  width: 4.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.createPattern:hover {
+  transform: scale(1.4);
+  transition: transform 1s;
+}
+
+.createPattern:active {
+  transform: scale(0.8);
+  transition: transform .5s;
 }
