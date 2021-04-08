@@ -13,6 +13,12 @@ class CommentsSection extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  getComments() {
+    // const { patternId } = this.props;
+    const patternId = 5;
+    // Get request
+  }
+
   handleCommentInput(event) {
     this.setState({
       commentText: event.target.value,
@@ -61,8 +67,15 @@ class CommentsSection extends React.Component {
 
     return (
       <div className={styles.commentsSection}>
+        <div className={styles.commentTiles}>
+          {
+            comments.map((comment) => (
+              <CommentTiles comment={comment} />
+            ))
+          }
+        </div>
         <form onSubmit={this.handleSubmit}>
-          <textarea
+          <input
             className={styles.commentInput}
             onChange={this.handleCommentInput}
             placeholder="Add a comment"
@@ -80,11 +93,6 @@ class CommentsSection extends React.Component {
             <button className={styles.postButton} type="submit">Post</button>
           </div>
         </form>
-        {
-          comments.map((comment) => (
-            <CommentTiles comment={comment} />
-          ))
-        }
       </div>
     );
   }
