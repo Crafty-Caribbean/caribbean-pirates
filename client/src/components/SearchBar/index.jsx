@@ -12,21 +12,17 @@ class SearchBar extends React.Component {
     this.state = {
       searchedText: '',
       searchHover: false,
-      searchSuggestionList: [{ id: 1, title: 'Boop' }, { id: 2, title: 'Booper' }, { id: 3, title: 'Bob' }, { id: 4, title: 'Booooooooooba' }],
-      authorSuggestionList: [{ id: 1, username: '' }, { id: 2, username: 'Cooper' }, { id: 3, username: 'Booper' }],
+      patternSuggestionList: [],
+      authorSuggestionList: [],
     };
     this.debounceSuggestions = _.debounce(this.getSuggestions, 399);
     this.getSuggestions = this.getSuggestions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.searchHover = this.searchHover.bind(this);
-    this.toggleShowSuggestions = this.toggleShowSuggestions.bind(this);
+    this.toggleSearchHover = this.toggleSearchHover.bind(this);
+    this.clearSearchSuggestions = this.clearSearchSuggestions.bind(this);
     this.searchSuggestions = React.createRef();
   }
-
-  // Get request for searchbar
-  // // Need suggestions
-  // Suggestions for patterns, authors, tags, etc.
 
   handleChange(event) {
     const inputtedText = event.target.value;
@@ -38,26 +34,8 @@ class SearchBar extends React.Component {
   }
 
   handleSearch(event) {
-    const { searchedText } = this.state;
     event.preventDefault();
-    console.log('Query/search database for: ', searchedText);
-    this.setState({ searchedText: '' });
-
-    // API route will need to be user or author depending on clicked item
-    // const type = ???????? (Will need to find a way to retrieve this info when clicked)
-    // const id = ???????????
-    // axios.get(`/${type}/${id}`, {
-    //   params: {
-    //     keyword: searchedText,
-    //   }
-    //     .then((response) => {
-    //       const searched = response.data;
-    //       this.setState({ searchSuggestionList: searched });
-    //     })
-    //     .catch((error) => {
-    //       console.log('Error fetching search results: ', error);
-    //     }),
-    // });
+    this.getSuggestions();
   }
 
   getSuggestions() {
@@ -73,21 +51,21 @@ class SearchBar extends React.Component {
       .then((response) => {
         this.setState({
           authorSuggestionList: response.data.users,
-          searchSuggestionList: response.data.patterns,
+          patternSuggestionList: response.data.patterns,
         });
       })
       .catch((error) => {
-        console.error(error);
+        console.error('Error retrieving search suggestions:', error);
       });
   }
 
-  searchHover(event) {
+  toggleSearchHover(event) {
     event.preventDefault();
     const { searchHover } = this.state;
     this.setState({ searchHover: !searchHover });
   }
 
-  toggleShowSuggestions() {
+  clearSearchSuggestions() {
     this.setState({
       searchedText: '',
     });
@@ -97,7 +75,7 @@ class SearchBar extends React.Component {
     const {
       searchedText,
       searchHover,
-      searchSuggestionList,
+      patternSuggestionList,
       authorSuggestionList,
     } = this.state;
     return (
@@ -113,16 +91,11 @@ class SearchBar extends React.Component {
                 value={searchedText}
                 onChange={this.handleChange}
                 autoComplete="off"
-                // onBlur={this.toggleShowSuggestions}
               />
-
-              {/* If searchedText > 0, show the search suggestions
-              otherwise, show "no results found" in a div that looks like search suggestions */}
-
               {searchedText.length > 0
               && (
                 <div className={styles.searchSuggestions}>
-                  {searchSuggestionList.length > 0
+                  {patternSuggestionList.length > 0
                     && (
                       <div className={styles.suggestionTitle}>
                         Patterns
@@ -130,11 +103,11 @@ class SearchBar extends React.Component {
                     )}
                   <div className={styles.searchSuggestionsList}>
                     {
-                      searchSuggestionList.map((suggestion) => (
+                      patternSuggestionList.map((suggestion) => (
                         <SearchSuggestions
                           key={`${suggestion.id}-suggestion`}
                           suggestion={suggestion}
-                          toggleShowSuggestions={this.toggleShowSuggestions}
+                          clearSearchSuggestions={this.clearSearchSuggestions}
                         />
                       ))
                     }
@@ -151,7 +124,7 @@ class SearchBar extends React.Component {
                         <AuthorSuggestions
                           key={`${author.id}-suggestion`}
                           author={author}
-                          toggleShowSuggestions={this.toggleShowSuggestions}
+                          clearSearchSuggestions={this.clearSearchSuggestions}
                         />
                       ))
                     }
@@ -161,8 +134,8 @@ class SearchBar extends React.Component {
             </div>
             <div
               className={styles.searchIconWrapper}
-              onMouseEnter={this.searchHover}
-              onMouseLeave={this.searchHover}
+              onMouseEnter={this.toggleSearchHover}
+              onMouseLeave={this.toggleSearchHover}
             >
               <FaSearch
                 className={styles.searchIcon}
@@ -179,46 +152,3 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
-
-// Notes and experiments:
-
-// This is for if I want to implement a button on top of the input that will display
-// search icon - since placeholder is text only:
-// <button className={styles.searchView} type="text" name="searchView">
-// {magnifyingIcon} Search
-// </button>
-
-// Functional:
-
-{/* <div className={styles.searchBar}>
-<form onSubmit={this.handleSearch}>
-  <div className={styles.searchContainer}>
-    <div>
-      <input
-        className={styles.searchInput}
-        // placeholder="Search"
-        placeholder="Search"
-        type="text"
-        name="searchedText"
-        value={searchedText}
-        onChange={this.handleChange}
-        autoComplete="off"
-      />
-      {searchedText.length > 0
-      && <div className={styles.searchSuggestions}>This will be suggestions list</div>}
-    </div>
-    <div
-      className={styles.searchIconWrapper}
-      onMouseEnter={this.searchHover}
-      onMouseLeave={this.searchHover}
-    >
-      <FaSearch
-        className={styles.searchIcon}
-        size="25"
-        color={searchHover ? 'black' : '#D1D1D1'}
-        onClick={this.handleSearch}
-      />
-    </div>
-  </div>
-</form>
-</div> */}
