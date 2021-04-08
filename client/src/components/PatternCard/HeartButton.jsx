@@ -9,22 +9,20 @@ class HeartButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fillHeart: false,
     };
-    this.toggleHeart = this.toggleHeart.bind(this);
+    // this.toggleHeart = this.toggleHeart.bind(this);
     // this.handleToggledHeart = this.handleToggledHeart.bind(this);
   }
 
-  toggleHeart() {
-    const { fillHeart } = this.state;
-    const { setFavorited, id } = this.props;
-    this.setState({
-      fillHeart: !fillHeart,
-    });
+  // toggleHeart() {
+  //   const { setFavorited, id, fillHeart } = this.props;
+  //   this.setState({
+  //     fillHeart: !fillHeart,
+  //   });
 
-    const liked = fillHeart;
-    setFavorited({ liked, id });
-  }
+  //   const liked = fillHeart;
+  //   setFavorited({ liked, id });
+  // }
 
   // handleToggledHeart() {
   //   if(this.state.fillHeart) {
@@ -35,9 +33,9 @@ class HeartButton extends React.Component {
   // }
 
   render() {
-    const { fillHeart } = this.state;
+    const { fillHeart, toggleHeart } = this.props;
     return (
-      <button className={`heart-button ${styles.heartButton}`} type="button" onClick={this.toggleHeart}>
+      <button className={`heart-button ${styles.heartButton}`} type="button" onClick={toggleHeart}>
         {fillHeart ? <HiHeart /> : <HiOutlineHeart />}
       </button>
     );
@@ -49,11 +47,11 @@ HeartButton.displayName = 'heart-button';
 export default HeartButton;
 
 HeartButton.propTypes = {
-  id: PropTypes.number,
-  setFavorited: PropTypes.func,
+  fillHeart: PropTypes.bool,
+  toggleHeart: PropTypes.func,
 };
 
 HeartButton.defaultProps = {
-  id: PropTypes.number,
-  setFavorited: PropTypes.func,
+  fillHeart: PropTypes.bool,
+  toggleHeart: PropTypes.func,
 };

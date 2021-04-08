@@ -93,19 +93,18 @@
 }
 
 .contentSelector {
-  margin: 10px 0px;
+  margin: 24px 0px 6px 0px;
   display:flex;
 }
 .contentOption {
-  /* border: 1px solid black; */
-  height: 20px;
-  /* font-size: 14px; */
+  font-size: 15px;
   font-weight: 500;
   color:gray;
-  padding-bottom: 4px;
+  padding-bottom: 10px;
   background-color: transparent;
   outline: none;
   border: none;
+  border-bottom: 3px solid transparent;
 }
 .contentOption2 {
   /* border: 1px solid black; */
