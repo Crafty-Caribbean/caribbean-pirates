@@ -34,7 +34,7 @@
 
 .patternSummary {
   /* border: 1px solid blue; */
-  height: 500px;
+  min-height: 400px;
   width: 50%;
   /* margin-left: 30px; */
 }

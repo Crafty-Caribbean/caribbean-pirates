@@ -1,0 +1,13 @@
+.FavoritesButton {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width:100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.FavoritesButton:hover {
+  transform: scale3d(1.25, 1.25, 1);
+}
