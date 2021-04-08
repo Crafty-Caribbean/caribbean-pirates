@@ -16,10 +16,7 @@ const PatternList = ({
     <div id={title} className={styles.patternList}>
       {list.length === 0 ? (
         <PlaceHolderCard
-          imgSrc="https://static1.dmc.com/cache/p/a/pat0339_01_880x1322.jpg"
-          user={user}
           cardWidth="210px"
-          name=""
         />
       ) : null}
       {list.map((pattern) => (
