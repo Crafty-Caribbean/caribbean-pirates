@@ -6,6 +6,7 @@ import CommentsSection from './CommentsSection';
 import ImageGallery from './ImageGallery';
 import Login from '../Login';
 import PatternSummary from './PatternSummary';
+// import CraftTag from '../PatternCard/CraftTag';
 
 import styles from './PatternPage.css';
 
@@ -106,11 +107,6 @@ class PatternPage extends React.Component {
             </AppModal>
           )
         }
-        <div className={styles.commentsSectionHolder}>
-          <div className={styles.commentsSection}>
-            <CommentsSection />
-          </div>
-        </div>
       </div>
     );
   }

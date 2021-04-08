@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PatternSummary.css';
 import HeartButton from '../PatternCard/HeartButton';
+import CommentsSection from './CommentsSection';
+import Tag from './Tag';
 
 class PatternSummary extends React.Component {
   constructor(props) {
@@ -35,8 +37,12 @@ class PatternSummary extends React.Component {
 
           </div>
           <div className={styles.tagContainer}>
-            <div className={styles.craftTypeTag}>{this.props.patterninfo.craft_type}</div>
-            <div className={styles.skillLevelTag}>{this.props.patterninfo.skill_level}</div>
+            <div className={styles.craftTypeTag}>
+              <Tag type={this.props.patterninfo.craft_type} />
+            </div>
+            <div className={styles.skillLevelTag}>
+              <Tag type={this.props.patterninfo.skill_level} />
+            </div>
           </div>
           <div className={styles.descriptionInfo}>
             <p className={styles.descriptionParagraph}>
@@ -44,6 +50,9 @@ class PatternSummary extends React.Component {
             </p>
           </div>
         </div>
+
+
+
 
         <div className={styles.footer}>
           <div className={styles.priceAndBuy}>
