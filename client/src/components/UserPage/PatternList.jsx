@@ -22,7 +22,7 @@ const PatternList = ({
       {
         showForm && (
           <AppModal outsideClickHandler={toggleForm}>
-            <PatternForm user={user} />
+            <PatternForm user={user} forceUpdate={forceUpdate} />
           </AppModal>
         )
       }
@@ -37,6 +37,7 @@ const PatternList = ({
             cardWidth="210px"
             title={title}
             user={user}
+            forceUpdate={forceUpdate}
           />
         ) : null}
         {list.map((pattern) => (

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -17,7 +18,6 @@ class PatternForm extends React.Component {
       images: [],
       description: '',
       userId: user,
-      imagesUrl: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.clickUploadImage = this.clickUploadImage.bind(this);
@@ -32,16 +32,16 @@ class PatternForm extends React.Component {
   }
 
   handlePhotoChange(e) {
+    const { images } = this.state;
     this.setState({
       images: e.target.files,
     }, () => {
-      console.log(this.state.images);
+      console.log(images);
     });
   }
 
   submitPattern(event) {
     event.stopPropagation(); event.preventDefault();
-    console.log(event.target.files);
     const {
       title, price, skillLevel, craftType, images, userId,
     } = this.state;
@@ -53,19 +53,24 @@ class PatternForm extends React.Component {
         formData.append('file', images[i]);
       }
     }
-    axios.post('/api/patterns', {
+    axios.post('/api/uploads', {
       formData,
     }, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     })
-      .then((response) => {
-        // make another axios request after getting urls
-        // then refresh
-        // axios.post(title, price, skillLevel, craftType, userId)
-        //   .then( refresh );
-        console.log(response);
+      .then(({ data }) => {
+        const { forceUpdate } = this.props;
+        axios.post('/api/patterns/', {
+          title, price, skillLevel, craftType, userId, images: data,
+        })
+          .then(() => {
+            setTimeout(forceUpdate, 200);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -79,7 +84,7 @@ class PatternForm extends React.Component {
 
   render() {
     const {
-      title, images, description, skillLevel, craftType,
+      title, description, skillLevel, craftType,
     } = this.state;
     return (
       <div className={styles.patternFormModal}>
@@ -126,8 +131,10 @@ export default PatternForm;
 
 PatternForm.propTypes = {
   user: PropTypes.number,
+  forceUpdate: PropTypes.func,
 };
 
 PatternForm.defaultProps = {
   user: PropTypes.number,
+  forceUpdate: PropTypes.func,
 };

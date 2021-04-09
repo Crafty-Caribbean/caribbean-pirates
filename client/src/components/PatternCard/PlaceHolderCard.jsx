@@ -36,7 +36,7 @@ class PlaceHolderCard extends React.Component {
 
   render() {
     const {
-      cardWidth, title, user,
+      cardWidth, title, user, forceUpdate,
     } = this.props;
     const { dimensions, showForm } = this.state;
     const { height } = dimensions;
@@ -56,7 +56,7 @@ class PlaceHolderCard extends React.Component {
           showForm
           && (
             <AppModal outsideClickHandler={this.toggleForm}>
-              <PatternForm user={user} />
+              <PatternForm user={user} forceUpdate={forceUpdate} />
             </AppModal>
           )
         }
@@ -71,10 +71,12 @@ PlaceHolderCard.propTypes = {
   cardWidth: PropTypes.string,
   title: PropTypes.string,
   user: PropTypes.number,
+  forceUpdate: PropTypes.func,
 };
 
 PlaceHolderCard.defaultProps = {
   cardWidth: PropTypes.string,
   title: PropTypes.string,
   user: PropTypes.number,
+  forceUpdate: PropTypes.func,
 };
