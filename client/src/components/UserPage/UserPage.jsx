@@ -40,7 +40,7 @@ const UserPage = ({ match }) => {
         console.log(data);
         setFavorites(data.patterns.favorites || []);
         setCreated(data.patterns.created || []);
-        setPurchased(data.patterns.purchased || []);
+        // setPurchased(data.patterns.purchased || []);
         setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100) || []);
         setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100) || []);
         setUser(data.id);
@@ -193,7 +193,7 @@ const UserPage = ({ match }) => {
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> : null }
+          {/* {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> : null } */}
           <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" user={user} showModal={showModal} username={username} />
           <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" user={user} showModal={showModal} username={username} />
           {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" user={user} showModal={showModal} username={username} /> : null }
