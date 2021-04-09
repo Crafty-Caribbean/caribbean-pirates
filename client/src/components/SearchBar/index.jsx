@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
     }
     axios.get('/api/search', {
       params: {
-        keyword: searchedText,
+        keyword: searchedText.toLowerCase(),
       },
     })
       .then((response) => {
