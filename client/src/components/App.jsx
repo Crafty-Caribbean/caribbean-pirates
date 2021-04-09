@@ -81,8 +81,7 @@ class App extends React.Component {
     }, {
       withCredentials: true,
     })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         this.setState({
           isLoggedIn: false,
           token: '',
