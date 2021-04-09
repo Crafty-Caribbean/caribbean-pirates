@@ -3,13 +3,44 @@ import axios from 'axios';
 import styles from './CommentsSection.css';
 import CommentTiles from './CommentTiles.jsx'
 
+const CommentsList = ({ comments }) => {
+  const commentListEl = React.useRef(null);
+  let tileClass;
+
+  if (comments.length < 4) {
+    tileClass = styles.noCommentTiles;
+  }
+
+  React.useEffect(() => {
+    const el = commentListEl.current;
+
+    if (el) {
+      const height = el.scrollHeight;
+      el.scroll({
+        top: height,
+        behavior: 'smooth',
+      });
+    }
+  }, [comments.length]);
+
+  return (
+    <div className={`${styles.commentTiles} ${tileClass}`} ref={commentListEl}>
+      {
+        comments.map((comment) => (
+          <CommentTiles key={comment.id} comment={comment} />
+        ))
+      }
+    </div>
+  );
+};
+
 class CommentsSection extends React.Component {
   constructor(props) {
     super(props);
     const { comments } = this.props;
     this.state = {
       commentText: '',
-      comments: comments,
+      comments,
     };
     this.handleCommentInput = this.handleCommentInput.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -50,7 +81,7 @@ class CommentsSection extends React.Component {
       })
       .catch((error) => {
         console.log('Error retrieving comments: ', error);
-      })
+      });
   }
 
   addComments(commentContent) {
@@ -66,7 +97,7 @@ class CommentsSection extends React.Component {
       })
       .catch((error) => {
         console.log('Error posting comments: ', error);
-      })
+      });
   }
 
   render() {
@@ -85,16 +116,7 @@ class CommentsSection extends React.Component {
 
     return (
       <div className={styles.commentsSection}>
-        <div className={`${styles.commentTiles} ${tileClass}`}>
-          {
-            comments.length === 0 && (<p>There are no comments.</p>)
-          }
-          {
-            comments.map((comment) => (
-              <CommentTiles key={comment.id} comment={comment} />
-            ))
-          }
-        </div>
+        <CommentsList comments={comments} />
         <form className={styles.commentForm} onSubmit={this.handleSubmit}>
           <input
             className={styles.commentInput}
