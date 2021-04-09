@@ -71,10 +71,19 @@ class CommentsSection extends React.Component {
 
   render() {
     const { comments, commentText } = this.state;
+    //  className={`${styles.contentOption} ${isSelected}`}
+    let tileClass;
+
+    if (comments.length === 0) {
+      tileClass = styles.noCommentTiles;
+    }
 
     return (
       <div className={styles.commentsSection}>
-        <div className={styles.commentTiles}>
+        <div className={`${styles.commentTiles} ${tileClass}`}>
+          {
+            comments.length === 0 && (<p>There are no comments.</p>)
+          }
           {
             comments.map((comment) => (
               <CommentTiles key={comment.id} comment={comment} />
