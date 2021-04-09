@@ -6,13 +6,14 @@ import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
 import ContentSelectorList from './ContentSelectorList';
+import BuyButton from './BuyButton';
 
 class PatternSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLiked: false,
-      contentDisplay: 'comments', // 'description' or 'comments'
+      contentDisplay: 'description', // 'description' or 'comments'
     };
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
   }
@@ -43,20 +44,24 @@ class PatternSummary extends React.Component {
             </div>
           </div>
 
-          <div className={styles.authorContainer}>
-            <button className={styles.authorName} type="button">
-              <Link to={`/user/${patterninfo.author.id}`}>
-                <IoPersonCircle
-                  color="#777777"
-                  size="50"
-                />
-              </Link>
-            </button>
-            <p>
-              <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
-                {patterninfo.author.username}
-              </Link>
-            </p>
+          <div className={styles.authorAndBuyButtonContainer}>
+            <div className={styles.authorContainer}>
+              <button className={styles.authorName} type="button">
+                <Link to={`/user/${patterninfo.author.id}`}>
+                  <IoPersonCircle
+                    color="#777777"
+                    size="50"
+                  />
+                </Link>
+              </button>
+              <p>
+                <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
+                  {patterninfo.author.username}
+                </Link>
+              </p>
+            </div>
+
+            <BuyButton price={"0.00"} handleClick={console.log} />
 
           </div>
           <div className={styles.tagContainer}>
@@ -87,15 +92,7 @@ class PatternSummary extends React.Component {
           )}
         </div>
 
-        <div className={styles.footer}>
-          <div className={styles.priceAndBuy}>
-            <div className={styles.priceText}>
-              ${patterninfo.price}
-            </div>
-            <button type="button" className={styles.buybutton}>Buy</button>
-          </div>
 
-        </div>
       </div>
     );
   }
