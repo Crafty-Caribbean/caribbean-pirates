@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { HiPlusSm } from 'react-icons/hi';
 import styles from './PatternCard.css';
@@ -24,7 +25,7 @@ class PlaceHolderCard extends React.Component {
 
   render() {
     const {
-      cardWidth,
+      cardWidth, title,
     } = this.props;
     const { dimensions } = this.state;
     const { height } = dimensions;
@@ -32,9 +33,13 @@ class PlaceHolderCard extends React.Component {
     return (
       <div className={`pattern-card ${styles.patternCard} `} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
-          <Link style={{ textDecoration: 'none' }} to="/">
+          {title === 'Created' ? (
             <div className={`add-pattern ${styles.placeHolder}`}><HiPlusSm className={`add-pattern ${styles.plusIcon}`} /></div>
-          </Link>
+          ) : (
+            <Link style={{ textDecoration: 'none' }} to="/">
+              <div className={`add-pattern ${styles.placeHolder}`}><HiPlusSm className={`add-pattern ${styles.plusIcon}`} /></div>
+            </Link>
+          )}
         </div>
       </div>
     );
@@ -44,3 +49,13 @@ class PlaceHolderCard extends React.Component {
 PlaceHolderCard.displayName = 'pattern-card';
 
 export default PlaceHolderCard;
+
+PlaceHolderCard.propTypes = {
+  cardWidth: PropTypes.string,
+  title: PropTypes.string,
+};
+
+PlaceHolderCard.defaultProps = {
+  cardWidth: PropTypes.string,
+  title: PropTypes.string,
+}

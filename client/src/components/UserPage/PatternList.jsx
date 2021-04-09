@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FiPlusSquare } from 'react-icons/fi';
 import TopArrow from './TopArrow';
 import DownArrow from './DownArrow';
 import styles from './PatternList.module.css';
@@ -11,12 +12,16 @@ const PatternList = ({
   title, list, user, setFavorited, showModal, forceUpdate,
 }) => (
   <div>
-    <div className={styles.title}>{title}</div>
+    <div className={styles.titleHolder}>
+      <div className={styles.title}>{title}</div>
+      {title === 'Created' ? <div className={styles.createPattern}><FiPlusSquare /></div> : null}
+    </div>
     <TopArrow id={title} listLength={list.length} />
     <div id={title} className={styles.patternList}>
       {list.length === 0 ? (
         <PlaceHolderCard
           cardWidth="210px"
+          title={title}
         />
       ) : null}
       {list.map((pattern) => (
@@ -36,7 +41,7 @@ const PatternList = ({
           cardWidth="210px"
           name={pattern.title}
           showModal={showModal}
-          price={pattern.price}
+          price={pattern.price.toFixed(2)}
           forceUpdate={forceUpdate}
         />
       ))}
