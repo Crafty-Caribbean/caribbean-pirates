@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-import AppModal from '../AppModal';
-import CommentsSection from './CommentsSection';
 import ImageGallery from './ImageGallery';
-import Login from '../Login';
 import PatternSummary from './PatternSummary';
 // import CraftTag from '../PatternCard/CraftTag';
 
 import styles from './PatternPage.css';
+
+import UserContext from '../UserContext.js';
 
 class PatternPage extends React.Component {
   constructor(props) {
@@ -75,19 +74,6 @@ class PatternPage extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const prevId = prevProps.match && prevProps.match.pattern_id;
-  //   const pattern_id = this.props.match && this.props.match.pattern_id;
-
-  //   if (prevId !== pattern_id) {
-  //     console.log('hello');
-  //     console.log('componentUpdated, pattern_id changed: ', pattern_id);
-  //     this.setState({
-  //       pattern_id,
-  //     });
-  //   }
-  // }
-
   toggleModal(e) {
     e.preventDefault();
 
@@ -98,22 +84,10 @@ class PatternPage extends React.Component {
     });
   }
 
-  loginUser(data) {
-    console.log('login');
-    console.log(data);
-  }
-
-  signupUser(data) {
-    console.log('signup');
-    console.log(data);
-  }
-
   render() {
-    const {
-      showModal,
-      pattern_id,
-      patterninfo,
-    } = this.state;
+    const { patterninfo } = this.state;
+
+    // console.log('patternpage: ', this.context);
 
     return (
       <div className={styles.patternPage}>
@@ -125,20 +99,11 @@ class PatternPage extends React.Component {
             </div>
           </div>
         </div>
-        {
-          showModal
-          && (
-            <AppModal outsideClickHandler={this.toggleModal}>
-              <Login
-                login={(data) => this.loginUser(data)}
-                signup={(data) => this.signupUser(data)}
-              />
-            </AppModal>
-          )
-        }
       </div>
     );
   }
 }
+
+PatternPage.contextType = UserContext;
 
 export default PatternPage;
