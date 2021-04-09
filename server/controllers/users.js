@@ -64,6 +64,7 @@ module.exports = {
                 }, process.env.TOPGUN, {
                   expiresIn: '1h',
                 });
+                res.cookie('token', jwtToken, { httpOnly: true });
                 res.status(200).send({
                   token: jwtToken,
                   expiresIn: 30,
