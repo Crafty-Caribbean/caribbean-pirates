@@ -60,4 +60,6 @@ router.get('/users/:user_id/purchased/', userPurchased.findPurchasedPatterns);
 // SEARCH BAR ==================================
 router.get('/search', search.getSearchResult);
 
+router.post('/photoUpload', patterns.photoUpload);
+
 module.exports = router;
