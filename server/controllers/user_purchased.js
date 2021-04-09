@@ -9,8 +9,9 @@ module.exports = {
         if (err) {
           console.error(err);
           res.status(400).send('Failed purchasing the pattern');
+        } else {
+          res.status(201).send(`User ${req.params.user_id} purchased pattern ${req.body.pattern_id}`);
         }
-        res.status(201).send(`User ${req.params.user_id} purchased pattern ${req.body.pattern_id}`);
       },
     );
   },
