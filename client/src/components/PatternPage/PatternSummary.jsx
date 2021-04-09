@@ -26,6 +26,58 @@ class PatternSummary extends React.Component {
     this.setState({ contentDisplay: newContent });
   }
 
+  componentDidMount() {
+    // get user info
+    this.fetchUserInfo();
+  }
+
+  componentDidUpdate(prevProps) {
+    // get user info
+    let prevPatternId;
+    if (prevProps.patterninfo) {
+      prevPatternId = prevProps.patterninfo.id;
+    }
+
+    let thisPatternId;
+    if (this.props.patterninfo) {
+      thisPatternId = this.props.patterninfo.id;
+    }
+
+    if (prevPatternId !== thisPatternId) {
+      this.fetchUserInfo();
+    }
+  }
+
+  fetchUserInfo() {
+    const { isLiked } = this.state;
+    const { patterninfo } = this.props;
+    const { token, currentUser } = this.context;
+
+    if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot favorite, not logged in');
+      return;
+    }
+
+    axios({
+      method: 'get',
+      url: `/api/users/${currentUser.userId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(({ data }) => {
+        // eslint-disable-next-line arrow-body-style
+        const matches = data.patterns.favorites.filter((pattern) => {
+          return (parseInt(pattern.id) === parseInt(patterninfo.id));
+        });
+
+        this.setState({
+          isLiked: !!(matches.length === 1),
+        });
+      })
+      .catch(console.err);
+  }
+
   favoriteHandler() {
     const { isLiked } = this.state;
     const { patterninfo } = this.props;
