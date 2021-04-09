@@ -6,6 +6,7 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
+    "auth-server-dev": "npx nodemon server/authServer.js",
     "test": "jest --coverage"
   },
   "author": "Crafty Caribbean",
@@ -39,6 +40,7 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.4.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
