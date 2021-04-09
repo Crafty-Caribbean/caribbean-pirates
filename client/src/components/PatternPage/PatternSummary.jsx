@@ -129,6 +129,7 @@ class PatternSummary extends React.Component {
   render() {
     const { isLiked, contentDisplay } = this.state;
     const { patterninfo } = this.props;
+    const { token, currentUser } = this.context;
 
     return (
       <div className={styles.patternSummaryContainer}>
@@ -192,7 +193,11 @@ class PatternSummary extends React.Component {
             )}
           {contentDisplay === 'comments'
           && (
-            <CommentsSection patternId={patterninfo.id} comments={patterninfo.comments} />
+            <CommentsSection
+              patternId={patterninfo.id}
+              comments={patterninfo.comments}
+              username={currentUser.username}
+            />
           )}
         </div>
 
