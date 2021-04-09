@@ -82,8 +82,7 @@ class PatternSummary extends React.Component {
             && (
               <div className={styles.descriptionInfo}>
                 <p className={styles.descriptionParagraph}>
-                  {patterninfo.description.toString()}
-                  {console.log(patterninfo.description)}
+                  {patterninfo.description}
                 </p>
               </div>
             )}
