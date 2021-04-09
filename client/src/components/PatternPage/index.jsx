@@ -56,7 +56,6 @@ class PatternPage extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
-      console.log('hi');
       const { match } = this.props;
 
       if (match.params.pattern_id) {
@@ -110,6 +109,7 @@ class PatternPage extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     const {
       showModal,
       pattern_id,
