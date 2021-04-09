@@ -1,29 +1,40 @@
 .commentsSection {
   display: grid;
-  grid: 100%;
+  grid-template-columns: 100%;
   justify-items: center;
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .commentTiles {
   overflow-y: scroll;
   height: 225px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.noCommentTiles::-webkit-scrollbar {
+  display: none;
+}
+
+.commentForm {
+  width: 100%;
 }
 
 .commentInput {
   position: relative;
-  padding: 15px 20px;
-  width: 450px;
+  padding: 5px 20px;
+  width: 100%;
   height: 50px;
-  font-size: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
   color: #3B3B3B;
-  border: 1px solid #E6E6E6;
+  border: 2px solid #dadada;
   box-sizing: border-box;
   grid-gap: 20px;
   justify-items: left;
   align-items: center;
-  box-shadow: 2px 2px 5px 0px #C7C7C7;
   border-radius: 25px;
   outline: none;
   justify-items: center;
@@ -32,8 +43,7 @@
 
 .commentInput:hover,
 .commentInput:focus {
-  box-shadow: 2px 2px 5px 1px #C7C7C7;
-  transform: scale(1.005, 1.005);
+  border: 2px solid black;
 }
 
 .buttonsContainer {
@@ -44,7 +54,7 @@
 .postButton,
 .cancelButton {
   padding: 10px;
-  margin: 25px 10px;
+  margin: 25px 10px 0 10px;
   justify-content: center;
   font-family: "montserrat", sans-serif;
   font-weight: 700;

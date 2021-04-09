@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import styles from './DisplayMoreOptions.module.css';
 
 const DisplayMoreOptions = ({
-  showModal, title, id,
+  showModal, title, id, projectId,
 }) => (
   <div
     className={styles.moreOptionsContainer}
   >
     <button
-      onClick={(event) => showModal(event, id, title)}
-      onKeyPress={(event) => showModal(event, id, title)}
+      onClick={(event) => showModal(event, id, title, projectId)}
+      onKeyPress={(event) => showModal(event, id, title, projectId)}
       className={styles.moreOptionsButton}
       type="button"
       aria-label="image"
@@ -27,10 +27,12 @@ DisplayMoreOptions.propTypes = {
   showModal: PropTypes.func,
   id: PropTypes.number,
   title: PropTypes.string,
+  projectId: PropTypes.null || PropTypes.number,
 };
 
 DisplayMoreOptions.defaultProps = {
   showModal: PropTypes.func,
   id: PropTypes.number,
   title: PropTypes.string,
+  projectId: PropTypes.null,
 };

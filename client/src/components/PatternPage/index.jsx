@@ -42,27 +42,51 @@ class PatternPage extends React.Component {
     if (match.params.pattern_id) {
       axios.get(`/api/patterns/${match.params.pattern_id}`)
         .then((res) => {
-          this.setState({ patterninfo: res.data });
+          this.setState({
+            patterninfo: res.data,
+            pattern_id: match.params.pattern_id,
+          });
         })
         .catch(console.err);
 
-      this.setState({
-        pattern_id: match.params.pattern_id,
-      });
+      // this.setState({
+      // });
     }
   }
 
   componentDidUpdate(prevProps) {
-    const prevId = prevProps.match && prevProps.match.pattern_id;
-    const pattern_id = this.props.match && this.props.match.pattern_id;
+    if (this.props !== prevProps) {
+      const { match } = this.props;
 
-    if (prevId !== pattern_id) {
-      console.log('componentUpdated, pattern_id changed: ', pattern_id);
-      this.setState({
-        pattern_id,
-      });
+      if (match.params.pattern_id) {
+        axios.get(`/api/patterns/${match.params.pattern_id}`)
+          .then((res) => {
+            this.setState({
+              patterninfo: res.data,
+              pattern_id: match.params.pattern_id,
+
+            });
+          })
+          .catch(console.err);
+
+        // this.setState({
+        // });
+      }
     }
   }
+
+  // componentDidUpdate(prevProps) {
+  //   const prevId = prevProps.match && prevProps.match.pattern_id;
+  //   const pattern_id = this.props.match && this.props.match.pattern_id;
+
+  //   if (prevId !== pattern_id) {
+  //     console.log('hello');
+  //     console.log('componentUpdated, pattern_id changed: ', pattern_id);
+  //     this.setState({
+  //       pattern_id,
+  //     });
+  //   }
+  // }
 
   toggleModal(e) {
     e.preventDefault();

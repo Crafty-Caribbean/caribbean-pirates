@@ -6,19 +6,38 @@ import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
 import ContentSelectorList from './ContentSelectorList';
+import BuyButton from './BuyButton';
 
 class PatternSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLiked: false,
-      contentDisplay: 'comments', // 'description' or 'comments'
+      contentDisplay: 'description', // 'description' or 'comments'
     };
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
+    this.favoriteHandler = this.favoriteHandler.bind(this);
   }
 
-  changeContentDisplay(event) {
-    this.setState({ contentDisplay: event.target.value });
+  changeContentDisplay(newContent) {
+    this.setState({ contentDisplay: newContent });
+  }
+
+  favoriteHandler() {
+    if(!this.state.isLiked) {
+      this.setState({isLiked: !this.state.isLiked})
+      console.log('send axios request to like it')
+      //post
+      //axios.post('/') send with body obj
+      // axios.post(`/api/users/${user}/favorite/`, {pattern_id = this.props.patterninfo.id})
+    } else {
+      this.setState({isLiked: !this.state.isLiked})
+      console.log('send axios request to unlike')
+
+      //delete
+      //axios.delete('/')  end point includes id of delete
+      // axios.delete(`/api/users/${user}/favorite/${this.props.patterinfo.id}`)
+    }
   }
 
   render() {
@@ -38,25 +57,29 @@ class PatternSummary extends React.Component {
               <FavoritesButton
                 size={30}
                 isLiked={isLiked}
-                handleClick={() => this.setState({ isLiked: !isLiked })}
+                handleClick={this.favoriteHandler}
               />
             </div>
           </div>
 
-          <div className={styles.authorContainer}>
-            <button className={styles.authorName} type="button">
-              <Link to={`/user/${patterninfo.author.id}`}>
-                <IoPersonCircle
-                  color="#777777"
-                  size="50"
-                />
-              </Link>
-            </button>
-            <p>
-              <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
-                {patterninfo.author.username}
-              </Link>
-            </p>
+          <div className={styles.authorAndBuyButtonContainer}>
+            <div className={styles.authorContainer}>
+              <button className={styles.authorName} type="button">
+                <Link to={`/users/${patterninfo.author.id}`}>
+                  <IoPersonCircle
+                    color="#777777"
+                    size="50"
+                  />
+                </Link>
+              </button>
+              <p>
+                <Link to={`/users/${patterninfo.author.id}`} className={styles.authorLink}>
+                  {patterninfo.author.username}
+                </Link>
+              </p>
+            </div>
+
+            <BuyButton price={patterninfo.price} handleClick={console.log} />
 
           </div>
           <div className={styles.tagContainer}>
@@ -68,7 +91,11 @@ class PatternSummary extends React.Component {
             </div>
           </div>
 
-          <ContentSelectorList />
+          <ContentSelectorList
+            selected={contentDisplay}
+            changeContentDisplay={this.changeContentDisplay}
+          />
+
           {contentDisplay === 'description'
             && (
               <div className={styles.descriptionInfo}>
@@ -79,19 +106,11 @@ class PatternSummary extends React.Component {
             )}
           {contentDisplay === 'comments'
           && (
-            <CommentsSection />
+            <CommentsSection patternId={patterninfo.id} comments={patterninfo.comments} />
           )}
         </div>
 
-        <div className={styles.footer}>
-          <div className={styles.priceAndBuy}>
-            <div className={styles.priceText}>
-              ${patterninfo.price}
-            </div>
-            <button type="button" className={styles.buybutton}>Buy</button>
-          </div>
 
-        </div>
       </div>
     );
   }
