@@ -25,13 +25,8 @@ app.use('/api', router);
 app.use('/*', express.static(path.join(__dirname, '/../client/dist')));
 
 app.post('/token', (req, res) => {
-  console.log(req.headers);
-  console.log(req.cookies);
-  console.log(req.cookies.token);
-  console.log(req.signedCookies);
   // const refreshToken = req.headers.authorization.split(' ')[1];
   const refreshToken = req.cookies.token;
-  console.log('token:', refreshToken);
   if (refreshToken === null) {
     res.status(401).send('No token');
   }
@@ -63,16 +58,23 @@ app.post('/token', (req, res) => {
 
 app.post('/login', users.login);
 
-app.delete('/logout', (req, res) => {
-  const refreshToken = req.headers.authorization.split(' ')[1];
+app.get('/logout', (req, res) => {
+  res.send('cool');
+});
+
+app.post('/logout', (req, res) => {
+  // const refreshToken = req.headers.authorization.split(' ')[1];
+  const refreshToken = req.cookies.token;
   if (refreshToken === null) {
     res.status(401).send('No token');
   }
   usersModels.deleteUserToken(refreshToken, (err) => {
     if (err) {
       res.send('Error logging out');
+    } else {
+      res.clearCookie('token');
+      res.status(204).send('Token deleted');
     }
-    res.status(204).send('Token deleted');
   });
 });
 

@@ -71,30 +71,35 @@ class App extends React.Component {
   }
 
   logout() {
-    this.setState({
-      isLoggedIn: false,
-      token: '',
-      currentUser: {},
-    });
-    // axios.post('/api/logout')
-    //   .then((response) => {
-    //     this.logout();
-    //     this.setState({
-    //     isLoggedIn: false,
-    //     token: '',
-    //     currentUser: {},
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error logging out: ', error);
-    //   })
+    // this.setState({
+    //   isLoggedIn: false,
+    //   token: '',
+    //   currentUser: {},
+    // });
+    axios.post('http://localhost:4000/logout', {
+      withCredentials: true,
+    }, {
+      withCredentials: true,
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          isLoggedIn: false,
+          token: '',
+          currentUser: {},
+        }, () => {
+          Cookies.remove('token');
+        });
+      })
+      .catch((error) => {
+        console.error('Error logging out: ', error);
+      });
   }
 
   fetchHomeData() {
     axios.get('/api/patterns')
       .then((response) => {
         const { data } = response;
-        console.log(Cookies.get('token'));
         this.setState({ data });
       })
       .catch((error) => {
@@ -114,7 +119,7 @@ class App extends React.Component {
       isLoggedIn,
       token,
       currentUser,
-    }
+    };
 
     return (
       <UserContext.Provider value={user}>
