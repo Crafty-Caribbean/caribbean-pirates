@@ -16,10 +16,28 @@ class PatternSummary extends React.Component {
       contentDisplay: 'description', // 'description' or 'comments'
     };
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
+    this.favoriteHandler = this.favoriteHandler.bind(this);
   }
 
   changeContentDisplay(newContent) {
     this.setState({ contentDisplay: newContent });
+  }
+
+  favoriteHandler() {
+    if(!this.state.isLiked) {
+      this.setState({isLiked: !this.state.isLiked})
+      console.log('send axios request to like it')
+      //post
+      //axios.post('/') send with body obj
+      // axios.post(`/api/users/${user}/favorite/`, {pattern_id = this.props.patterninfo.id})
+    } else {
+      this.setState({isLiked: !this.state.isLiked})
+      console.log('send axios request to unlike')
+
+      //delete
+      //axios.delete('/')  end point includes id of delete
+      // axios.delete(`/api/users/${user}/favorite/${this.props.patterinfo.id}`)
+    }
   }
 
   render() {
@@ -39,7 +57,7 @@ class PatternSummary extends React.Component {
               <FavoritesButton
                 size={30}
                 isLiked={isLiked}
-                handleClick={() => this.setState({ isLiked: !isLiked })}
+                handleClick={this.favoriteHandler}
               />
             </div>
           </div>
