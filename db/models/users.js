@@ -108,4 +108,67 @@ module.exports = {
       }
     });
   },
+
+  addUserToken(userId, token, callback) {
+    const query = {
+      text: 'INSERT INTO user_token (user_id, token) VALUES ($1, $2);',
+      values: [userId, token],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error adding token', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
+      }
+    });
+  },
+
+  getUserToken(token, callback) {
+    const query = {
+      text: 'SELECT * FROM user_token WHERE token=$1;',
+      values: [token],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error finding token', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
+      }
+    });
+  },
+
+  deleteUserToken(token, callback) {
+    const query = {
+      text: 'DELETE FROM public.user_token WHERE token=$1;',
+      values: [token],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error finding token', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
+      }
+    });
+  },
 };
