@@ -27,12 +27,10 @@ class PatternSummary extends React.Component {
   }
 
   componentDidMount() {
-    // get user info
     this.fetchUserInfo();
   }
 
   componentDidUpdate(prevProps) {
-    // get user info
     let prevPatternId;
     if (prevProps.patterninfo) {
       prevPatternId = prevProps.patterninfo.id;
@@ -89,23 +87,18 @@ class PatternSummary extends React.Component {
     }
 
     if (isLiked) {
-      console.log('toggle to unlike', currentUser.userId, patterninfo.id);
-
       axios.delete(`/api/users/${currentUser.userId}/favorite/${patterninfo.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
         .then(() => {
-          console.log('success Un-favoriting');
           this.setState({
             isLiked: false,
           });
         })
         .catch(console.err);
     } else {
-      console.log('toggle to liked');
-
       axios({
         method: 'post',
         url: `/api/users/${currentUser.userId}/favorite/`,
@@ -117,7 +110,6 @@ class PatternSummary extends React.Component {
         },
       })
         .then(() => {
-          console.log('success favoriting', currentUser.userId, patterninfo.id);
           this.setState({
             isLiked: true,
           });
