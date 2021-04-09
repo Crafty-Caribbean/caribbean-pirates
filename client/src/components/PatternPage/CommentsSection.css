@@ -15,13 +15,17 @@
   align-items: flex-start;
 }
 
+.noCommentTiles::-webkit-scrollbar {
+  display: none;
+}
+
 .commentForm {
   width: 100%;
 }
 
 .commentInput {
   position: relative;
-  padding: 15px 20px;
+  padding: 5px 20px;
   width: 100%;
   height: 50px;
   font-size: 14px;

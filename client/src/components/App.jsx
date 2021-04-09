@@ -7,6 +7,8 @@ import PatternCard from './PatternCard';
 import UserPage from './UserPage/UserPage';
 import HomePage from './HomePage';
 
+import UserContext from './UserContext';
+
 const axios = require('axios');
 
 class App extends React.Component {
@@ -55,27 +57,36 @@ class App extends React.Component {
       currentUser,
       token,
     } = this.state;
+
+    const user = {
+      isLoggedIn,
+      token,
+      currentUser,
+    }
+
     return (
-      <Router>
-        <Header
-          login={this.login}
-          isLoggedIn={isLoggedIn}
-          currentUser={currentUser}
-          token={token}
-        />
-        <Switch>
-          <Route path="/users/:user_id" component={UserPage} />
-          <Route
-            path="/patterns/:pattern_id"
-            render={({ match, location, history }) => (
-              <PatternPage match={match} location={location} history={history} />
-            )}
+      <UserContext.Provider value={user}>
+        <Router>
+          <Header
+            login={this.login}
+            isLoggedIn={isLoggedIn}
+            currentUser={currentUser}
+            token={token}
           />
-          <Route path="/">
-            <HomePage list={data} />
-          </Route>
-        </Switch>
-      </Router>
+          <Switch>
+            <Route path="/users/:user_id" component={UserPage} />
+            <Route
+              path="/patterns/:pattern_id"
+              render={({ match, location, history }) => (
+                <PatternPage match={match} location={location} history={history} />
+              )}
+            />
+            <Route path="/">
+              <HomePage list={data} />
+            </Route>
+          </Switch>
+        </Router>
+      </UserContext.Provider>
     );
   }
 }
