@@ -88,7 +88,7 @@ class PatternSummary extends React.Component {
             )}
           {contentDisplay === 'comments'
           && (
-            <CommentsSection />
+            <CommentsSection patternId={patterninfo.id} comments={patterninfo.comments} />
           )}
         </div>
 
