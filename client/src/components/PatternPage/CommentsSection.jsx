@@ -74,7 +74,7 @@ class CommentsSection extends React.Component {
     //  className={`${styles.contentOption} ${isSelected}`}
     let tileClass;
 
-    if (comments.length === 0) {
+    if (comments.length < 4) {
       tileClass = styles.noCommentTiles;
     }
 
@@ -97,6 +97,7 @@ class CommentsSection extends React.Component {
             placeholder="Add a comment"
             value={commentText}
             name="commentText"
+            autoComplete="off"
           />
           <div className={styles.buttonsContainer}>
             <button
