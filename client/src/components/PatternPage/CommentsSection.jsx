@@ -87,6 +87,7 @@ class CommentsSection extends React.Component {
             placeholder="Add a comment"
             value={commentText}
             name="commentText"
+            autoComplete="off"
           />
           <div className={styles.buttonsContainer}>
             <button
