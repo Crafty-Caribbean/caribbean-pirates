@@ -39,7 +39,6 @@ class CommentsSection extends React.Component {
     event.preventDefault();
     const { commentText } = this.state;
     this.addComments(commentText);
-    this.setState({ commentText: '' });
   }
 
   getComments() {
