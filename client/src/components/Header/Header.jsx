@@ -46,11 +46,11 @@ class Header extends React.Component {
     const { login } = this.props;
     axios.post('/api/login', loginInfo)
       .then((response) => {
-        const { token } = response.data;
+        const { accessToken, refreshToken } = response.data;
         this.setState({
           showLogin: false,
         }, () => {
-          login(token);
+          login(accessToken, refreshToken);
         });
       })
       .catch((error) => {

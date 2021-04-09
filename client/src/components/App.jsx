@@ -33,10 +33,10 @@ class App extends React.Component {
     console.log(Cookies.get('token'));
   }
 
-  login(token) {
+  login(token, refreshToken) {
     const { username, user_id } = decode(token);
     const expiresIn = 1/24;
-    Cookies.set('token', token, {
+    Cookies.set('refreshToken', token, {
       expires: expiresIn,
     });
     document.cookie = `token=${token}`;
