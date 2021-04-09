@@ -13,7 +13,7 @@ class PatternSummary extends React.Component {
     super(props);
     this.state = {
       isLiked: false,
-      contentDisplay: 'comments', // 'description' or 'comments'
+      contentDisplay: 'description', // 'description' or 'comments'
     };
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
   }
@@ -32,6 +32,9 @@ class PatternSummary extends React.Component {
         <div className={styles.content}>
 
           <div className={styles.titleAndButton}>
+            <div className={styles.patternName}>
+              {patterninfo.name}
+            </div>
             <div className={styles.favoriteButton}>
               <FavoritesButton
                 size={30}
@@ -39,27 +42,26 @@ class PatternSummary extends React.Component {
                 handleClick={() => this.setState({ isLiked: !isLiked })}
               />
             </div>
-            <div className={styles.patternName}>
-              {patterninfo.name}
-            </div>
-            <BuyButton price={patterninfo.price} handleClick={console.log} />
-
           </div>
 
-          <div className={styles.authorContainer}>
-            <button className={styles.authorName} type="button">
-              <Link to={`/user/${patterninfo.author.id}`}>
-                <IoPersonCircle
-                  color="#777777"
-                  size="50"
-                />
-              </Link>
-            </button>
-            <p>
-              <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
-                {patterninfo.author.username}
-              </Link>
-            </p>
+          <div className={styles.authorAndBuyButtonContainer}>
+            <div className={styles.authorContainer}>
+              <button className={styles.authorName} type="button">
+                <Link to={`/user/${patterninfo.author.id}`}>
+                  <IoPersonCircle
+                    color="#777777"
+                    size="50"
+                  />
+                </Link>
+              </button>
+              <p>
+                <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
+                  {patterninfo.author.username}
+                </Link>
+              </p>
+            </div>
+
+            <BuyButton price={"0.00"} handleClick={console.log} />
 
           </div>
           <div className={styles.tagContainer}>
