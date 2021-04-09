@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { IoPersonCircle } from 'react-icons/io5';
+import { RiArrowDownSLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SearchBar from '../SearchBar';
@@ -14,6 +15,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       profileHover: false,
+      dropdownHover: false,
       showLogin: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
@@ -42,6 +44,12 @@ class Header extends React.Component {
     this.setState({ profileHover: !profileHover });
   }
 
+  handleDropdownHover(event) {
+    const { dropdownHover } = this.state;
+    event.preventDefault();
+    this.setState({ dropdownHover: !dropdownHover });
+  }
+
   handleLogin(loginInfo) {
     const { login } = this.props;
     axios.post('/api/login', loginInfo)
@@ -61,7 +69,7 @@ class Header extends React.Component {
   render() {
     const { login, isLoggedIn, currentUser } = this.props;
     const { userId } = currentUser;
-    const { profileHover, showLogin } = this.state;
+    const { profileHover, dropdownHover, showLogin } = this.state;
 
     return (
       <div id="header" className={styles.header}>
@@ -84,15 +92,20 @@ class Header extends React.Component {
         >
           {isLoggedIn
             ? (
-              <Link to={`/users/${userId}`}>
-                <IoPersonCircle
-                  className={styles.profileIcon}
-                  size="50"
-                  color={profileHover ? 'black' : '#D1D1D1'}
-                  onMouseEnter={this.handleProfileHover}
-                  onMouseLeave={this.handleProfileHover}
-                />
-              </Link>
+              <div className={styles.profileContainer}>
+                <Link to={`/api/logout`}>
+                  <button className={styles.logoutButton}>Logout</button>
+                </Link>
+                <Link to={`/users/${userId}`} className={styles.profileLink}>
+                  <IoPersonCircle
+                    className={styles.profileIcon}
+                    size="50"
+                    color={profileHover ? 'black' : '#D1D1D1'}
+                    onMouseEnter={this.handleProfileHover}
+                    onMouseLeave={this.handleProfileHover}
+                  />
+                </Link>
+              </div>
             )
             : <button type="button" className={styles.loginButton} onClick={this.handleProfileClick}>Login</button>}
         </div>
