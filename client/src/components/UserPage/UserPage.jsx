@@ -17,6 +17,7 @@ const UserPage = () => {
   const [coordinates, setCoordinates] = useState({ x: '', y: '' });
   const [state, updateState] = useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
+  const [username, setUsername] = useState('');
 
   const showModal = (event, id, title, projectId) => {
     event.preventDefault();
@@ -36,6 +37,7 @@ const UserPage = () => {
         setCompleted(data.patterns.projects.filter((pattern) => pattern.progress === 100) || []);
         setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100) || []);
         setUser(data.id);
+        setUsername(data.username);
       })
       .catch((error) => {
         console.log(error);
@@ -128,7 +130,7 @@ const UserPage = () => {
     <div className={styles.app} onClick={() => setOptions(false)} onKeyPress={() => setOptions(false)} role="button" tabIndex={0}>
       <div className={styles.header}>
         <span className={styles.profilePhoto} />
-        <span className={styles.userName}>Mika</span>
+        <span className={styles.userName}>{username}</span>
       </div>
       {showOptions ? (
         <div className={styles.modalContainer} style={{ top: `${coordinates.y}px`, left: `${coordinates.x}px` }}>
@@ -146,10 +148,10 @@ const UserPage = () => {
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
           {/* <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> */}
-          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" user={user} showModal={showModal} />
-          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" user={user} showModal={showModal} />
+          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" user={user} showModal={showModal} username={username} />
+          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" user={user} showModal={showModal} username={username} />
+          <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" user={user} showModal={showModal} username={username} />
+          <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" user={user} showModal={showModal} username={username} />
         </div>
         <div className={styles.footer} />
       </div>

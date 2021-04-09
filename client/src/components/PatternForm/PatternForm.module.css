@@ -1,0 +1,122 @@
+@keyframes drop {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.patternFormModal {
+  margin: auto;
+  height: 600px;
+  width: 400px;
+  background: white;
+  border: 1px solid white;
+  border-radius: 5%;
+  animation: drop .5s;
+  font-family: inherit;
+}
+
+.patternForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin: 7%;
+  grid-row-gap: 6%;
+  font-family: inherit;
+}
+
+.patternFormLabel {
+  display: flex;
+  flex-flow: column;
+  padding:
+}
+
+.patternFormInput {
+  margin-top: 1%;
+  padding: 6px 20px;
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  color: #3B3B3B;
+  border: 2px solid #dadada;
+  box-sizing: border-box;
+  border-radius: 25px;
+  outline: none;
+}
+
+.patternFormlogoImage {
+  width: 60px;
+  height: 60px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  box-shadow: 2px 2px 7px 3px #d5d5d5;
+  margin-left: 42%;
+  margin-bottom: 2%;
+  margin-top: 14%;
+}
+
+.patternFormHeader {
+  margin-left: 35%;
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.patternFormImgUpload {
+  background-color: #DC244B;
+  border-radius: 999px;
+  border: 2px solid #DC244B;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 10px 15px -5px 15px;
+  min-height: 33px;
+  outline: none;
+}
+
+.patternFormImgUpload:hover {
+  background-color: #AF1D3C;
+  border: 2px solid #AF1D3C;
+  cursor: pointer;
+}
+
+.patternFormImgUpload:focus {
+  outline: none;
+  border: 2px solid rgb(111, 209, 255);
+}
+
+#patternTextArea {
+  resize: none;
+  height: 100px;
+}
+
+.patternFormSubmit {
+  background-color: #DC244B;
+  border-radius: 999px;
+  border: 2px solid #DC244B;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 4px 15px 10px 15px;
+  min-height: 33px;
+}
+
+.patternFormSubmit:hover {
+  background-color: #AF1D3C;
+  border: 2px solid #AF1D3C;
+  cursor: pointer;
+}
+
+.patternFormSubmit:focus {
+  outline: none;
+  border: 2px solid rgb(111, 209, 255);
+}
+
+.uploadImage {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+}
