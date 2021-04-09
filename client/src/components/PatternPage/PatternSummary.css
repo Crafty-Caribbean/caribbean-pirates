@@ -69,10 +69,15 @@
 }
 
 
-.authorContainer{
+.authorAndBuyButtonContainer {
   display:flex;
   align-content: center;
+  justify-content: space-between;
   margin: 14px 0;
+}
+
+.authorContainer{
+  display:flex;
 }
 
 .tagContainer {
@@ -81,6 +86,7 @@
   width : 100%;
   display: flex;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .craftTypeTag {
@@ -93,40 +99,15 @@
 }
 
 .contentSelector {
-  margin: 24px 0px 6px 0px;
   display:flex;
-}
-.contentOption {
-  font-size: 15px;
-  font-weight: 500;
-  color:gray;
-  padding-bottom: 10px;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-}
-.contentOption2 {
-  /* border: 1px solid black; */
-  margin-left:16px;
-}
-
-.contentOption:hover {
-  color:black;
-  border-bottom: 3px solid black;
-}
-
-.contentOption:focus {
-  color: black;
-  border-bottom: 3px solid black;
+  margin: 15px 0 20px 0;
 }
 
 .descriptionInfo{
   color:black;
   font-size: 14px;
-  max-height: 300px;
+  height: 355px;
   overflow: auto;
-  /* margin: 24px 0; */
 }
 
 .descriptionParagraph{
