@@ -79,7 +79,7 @@ class PatternSummary extends React.Component {
               </p>
             </div>
 
-            <BuyButton price={"0.00"} handleClick={console.log} />
+            <BuyButton price={patterninfo.price} handleClick={console.log} />
 
           </div>
           <div className={styles.tagContainer}>
