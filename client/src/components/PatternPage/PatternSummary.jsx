@@ -17,22 +17,18 @@ class PatternSummary extends React.Component {
     this.state = {
       isLiked: false,
       contentDisplay: 'description', // 'description' or 'comments'
+      isPurchased: false,
     };
     this.changeContentDisplay = this.changeContentDisplay.bind(this);
     this.favoriteHandler = this.favoriteHandler.bind(this);
-  }
-
-  changeContentDisplay(newContent) {
-    this.setState({ contentDisplay: newContent });
+    this.purchasePattern = this.purchasePattern.bind(this);
   }
 
   componentDidMount() {
-    // get user info
     this.fetchUserInfo();
   }
 
   componentDidUpdate(prevProps) {
-    // get user info
     let prevPatternId;
     if (prevProps.patterninfo) {
       prevPatternId = prevProps.patterninfo.id;
@@ -48,8 +44,11 @@ class PatternSummary extends React.Component {
     }
   }
 
+  changeContentDisplay(newContent) {
+    this.setState({ contentDisplay: newContent });
+  }
+
   fetchUserInfo() {
-    const { isLiked } = this.state;
     const { patterninfo } = this.props;
     const { token, currentUser } = this.context;
 
@@ -58,21 +57,37 @@ class PatternSummary extends React.Component {
       return;
     }
 
-    axios({
+    const favoritePatternsPromise = axios({
       method: 'get',
       url: `/api/users/${currentUser.userId}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then(({ data }) => {
+    });
+
+    const purchasedPatternsPromise = axios({
+      method: 'get',
+      url: `/api/users/${currentUser.userId}/purchased`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    Promise.all([favoritePatternsPromise, purchasedPatternsPromise])
+      .then(([favorites, purchased]) => {
         // eslint-disable-next-line arrow-body-style
-        const matches = data.patterns.favorites.filter((pattern) => {
+        const matches = favorites.data.patterns.favorites.filter((pattern) => {
           return (parseInt(pattern.id) === parseInt(patterninfo.id));
+        });
+
+        // eslint-disable-next-line arrow-body-style
+        const purchasedMatch = purchased.data.find((pattern) => {
+          return (parseInt(pattern.pattern_id) === parseInt(patterninfo.id));
         });
 
         this.setState({
           isLiked: !!(matches.length === 1),
+          isPurchased: !!purchasedMatch,
         });
       })
       .catch(console.err);
@@ -84,28 +99,22 @@ class PatternSummary extends React.Component {
     const { token, currentUser } = this.context;
 
     if (token === '' || currentUser.userId === undefined) {
-      console.log('cannot favorite, not logged in');
       return;
     }
 
     if (isLiked) {
-      console.log('toggle to unlike', currentUser.userId, patterninfo.id);
-
       axios.delete(`/api/users/${currentUser.userId}/favorite/${patterninfo.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
         .then(() => {
-          console.log('success Un-favoriting');
           this.setState({
             isLiked: false,
           });
         })
         .catch(console.err);
     } else {
-      console.log('toggle to liked');
-
       axios({
         method: 'post',
         url: `/api/users/${currentUser.userId}/favorite/`,
@@ -117,7 +126,6 @@ class PatternSummary extends React.Component {
         },
       })
         .then(() => {
-          console.log('success favoriting', currentUser.userId, patterninfo.id);
           this.setState({
             isLiked: true,
           });
@@ -126,8 +134,41 @@ class PatternSummary extends React.Component {
     }
   }
 
+  purchasePattern() {
+    const { isPurchased } = this.state;
+    const { patterninfo } = this.props;
+    const { token, currentUser } = this.context;
+
+    if (isPurchased) {
+      console.log('already purchased');
+      return;
+    }
+
+    if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot purchase, not logged in.');
+      return;
+    }
+
+    axios({
+      method: 'post',
+      url: `/api/users/${currentUser.userId}/purchased/`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        pattern_id: patterninfo.id,
+      },
+    })
+      .then(() => {
+        this.setState({
+          isPurchased: true,
+        });
+      })
+      .catch(console.err);
+  }
+
   render() {
-    const { isLiked, contentDisplay } = this.state;
+    const { isLiked, contentDisplay, isPurchased } = this.state;
     const { patterninfo } = this.props;
     const { token, currentUser } = this.context;
 
@@ -166,7 +207,11 @@ class PatternSummary extends React.Component {
               </p>
             </div>
 
-            <BuyButton price={patterninfo.price} handleClick={console.log} />
+            <BuyButton
+              isPurchased={isPurchased}
+              price={patterninfo.price}
+              handleClick={this.purchasePattern}
+            />
 
           </div>
           <div className={styles.tagContainer}>
