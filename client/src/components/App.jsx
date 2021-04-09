@@ -21,6 +21,7 @@ class App extends React.Component {
       currentUser: {},
     };
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +38,26 @@ class App extends React.Component {
         userId: user_id,
       },
     });
+  }
+
+  logout() {
+    this.setState({
+      isLoggedIn: false,
+      token: '',
+      currentUser: {},
+    });
+    // axios.post('/api/logout')
+    //   .then((response) => {
+    //     this.logout();
+    //     this.setState({
+    //     isLoggedIn: false,
+    //     token: '',
+    //     currentUser: {},
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error logging out: ', error);
+    //   })
   }
 
   fetchHomeData() {
@@ -69,6 +90,7 @@ class App extends React.Component {
         <Router>
           <Header
             login={this.login}
+            logout={this.logout}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
             token={token}

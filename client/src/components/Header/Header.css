@@ -76,6 +76,10 @@
   text-align: center;
 }
 
+/* .loginButton {
+  justify-self: start;
+} */
+
 .homeButton {
   width: 80%;
 }
