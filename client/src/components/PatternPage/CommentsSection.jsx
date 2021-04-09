@@ -102,6 +102,16 @@ class CommentsSection extends React.Component {
 
   render() {
     const { comments, commentText } = this.state;
+    let tileClass;
+    let toggleDisabled = false;
+
+    if (comments.length < 4) {
+      tileClass = styles.noCommentTiles;
+    }
+
+    if (commentText.length < 1) {
+      toggleDisabled = true;
+    }
 
     return (
       <div className={styles.commentsSection}>
@@ -119,11 +129,11 @@ class CommentsSection extends React.Component {
             <button
               onClick={this.handleReset}
               className={styles.cancelButton}
-              type="submit"
+              type="button"
             >
-              cancel
+              Cancel
             </button>
-            <button className={styles.postButton} type="submit">Post</button>
+            <button className={styles.postButton} type="submit" disabled={toggleDisabled}>Post</button>
           </div>
         </form>
       </div>

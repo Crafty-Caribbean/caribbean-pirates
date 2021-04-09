@@ -55,6 +55,7 @@ router.delete('/users/:user_id/projects/:project_id', userProjects.deleteProject
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
 router.post('/users/:user_id/purchased/', userPurchased.addPurchasePattern);
+router.get('/users/:user_id/purchased/', userPurchased.findPurchasedPatterns);
 
 // SEARCH BAR ==================================
 router.get('/search', search.getSearchResult);
