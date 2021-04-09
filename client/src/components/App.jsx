@@ -20,28 +20,44 @@ class App extends React.Component {
       currentUser: {},
     };
     this.login = this.login.bind(this);
+    this.getToken = this.getToken.bind(this);
   }
 
   componentDidMount() {
     this.fetchHomeData();
-    console.log(Cookies.get('shortlyid'));
-    setTimeout(() => console.log(document.cookie), 2000);
+    this.getToken();
   }
 
-  componentDidUpdate() {
-    console.log(Cookies.get('shortlyid'));
-    console.log(Cookies.get('token'));
+  // componentDidUpdate() {
+  // }
+
+  getToken() {
+    axios.post('http://localhost:4000/token', {
+      withCredentials: true,
+    }, {
+      withCredentials: true,
+    })
+      .then((response) => {
+        const { accessToken } = response.data;
+        const { username, user_id } = decode(accessToken);
+        this.setState({
+          isLoggedIn: true,
+          token: accessToken,
+          currentUser: {
+            username,
+            userId: user_id,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log('no token');
+        console.error(error);
+      });
   }
 
-  login(token, refreshToken) {
+  login(token) {
     const { username, user_id } = decode(token);
-    const expiresIn = 1/24;
-    Cookies.set('refreshToken', token, {
-      expires: expiresIn,
-    });
-    document.cookie = `token=${token}`;
-    console.log(Cookies.get('token'));
-    console.log(document.cookie);
+    // const expiresIn = 1/24;
     this.setState({
       isLoggedIn: true,
       token,

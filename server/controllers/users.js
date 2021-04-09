@@ -52,6 +52,7 @@ module.exports = {
   },
 
   login(req, res) {
+    console.log('hello');
     if (validation.isEmail(req.body.email)) {
       usersModels.getOneUser(req.body.email, (err, results) => {
         if (err) {
@@ -67,11 +68,15 @@ module.exports = {
                 };
                 const accessToken = auth.generateAccessToken(user);
                 const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+                console.log(refreshToken);
                 usersModels.addUserToken(results.rows[0].id, refreshToken, (tokenErr) => {
                   if (tokenErr) {
+                    console.log('uh oh');
                     res.status(403).send('Error storing token');
+                  } else {
+                    res.status(200).send({ accessToken, refreshToken });
                   }
-                  res.status(200).send({ accessToken, refreshToken });
                 });
               } else {
                 console.log('password not match');
