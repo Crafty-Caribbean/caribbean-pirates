@@ -47,7 +47,7 @@ class PatternSummary extends React.Component {
           <div className={styles.authorAndBuyButtonContainer}>
             <div className={styles.authorContainer}>
               <button className={styles.authorName} type="button">
-                <Link to={`/user/${patterninfo.author.id}`}>
+                <Link to={`/users/${patterninfo.author.id}`}>
                   <IoPersonCircle
                     color="#777777"
                     size="50"
@@ -55,7 +55,7 @@ class PatternSummary extends React.Component {
                 </Link>
               </button>
               <p>
-                <Link to={`/user/${patterninfo.author.id}`} className={styles.authorLink}>
+                <Link to={`/users/${patterninfo.author.id}`} className={styles.authorLink}>
                   {patterninfo.author.username}
                 </Link>
               </p>
