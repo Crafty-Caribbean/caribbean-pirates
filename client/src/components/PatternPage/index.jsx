@@ -36,26 +36,26 @@ class PatternPage extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  // componentDidMount() {
-  //   const { match } = this.props;
+  componentDidMount() {
+    const { match } = this.props;
 
-  //   if (match.params.pattern_id) {
-  //     axios.get(`/api/patterns/${match.params.pattern_id}`)
-  //       .then((res) => {
-  //         this.setState({
-  //           patterninfo: res.data,
-  //           pattern_id: match.params.pattern_id,
-  //         });
-  //       })
-  //       .catch(console.err);
+    if (match.params.pattern_id) {
+      axios.get(`/api/patterns/${match.params.pattern_id}`)
+        .then((res) => {
+          this.setState({
+            patterninfo: res.data,
+            pattern_id: match.params.pattern_id,
+          });
+        })
+        .catch(console.err);
 
-  //     // this.setState({
-  //     // });
-  //   }
-  // }
+      // this.setState({
+      // });
+    }
+  }
 
   componentDidUpdate(prevProps) {
-    if(this.props !== prevProps) {
+    if (this.props !== prevProps) {
       console.log('hi');
       const { match } = this.props;
 
@@ -116,7 +116,6 @@ class PatternPage extends React.Component {
       patterninfo,
     } = this.state;
 
-    // console.log(this.state)
     return (
       <div className={styles.patternPage}>
         <div className={styles.patternDetailContainer}>
