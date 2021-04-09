@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoPersonCircle } from 'react-icons/io5';
+import axios from 'axios';
 import styles from './PatternSummary.css';
 import CommentsSection from './CommentsSection';
 import Tag from './Tag';
 import FavoritesButton from './FavoritesButton';
 import ContentSelectorList from './ContentSelectorList';
 import BuyButton from './BuyButton';
+
+import UserContext from '../UserContext.js';
 
 class PatternSummary extends React.Component {
   constructor(props) {
@@ -23,20 +26,103 @@ class PatternSummary extends React.Component {
     this.setState({ contentDisplay: newContent });
   }
 
-  favoriteHandler() {
-    if(!this.state.isLiked) {
-      this.setState({isLiked: !this.state.isLiked})
-      console.log('send axios request to like it')
-      //post
-      //axios.post('/') send with body obj
-      // axios.post(`/api/users/${user}/favorite/`, {pattern_id = this.props.patterninfo.id})
-    } else {
-      this.setState({isLiked: !this.state.isLiked})
-      console.log('send axios request to unlike')
+  componentDidMount() {
+    // get user info
+    this.fetchUserInfo();
+  }
 
-      //delete
-      //axios.delete('/')  end point includes id of delete
-      // axios.delete(`/api/users/${user}/favorite/${this.props.patterinfo.id}`)
+  componentDidUpdate(prevProps) {
+    // get user info
+    let prevPatternId;
+    if (prevProps.patterninfo) {
+      prevPatternId = prevProps.patterninfo.id;
+    }
+
+    let thisPatternId;
+    if (this.props.patterninfo) {
+      thisPatternId = this.props.patterninfo.id;
+    }
+
+    if (prevPatternId !== thisPatternId) {
+      this.fetchUserInfo();
+    }
+  }
+
+  fetchUserInfo() {
+    const { isLiked } = this.state;
+    const { patterninfo } = this.props;
+    const { token, currentUser } = this.context;
+
+    if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot favorite, not logged in');
+      return;
+    }
+
+    axios({
+      method: 'get',
+      url: `/api/users/${currentUser.userId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(({ data }) => {
+        // eslint-disable-next-line arrow-body-style
+        const matches = data.patterns.favorites.filter((pattern) => {
+          return (parseInt(pattern.id) === parseInt(patterninfo.id));
+        });
+
+        this.setState({
+          isLiked: !!(matches.length === 1),
+        });
+      })
+      .catch(console.err);
+  }
+
+  favoriteHandler() {
+    const { isLiked } = this.state;
+    const { patterninfo } = this.props;
+    const { token, currentUser } = this.context;
+
+    if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot favorite, not logged in');
+      return;
+    }
+
+    if (isLiked) {
+      console.log('toggle to unlike', currentUser.userId, patterninfo.id);
+
+      axios.delete(`/api/users/${currentUser.userId}/favorite/${patterninfo.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(() => {
+          console.log('success Un-favoriting');
+          this.setState({
+            isLiked: false,
+          });
+        })
+        .catch(console.err);
+    } else {
+      console.log('toggle to liked');
+
+      axios({
+        method: 'post',
+        url: `/api/users/${currentUser.userId}/favorite/`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          pattern_id: patterninfo.id,
+        },
+      })
+        .then(() => {
+          console.log('success favoriting', currentUser.userId, patterninfo.id);
+          this.setState({
+            isLiked: true,
+          });
+        })
+        .catch(console.err);
     }
   }
 
@@ -110,10 +196,11 @@ class PatternSummary extends React.Component {
           )}
         </div>
 
-
       </div>
     );
   }
 }
+
+PatternSummary.contextType = UserContext;
 
 export default PatternSummary;
