@@ -12,9 +12,9 @@
   justify-content: center;
   outline: none;
   padding: 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   transition: 250ms;
-  width: 100px;
+  min-width: 100px;
 }
 
 .buyButton:hover {

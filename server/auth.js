@@ -7,15 +7,21 @@ module.exports = {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
     if (token === null) {
+      console.log('no token here');
       res.status(401).send('No token');
+      next();
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) {
+        console.log('error in verifying token');
         res.status(403).send('Error in verifying the token');
-      } else if (req.params.user_id === user.user_id) {
+        next();
+      } else if (Number(req.params.user_id) === user.user_id) {
         next();
       } else {
+        console.log('user id does not match');
         res.status(401).send('User ID does not match');
+        next();
       }
     });
   },

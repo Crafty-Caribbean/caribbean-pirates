@@ -22,4 +22,24 @@ module.exports = {
     });
   },
 
+  findPurchasedPattern(userId, callback) {
+    const query = {
+      text: 'SELECT * FROM public.user_purchased WHERE user_id=$1',
+      values: [userId],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error connecting to db', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
+      }
+    });
+  },
 };

@@ -52,7 +52,6 @@ module.exports = {
   },
 
   login(req, res) {
-    console.log('hello');
     if (validation.isEmail(req.body.email)) {
       usersModels.getOneUser(req.body.email, (err, results) => {
         if (err) {
@@ -72,14 +71,13 @@ module.exports = {
                 console.log(refreshToken);
                 usersModels.addUserToken(results.rows[0].id, refreshToken, (tokenErr) => {
                   if (tokenErr) {
-                    console.log('uh oh');
                     res.status(403).send('Error storing token');
                   } else {
                     res.status(200).send({ accessToken, refreshToken });
                   }
                 });
               } else {
-                console.log('password not match');
+                console.log('password does not match');
                 res.status(400).send('Password not match');
               }
             })
@@ -89,7 +87,7 @@ module.exports = {
         }
       });
     } else {
-      console.log('the email is not riight');
+      console.log('the email is not right');
       res.status(400).send('The email is not in the right format');
     }
   },
