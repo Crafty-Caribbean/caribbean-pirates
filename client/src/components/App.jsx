@@ -62,7 +62,7 @@ class App extends React.Component {
       isLoggedIn,
       token,
       currentUser,
-    }
+    };
 
     return (
       <UserContext.Provider value={user}>

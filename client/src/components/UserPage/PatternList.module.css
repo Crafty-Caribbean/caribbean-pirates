@@ -13,6 +13,7 @@
   scroll-behavior: smooth;
   margin-left: 40px;
   margin-right: 40px;
+  width: 226px;
 }
 
 .titleHolder {
@@ -36,4 +37,8 @@
 .createPattern:active {
   transform: scale(1);
   transition: transform .5s;
+}
+
+.listContainer {
+  width: 306px;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FiPlusSquare } from 'react-icons/fi';
 import TopArrow from './TopArrow';
@@ -9,6 +9,7 @@ import PatternCard from '../PatternCard/index';
 import PlaceHolderCard from '../PatternCard/PlaceHolderCard';
 import AppModal from '../AppModal';
 import PatternForm from '../PatternForm/PatternForm';
+import context from '../UserContext';
 
 const PatternList = ({
   title, list, user, setFavorited, showModal, forceUpdate,
@@ -17,22 +18,23 @@ const PatternList = ({
   const toggleForm = () => {
     setShowForm(!showForm);
   };
+  const userContext = useContext(context);
   return (
-    <div>
+    <div className={styles.listContainer}>
       {
         showForm && (
           <AppModal outsideClickHandler={toggleForm}>
-            <PatternForm user={user} forceUpdate={forceUpdate} />
+            <PatternForm user={user} forceUpdate={forceUpdate} toggleForm={toggleForm} />
           </AppModal>
         )
       }
       <div className={styles.titleHolder}>
         <div className={styles.title}>{title}</div>
-        {title === 'Created' ? <div className={styles.createPattern} onClick={setShowForm} onKeyPress={toggleForm} tabIndex={0} aria-label="none" role="button"><FiPlusSquare /></div> : null}
+        {title === 'Created' && userContext.currentUser.userId === user ? <div className={styles.createPattern} onClick={setShowForm} onKeyPress={toggleForm} tabIndex={0} aria-label="none" role="button"><FiPlusSquare /></div> : null}
       </div>
       <TopArrow id={title} listLength={list.length} />
       <div id={title} className={styles.patternList}>
-        {list.length === 0 ? (
+        {list.length === 0 && userContext.currentUser.userId === user ? (
           <PlaceHolderCard
             cardWidth="210px"
             title={title}

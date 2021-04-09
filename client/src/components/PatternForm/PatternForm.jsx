@@ -66,7 +66,9 @@ class PatternForm extends React.Component {
           title, price, skillLevel, craftType, userId, images: data,
         })
           .then(() => {
+            const { toggleForm } = this.props;
             setTimeout(forceUpdate, 200);
+            toggleForm();
           })
           .catch((error) => {
             console.log(error);
@@ -132,9 +134,11 @@ export default PatternForm;
 PatternForm.propTypes = {
   user: PropTypes.number,
   forceUpdate: PropTypes.func,
+  toggleForm: PropTypes.func,
 };
 
 PatternForm.defaultProps = {
   user: PropTypes.number,
   forceUpdate: PropTypes.func,
+  toggleForm: PropTypes.func,
 };

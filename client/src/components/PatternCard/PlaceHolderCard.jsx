@@ -56,7 +56,7 @@ class PlaceHolderCard extends React.Component {
           showForm
           && (
             <AppModal outsideClickHandler={this.toggleForm}>
-              <PatternForm user={user} forceUpdate={forceUpdate} />
+              <PatternForm user={user} forceUpdate={forceUpdate} toggleForm={this.toggleForm} />
             </AppModal>
           )
         }

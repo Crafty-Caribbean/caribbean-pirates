@@ -1,17 +1,28 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './ProgressBar.module.css';
+import context from '../UserContext';
 
 const ProgressBar = ({
   progress, id, user, forceUpdate,
 }) => {
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const userContext = useContext(context);
 
   const updateProgress = () => {
-    axios.put(`/api/users/${user}/projects/${id}/progress`, { progress: Number(value) })
+    axios({
+      method: 'PUT',
+      url: `/api/users/${userContext.currentUser.userId}/projects/${id}/progress`,
+      headers: {
+        Authorization: `Bearer ${userContext.token}`,
+      },
+      data: {
+        progress: Number(value),
+      },
+    })
       .then(() => {
         console.log('updated');
       })
