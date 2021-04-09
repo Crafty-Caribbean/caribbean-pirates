@@ -109,7 +109,6 @@ class PatternPage extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const {
       showModal,
       pattern_id,
