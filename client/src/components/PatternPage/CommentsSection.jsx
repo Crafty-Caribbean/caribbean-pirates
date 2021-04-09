@@ -102,7 +102,6 @@ class CommentsSection extends React.Component {
 
   render() {
     const { comments, commentText } = this.state;
-    //  className={`${styles.contentOption} ${isSelected}`}
     let tileClass;
     let toggleDisabled = false;
 

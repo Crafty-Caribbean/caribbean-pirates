@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { IoPersonCircle } from 'react-icons/io5';
-import { RiArrowDownSLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SearchBar from '../SearchBar';
@@ -67,7 +66,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { login, isLoggedIn, currentUser } = this.props;
+    const { login, logout, isLoggedIn, currentUser } = this.props;
     const { userId } = currentUser;
     const { profileHover, dropdownHover, showLogin } = this.state;
 
@@ -93,8 +92,8 @@ class Header extends React.Component {
           {isLoggedIn
             ? (
               <div className={styles.profileContainer}>
-                <Link to={`/api/logout`}>
-                  <button className={styles.logoutButton}>Logout</button>
+                <Link to="/">
+                  <button type="button" className={styles.logoutButton} onClick={() => logout()}>Logout</button>
                 </Link>
                 <Link to={`/users/${userId}`} className={styles.profileLink}>
                   <IoPersonCircle
