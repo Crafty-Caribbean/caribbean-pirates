@@ -4,6 +4,7 @@ CREATE SEQUENCE user_id_seq;
 CREATE SEQUENCE patterns_id_seq;
 CREATE SEQUENCE comments_id_seq;
 CREATE SEQUENCE project_id_seq;
+CREATE SEQUENCE token_id_seq;
 
 DROP TABLE IF EXISTS users;
 
@@ -79,9 +80,9 @@ CREATE TABLE user_purchased (
 
 DROP TABLE IF EXISTS user_token;
 CREATE TABLE user_token (
-  user_id INT NOT NULL PRIMARY KEY,
-  token TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  id INT DEFAULT nextval('token_id_seq') PRIMARY KEY,
+  user_id INT NOT NULL,
+  token TEXT NOT NULL
 );
 
 --------------------- INDEX ----------------------------------
