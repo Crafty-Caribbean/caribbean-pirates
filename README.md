@@ -1,24 +1,32 @@
-# Github Feature Branch Workflow
-1. To pull down most current master version from central repo: git pull origin main
-2. Make a new branch and name it accordingly based on feature being implemented: git checkout -b (insert branch name)
-3. Commit as you complete each implementation ticket or as you like
-4. Push your current working branch: git push origin (current branch name)
-5. Go on github and prepare to submit a pull request.
-6. Within pull request submission, fill out comment section to clarify commits, and include a link to the corresponding trello ticket id.
+# StitchSaver
 
-If you have an open PR:
-1. Repeat above steps
-2. Do not edit files that are in your open PR
+## Overview
 
-Notes:
-1. Never merge your own code!
-2. Always merge on Github.
-3. The reviewer must merge your code.
+## Table of Contents
 
-When reviewing someone else's PR:
-1. Clone a copy of the repo
-2. Name it something (ex. code review repo)
-3. Checkout the branch you are reviewing
-4. Test the code, look at the code, etc.
-5. Click merge button on Github if you approve the code.
-6. If you do not approve, make comment on Github PR. For reviewer: only merge after all comments are resolved and the code has been r
+## Description
+
+## Installation
+
+## Usage
+
+## Team Members
+
+## Roadmap
+
+
+
+
+
+Overview - A brief description outlining what the project
+Table of Contents - You can link to the different sections below
+Description - A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
+Installation - How can another developer get your project up and running on their own? What dependencies are required? Are there environmental requirements? Be specific, and outline steps to take in order to get the project running.
+Usage - Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD  ).
+Additionally, for some projects, additional information might make sense.
+
+Related Projects - Links to other repositories that are related to the current one. Are there partner projects? Is there a newer version of this project elsewhere?
+Team Members - Add the names of your team members. Describe roles on the team such as "Product Owner", "Scrum Master" and more.
+Contributing - If you'd like others to be able to contribute to your work, outline a process through which they can submit a request for changes to be incorporated. More specifically, outline the Git workflow for these contributors. Should they use a feature branching workflow? Should they rebase or merge? Should the fork the repository? What is the review process?
+Roadmap - What future enhancements are planned? What is the current status of the project? Is it being actively maintained?
+License - If open source, state how the project is licensed.
