@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import decode from 'jwt-decode';
+import Cookies from 'js-cookie';
 import Header from './Header/Header';
 import PatternPage from './PatternPage';
 import PatternCard from './PatternCard';
@@ -21,15 +22,44 @@ class App extends React.Component {
       currentUser: {},
     };
     this.login = this.login.bind(this);
+    this.getToken = this.getToken.bind(this);
     this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
     this.fetchHomeData();
+    this.getToken();
+  }
+
+  // componentDidUpdate() {
+  // }
+
+  getToken() {
+    axios.post('http://localhost:4000/token', {
+      withCredentials: true,
+    }, {
+      withCredentials: true,
+    })
+      .then((response) => {
+        const { accessToken } = response.data;
+        const { username, user_id } = decode(accessToken);
+        this.setState({
+          isLoggedIn: true,
+          token: accessToken,
+          currentUser: {
+            username,
+            userId: user_id,
+          },
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   login(token) {
     const { username, user_id } = decode(token);
+    // const expiresIn = 1/24;
     this.setState({
       isLoggedIn: true,
       token,
@@ -41,23 +71,28 @@ class App extends React.Component {
   }
 
   logout() {
-    this.setState({
-      isLoggedIn: false,
-      token: '',
-      currentUser: {},
-    });
-    // axios.post('/api/logout')
-    //   .then((response) => {
-    //     this.logout();
-    //     this.setState({
-    //     isLoggedIn: false,
-    //     token: '',
-    //     currentUser: {},
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error logging out: ', error);
-    //   })
+    // this.setState({
+    //   isLoggedIn: false,
+    //   token: '',
+    //   currentUser: {},
+    // });
+    axios.post('http://localhost:4000/logout', {
+      withCredentials: true,
+    }, {
+      withCredentials: true,
+    })
+      .then(() => {
+        this.setState({
+          isLoggedIn: false,
+          token: '',
+          currentUser: {},
+        }, () => {
+          Cookies.remove('token');
+        });
+      })
+      .catch((error) => {
+        console.error('Error logging out: ', error);
+      });
   }
 
   fetchHomeData() {
@@ -83,7 +118,7 @@ class App extends React.Component {
       isLoggedIn,
       token,
       currentUser,
-    }
+    };
 
     return (
       <UserContext.Provider value={user}>

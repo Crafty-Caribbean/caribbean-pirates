@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const usersModels = require('../../db/models/users');
 const validation = require('../../db/db_validation');
+const auth = require('../auth');
 require('dotenv').config();
 
 const saltRounds = 12;
@@ -24,10 +25,12 @@ module.exports = {
       bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err) {
           console.error(err);
+          res.status(401).send('Failed signing up the user');
         }
         bcrypt.hash(req.body.password, salt, (error, hash) => {
           if (error) {
             console.error(error);
+            res.status(401).send('Failed signing up the user');
           }
           usersModels.addUser(
             req.body.email,
@@ -59,22 +62,23 @@ module.exports = {
           bcrypt.compare(req.body.password, results.rows[0].password)
             .then((result) => {
               if (result) {
-                const jwtToken = jwt.sign({
-                  username: results.rows[0].username,
+                const user = {
                   user_id: results.rows[0].id,
-                }, process.env.TOPGUN, {
-                  expiresIn: '1h',
-                });
-                res.status(200).send({
-                  token: jwtToken,
-                  expiresIn: 30,
-                  msg: {
-                    username: results.rows[0].username,
-                    user_id: results.rows[0].id,
-                  },
+                  username: results.rows[0].username,
+                };
+                const accessToken = auth.generateAccessToken(user);
+                const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+                console.log(refreshToken);
+                usersModels.addUserToken(results.rows[0].id, refreshToken, (tokenErr) => {
+                  if (tokenErr) {
+                    res.status(403).send('Error storing token');
+                  } else {
+                    res.status(200).send({ accessToken, refreshToken });
+                  }
                 });
               } else {
-                console.log('password not match');
+                console.log('password does not match');
                 res.status(400).send('Password not match');
               }
             })
@@ -84,7 +88,7 @@ module.exports = {
         }
       });
     } else {
-      console.log('the email is not riight');
+      console.log('the email is not right');
       res.status(400).send('The email is not in the right format');
     }
   },
