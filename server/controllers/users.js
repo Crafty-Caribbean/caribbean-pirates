@@ -67,7 +67,7 @@ module.exports = {
                 };
                 const accessToken = auth.generateAccessToken(user);
                 const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-                res.cookie('token', refreshToken, {httpOnly: true });
+                res.cookie('token', refreshToken, { httpOnly: true });
                 console.log(refreshToken);
                 usersModels.addUserToken(results.rows[0].id, refreshToken, (tokenErr) => {
                   if (tokenErr) {
