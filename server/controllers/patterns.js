@@ -1,4 +1,39 @@
+const multiparty = require('multiparty');
+// const axios = require('axios');
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const fileType = require('file-type');
+const pathModule = require('path');
 const patternsModels = require('../../db/models/patterns');
+require('dotenv').config();
+
+AWS.config.update({
+  accessKeyId: process.env.AWSAccessKeyId,
+  secretAccessKey: process.env.AWSSecretKey,
+});
+
+const s3 = new AWS.S3();
+// ========= S3 photo upload helper function =========
+const uploadPhoto = async (path, name) => {
+  const buffer = fs.readFileSync(path);
+  const distinctName = `${name}-${pathModule.parse(path).name}`;
+  const type = await fileType.fromBuffer(buffer);
+  // add type validation here
+  // allow only .tiff, .pjp, .jfif, .gif, .svg, .bmp, .png, .jpeg,
+  // .svgz, .jpg, .webp, .ico, .xbm, .dib, .tif, .pjpeg, .avif
+  const accepted = new Set(['.png', '.jpeg', '.jpg']);
+  if (!accepted.has(type.ext)) {
+    return null;
+  }
+  const params = {
+    ACL: 'public-read',
+    Body: buffer,
+    Bucket: process.env.S3_BUCKET,
+    ContentType: type.mime,
+    Key: `${distinctName}.${type.ext}`,
+  };
+  return s3.upload(params).promise();
+};
 
 module.exports = {
   getOnePattern(req, res) {
@@ -69,7 +104,7 @@ module.exports = {
       for (let i = 0; i < files.file.length; i += 1) {
         try {
           const { path } = files.file[i];
-          const fileName = media/${Date.now().toString()};
+          const fileName = `media/${Date.now().toString()}`;
           promises.push(uploadPhoto(path, fileName));
         } catch (err) {
           console.log(err);
@@ -86,22 +121,4 @@ module.exports = {
         });
     });
   },
-};
-
-// ========= S3 photo upload helper function =========
-const uploadPhoto = async (path, name) => {
-  const buffer = fs.readFileSync(path);
-  const distinctName = ${name}-${pathModule.parse(path).name};
-  const type = await fileType.fromBuffer(buffer);
-  // add type validation here
-  // allow only .tiff, .pjp, .jfif, .gif, .svg, .bmp, .png, .jpeg,
-  // .svgz, .jpg, .webp, .ico, .xbm, .dib, .tif, .pjpeg, .avif
-  const params = {
-    ACL: 'public-read',
-    Body: buffer,
-    Bucket: process.env.S3_BUCKET,
-    ContentType: type.mime,
-    Key: ${distinctName}.${type.ext},
-  };
-  return s3.upload(params).promise();
 };
