@@ -13,7 +13,7 @@ module.exports = {
       if (err) {
         res.status(404).send('Fail to get user data', err);
       }
-      console.log(results.rows);
+      // console.log(results.rows);
       res.status(200).send(results.rows[0]);
     });
   },

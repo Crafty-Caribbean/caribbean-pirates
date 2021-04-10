@@ -21,7 +21,7 @@ router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 // "Users"  =========================================*/
 router.get('/users/:user_id', users.getUserPatternList);
 
-// router.post('/signup', users.signUp);
+router.post('/signup', users.signUp);
 // router.post('/login', auth.authenticateToken, users.login);
 
 // (user edit profile/upload profile pic)

@@ -15,13 +15,14 @@ AWS.config.update({
 const s3 = new AWS.S3();
 // ========= S3 photo upload helper function =========
 const uploadPhoto = async (path, name) => {
+  console.log('aws s3 photo upload');
   const buffer = fs.readFileSync(path);
   const distinctName = `${name}-${pathModule.parse(path).name}`;
   const type = await fileType.fromBuffer(buffer);
   // add type validation here
   // allow only .tiff, .pjp, .jfif, .gif, .svg, .bmp, .png, .jpeg,
   // .svgz, .jpg, .webp, .ico, .xbm, .dib, .tif, .pjpeg, .avif
-  const accepted = new Set(['.png', '.jpeg', '.jpg']);
+  const accepted = new Set(['png', 'jpeg', 'jpg']);
   if (!accepted.has(type.ext)) {
     return null;
   }
@@ -74,24 +75,28 @@ module.exports = {
   },
 
   addPattern(req, res) {
+    // console.log('adding pattern');
     patternsModels.addOnePattern(
       Number(req.body.userId),
       req.body.title,
       req.body.craftType,
       req.body.skillLevel,
-      req.body.price,
+      Number(req.body.price),
       req.body.description,
       req.body.images, (err) => {
         if (err) {
           console.error(err);
           res.status(401).send('Error adding pattern');
+        } else {
+          console.log('pattern created');
+          res.status(201).send('Pattern created');
         }
-        res.status(201).send('Pattern created');
       },
     );
   },
 
   photoUpload(req, res) {
+    // console.log('photo uploading');
     const form = new multiparty.Form();
     form.parse(req, async (error, fields, files) => {
       if (error) {
@@ -113,6 +118,7 @@ module.exports = {
       }
       return Promise.all(promises)
         .then((data) => {
+          // console.log('after promise all', data);
           res.send(data);
         })
         .catch((err) => {
