@@ -2,9 +2,23 @@
 
 ## Overview
 
-### Table of Contents
+Yes.
+
+
+## Table of Contents
+
+  0. Header and Search Bar
+  1. Home Page
+  2. Pattern Page
+  3. User and Author Page
+  4. Database
+  5. Servers
+
 
 ## Description
+
+This web application allows crafters to discover and track patterns and find other creators. 
+
 
 ## Installation
 
@@ -13,6 +27,22 @@
 ## Team Members
 
 ## Roadmap
+
+- Scale services to handle additional traffic
+
+
+
+For each pattern project/pattern
+Should give info like the name of the pattern, price, the author, images, and description
+Should also have tags for the difficulty level and project type
+Feature a way for users to discover other similar patterns and others by the authors 
+Have a button that can lead to a payment system to buy the pattern
+For Users
+The ability to have them login so we can save their patterns
+Each one should have a page which has different lists corresponding to the state the project is in (completed, in progress, liked, owned) and the ability to move them between the different lists also deleting them from a list
+User can track progress of project
+Also should have the ability to add a patterns to the site and to delete a pattern listing
+
 
 
 
