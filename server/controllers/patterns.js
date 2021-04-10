@@ -15,7 +15,7 @@ AWS.config.update({
 const s3 = new AWS.S3();
 // ========= S3 photo upload helper function =========
 const uploadPhoto = async (path, name) => {
-  console.log('aws s3 photo upload');
+  // console.log('aws s3 photo upload');
   const buffer = fs.readFileSync(path);
   const distinctName = `${name}-${pathModule.parse(path).name}`;
   const type = await fileType.fromBuffer(buffer);

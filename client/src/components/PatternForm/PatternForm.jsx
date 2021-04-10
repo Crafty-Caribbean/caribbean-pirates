@@ -113,13 +113,13 @@ class PatternForm extends React.Component {
             <select className={styles.patternFormInput} value={skillLevel} name="skillLevel" onChange={(event) => this.handleChange(event)} placeholder="Skill Level">
               <option value="Beginner">Beginner</option>
               <option value="Novice">Novice</option>
-              <option value="Intermediete">Intermediete</option>
-              <option value="Advance">Advance</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
               <option value="Expert">Expert</option>
             </select>
           </label>
           <label className={styles.patternFormLabel}>
-            <input className={styles.patternFormInput} name="price" type="text" value={price} onChange={(event) => this.handleChange(event)} placeholder="Enter Price; No input means free" />
+            <input className={styles.patternFormInput} name="price" type="number" value={price} onChange={(event) => this.handleChange(event)} step="0.01" placeholder="Enter Price; No input means free" />
           </label>
           <label className={styles.patternFormLabel}>
             <textarea className={styles.patternFormInput} id={styles.patternTextArea} type="textarea" name="description" value={description} placeholder="Add A Description" onChange={(event) => this.handleChange(event)} />
