@@ -7,6 +7,7 @@ import ProgressBar from '../UserPage/ProgressBar';
 import SkillTag from './SkillTag';
 import CraftTag from './CraftTag';
 import DisplayMoreOptions from '../UserPage/DisplayMoreOptions';
+import context from '../UserContext';
 
 class PatternCard extends React.Component {
   constructor(props) {
@@ -65,12 +66,14 @@ class PatternCard extends React.Component {
     const { dimensions, showHeart, fillHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 1.6);
+    const { currentUser } = this.context;
+    // console.log(user_id);
     // console.log(title);
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
           {title === 'In Progress' ? <ProgressBar user={user} id={projectId} progress={progress} forceUpdate={forceUpdate} /> : null}
-          {title ? (
+          {title && currentUser.userId === user ? (
             <DisplayMoreOptions
               showModal={showModal}
               id={id}
@@ -105,6 +108,8 @@ class PatternCard extends React.Component {
     );
   }
 }
+
+PatternCard.contextType = context;
 
 PatternCard.displayName = 'pattern-card';
 

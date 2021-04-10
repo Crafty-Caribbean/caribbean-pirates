@@ -3,6 +3,7 @@ import React from 'react';
 import { IoPersonCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import SearchBar from '../SearchBar';
 import styles from './Header.css';
 import Login from '../Login';
@@ -51,13 +52,14 @@ class Header extends React.Component {
 
   handleLogin(loginInfo) {
     const { login } = this.props;
-    axios.post('/api/login', loginInfo)
+    axios.post('http://localhost:4000/login', loginInfo)
       .then((response) => {
-        const { token } = response.data;
+        const { accessToken, refreshToken } = response.data;
+        Cookies.set('token', refreshToken);
         this.setState({
           showLogin: false,
         }, () => {
-          login(token);
+          login(accessToken, refreshToken);
         });
       })
       .catch((error) => {

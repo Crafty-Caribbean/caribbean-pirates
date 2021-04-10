@@ -124,6 +124,7 @@ class CommentsSection extends React.Component {
             value={commentText}
             name="commentText"
             autoComplete="off"
+            minLength="1"
           />
           <div className={styles.buttonsContainer}>
             <button

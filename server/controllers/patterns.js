@@ -40,10 +40,10 @@ module.exports = {
 
   addPattern(req, res) {
     patternsModels.addOnePattern(
-      Number(req.body.user_id),
+      Number(req.body.userId),
       req.body.title,
-      req.body.craft_type,
-      req.body.skill_level,
+      req.body.craftType,
+      req.body.skillLevel,
       req.body.price,
       req.body.description,
       req.body.images, (err) => {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { HiPlusSm } from 'react-icons/hi';
 import styles from './PatternCard.css';
 import AppModal from '../AppModal';
-import PatternForm from '../PatternForm';
+import PatternForm from '../PatternForm/PatternForm';
 
 class PlaceHolderCard extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class PlaceHolderCard extends React.Component {
 
   render() {
     const {
-      cardWidth, title,
+      cardWidth, title, user, forceUpdate,
     } = this.props;
     const { dimensions, showForm } = this.state;
     const { height } = dimensions;
@@ -56,7 +56,7 @@ class PlaceHolderCard extends React.Component {
           showForm
           && (
             <AppModal outsideClickHandler={this.toggleForm}>
-              <PatternForm />
+              <PatternForm user={user} forceUpdate={forceUpdate} toggleForm={this.toggleForm} />
             </AppModal>
           )
         }
@@ -65,16 +65,18 @@ class PlaceHolderCard extends React.Component {
   }
 }
 
-PlaceHolderCard.displayName = 'pattern-card';
-
 export default PlaceHolderCard;
 
 PlaceHolderCard.propTypes = {
   cardWidth: PropTypes.string,
   title: PropTypes.string,
+  user: PropTypes.number,
+  forceUpdate: PropTypes.func,
 };
 
 PlaceHolderCard.defaultProps = {
   cardWidth: PropTypes.string,
   title: PropTypes.string,
-}
+  user: PropTypes.number,
+  forceUpdate: PropTypes.func,
+};
