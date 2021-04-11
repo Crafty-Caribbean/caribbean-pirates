@@ -110,3 +110,33 @@
   position: absolute;
   z-index: 10000;
 }
+
+.heartButton {
+  position: relative;
+  right: 44px;
+  top: 3px;
+  height: 32px;
+  width: 32px;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 32px;
+}
+
+.heart {
+  color: pink;
+}
+
+/* .heart:hover {
+  color: pink;
+} */
+
+.outline {
+  color: pink;
+  /* fill: none; */
+}
+/* 
+.outline:hover {
+  fill: pink;
+  cursor: pointer;
+} */
