@@ -82,5 +82,6 @@
   }
   .patternSummary {
     width: unset;
+    min-height: unset;
   }
 }

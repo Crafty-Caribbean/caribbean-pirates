@@ -53,7 +53,6 @@ class PatternSummary extends React.Component {
     const { token, currentUser } = this.context;
 
     if (token === '' || currentUser.userId === undefined) {
-      console.log('cannot favorite, not logged in');
       return;
     }
 
@@ -99,6 +98,7 @@ class PatternSummary extends React.Component {
     const { token, currentUser } = this.context;
 
     if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot favorite, not logged in');
       return;
     }
 
