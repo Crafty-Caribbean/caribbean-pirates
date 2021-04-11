@@ -42,3 +42,10 @@
   transform: scale3d(1, 1, 1);
   filter: brightness(1);
 }
+
+@media (max-width: 950px) {
+  .imageGallery {
+    width: unset;
+    max-height: 70vh;
+  }
+}
