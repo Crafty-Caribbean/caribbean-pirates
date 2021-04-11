@@ -2,7 +2,7 @@
 
 ## Overview
 
-Yes.
+This web application allows crafters to discover and track patterns and find other creators.
 
 
 ## Features
@@ -34,13 +34,6 @@ Yes.
   7. Servers
 
 
-
-
-## Description
-
-This web application allows crafters to discover and track patterns and find other creators.
-
-
 ## Installation
 
   1. Fork repo
@@ -63,7 +56,7 @@ This web application allows crafters to discover and track patterns and find oth
   - ```AWSSecretKey```
 
 
-## Usage
+## Description
 
 Designed to provide a platform to the crafting community to discover new patterns, favorite patterns, add and delete patterns, track their project progress, and gain inspiration. 
 
