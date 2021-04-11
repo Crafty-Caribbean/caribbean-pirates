@@ -62,13 +62,20 @@ class PatternCard extends React.Component {
       price,
       forceUpdate,
       projectId,
+      favoritesList,
+      handleToggledHeart,
     } = this.props;
     const { dimensions, showHeart, fillHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 1.6);
     const { currentUser } = this.context;
-    // console.log(user_id);
-    // console.log(title);
+    let heart;
+    if(favoritesList?.includes(id)){
+      heart =  <HeartButton id={id} title={title} fillHeart={true} handleToggledHeart={handleToggledHeart} />
+    } else {
+      heart = <HeartButton id={id} title={title} handleToggledHeart={handleToggledHeart} />
+    }
+
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
@@ -85,7 +92,7 @@ class PatternCard extends React.Component {
           <Link to={`/patterns/${id}`}>
             <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           </Link>
-          {showHeart ? <HeartButton id={id} toggleHeart={this.toggleHeart} fillHeart={fillHeart} /> : ''}
+           {heart}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`} ref={this.footer}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
@@ -115,36 +122,36 @@ PatternCard.displayName = 'pattern-card';
 
 export default PatternCard;
 
-PatternCard.propTypes = {
-  cardWidth: PropTypes.null || PropTypes.string,
-  imgSrc: PropTypes.string,
-  progress: PropTypes.null || PropTypes.number,
-  title: PropTypes.null || PropTypes.string,
-  skillLevel: PropTypes.string,
-  craftType: PropTypes.string,
-  showTags: PropTypes.null || PropTypes.bool,
-  id: PropTypes.number,
-  user: PropTypes.null || PropTypes.number,
-  name: PropTypes.string,
-  showModal: PropTypes.func,
-  price: PropTypes.null || PropTypes.string,
-  forceUpdate: PropTypes.null || PropTypes.func,
-  projectId: PropTypes.null || PropTypes.number,
-};
+// PatternCard.propTypes = {
+//   cardWidth: PropTypes.null || PropTypes.string,
+//   imgSrc: PropTypes.string,
+//   progress: PropTypes.null || PropTypes.number,
+//   title: PropTypes.null || PropTypes.string,
+//   skillLevel: PropTypes.string,
+//   craftType: PropTypes.string,
+//   showTags: PropTypes.null || PropTypes.bool,
+//   id: PropTypes.number,
+//   user: PropTypes.null || PropTypes.number,
+//   name: PropTypes.string,
+//   showModal: PropTypes.func,
+//   price: PropTypes.null || PropTypes.string,
+//   forceUpdate: PropTypes.null || PropTypes.func,
+//   projectId: PropTypes.null || PropTypes.number,
+// };
 
-PatternCard.defaultProps = {
-  cardWidth: PropTypes.null,
-  imgSrc: PropTypes.string,
-  progress: PropTypes.null,
-  title: PropTypes.null,
-  skillLevel: PropTypes.string,
-  craftType: PropTypes.string,
-  showTags: PropTypes.null,
-  id: PropTypes.number,
-  user: PropTypes.null,
-  name: PropTypes.string,
-  showModal: PropTypes.func,
-  price: PropTypes.null,
-  forceUpdate: PropTypes.func,
-  projectId: PropTypes.null,
-};
+// PatternCard.defaultProps = {
+//   cardWidth: PropTypes.null,
+//   imgSrc: PropTypes.string,
+//   progress: PropTypes.null,
+//   title: PropTypes.null,
+//   skillLevel: PropTypes.string,
+//   craftType: PropTypes.string,
+//   showTags: PropTypes.null,
+//   id: PropTypes.number,
+//   user: PropTypes.null,
+//   name: PropTypes.string,
+//   showModal: PropTypes.func,
+//   price: PropTypes.null,
+//   forceUpdate: PropTypes.func,
+//   projectId: PropTypes.null,
+// };

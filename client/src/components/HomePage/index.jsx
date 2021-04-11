@@ -2,12 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PatternCard from '../PatternCard';
 import styles from './HomePage.css';
+import axios from 'axios';
+
+import UserContext from '../UserContext.js';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
+    this.handleToggledHeart = this.handleToggledHeart.bind(this)
+  }
+
+  handleToggledHeart (id) {
+    const { token, currentUser } = this.context;
+
+    if (token === '' || currentUser.userId === undefined) {
+      console.log('cannot favorite, not logged in');
+      return;
+    }
+
+    axios({
+      method: 'post',
+      url: `/api/users/${currentUser.userId}/favorite/`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        pattern_id: id,
+      },
+    })
+      .then((response) => {
+        getUserData(user)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -25,6 +55,7 @@ class HomePage extends React.Component {
               imgSrc={pattern.images[0]}
               skillLevel={pattern.skill_level}
               craftType={pattern.craft_type}
+              handleToggledHeart={(id) => this.handleToggledHeart(id)}
             />
           ))
           : <div className={`${styles.emptyList}`}>{'Couldn\'t find patterns :('}</div>}
@@ -69,6 +100,8 @@ class HomePage extends React.Component {
 }
 
 HomePage.displayName = 'home-page';
+
+HomePage.contextType = UserContext;
 
 HomePage.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object),
