@@ -33,7 +33,7 @@ module.exports = {
   deletePurchasedPattern(req, res) {
     userPurchasedModels.deletePurchasedPattern(
       Number(req.params.user_id),
-      Number(req.body.pattern_id),
+      Number(req.params.pattern_id),
       (err) => {
         if (err) {
           console.error(err);
