@@ -45,7 +45,18 @@ module.exports = {
                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                              p.created_at
                       FROM patterns p
-                      WHERE p.deleted=false AND u.id=p.author_id) AS created)
+                      WHERE p.deleted=false AND u.id=p.author_id) AS created),
+                  'purchased', (SELECT COALESCE(json_agg(purchased), '[]'::json)
+                    FROM (SELECT p.id,
+                            p.title,
+                            p.craft_type,
+                            p.skill_level AS difficulty,
+                            p.images,
+                            p.price,
+                          (SELECT username FROM users WHERE users.id=p.author_id) AS author,
+                          upu.created_at
+                        FROM patterns p, user_purchased upu
+                        WHERE upu.pattern_id=p.id AND upu.user_id=u.id) AS purchased)
                ) patterns
     FROM users u
     WHERE u.id=$1;`,
