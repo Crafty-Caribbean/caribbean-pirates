@@ -29,4 +29,19 @@ module.exports = {
       },
     );
   },
+
+  deletePurchasedPattern(req, res) {
+    userPurchasedModels.deletePurchasedPattern(
+      Number(req.params.user_id),
+      Number(req.body.pattern_id),
+      (err) => {
+        if (err) {
+          console.error(err);
+          res.status(400).send('Failed deleting the purchased pattern');
+        } else {
+          res.status(201).send(`User ${req.params.user_id} deleted purchased pattern ${req.body.pattern_id}`);
+        }
+      },
+    );
+  },
 };
