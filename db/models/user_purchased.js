@@ -22,6 +22,27 @@ module.exports = {
     });
   },
 
+  deletePurchasedPattern(userId, patternId, callback) {
+    const query = {
+      text: 'UPDATE public.user_purchased SET deleted=true WHERE user_id=$1 AND pattern_id=$2;',
+      values: [userId, patternId],
+    };
+    db.connect((err, client, release) => {
+      if (err) {
+        console.error('Error deleting the purchased pattern', err.stack);
+      } else {
+        client.query(query, (error, results) => {
+          release();
+          if (error) {
+            callback(error.stack);
+          } else {
+            callback(null, results);
+          }
+        });
+      }
+    });
+  },
+
   findPurchasedPattern(userId, callback) {
     const query = {
       text: 'SELECT * FROM public.user_purchased WHERE user_id=$1',
