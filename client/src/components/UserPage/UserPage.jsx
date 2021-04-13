@@ -8,8 +8,9 @@ import context from '../UserContext';
 import profilePic from '../../../dist/images/userImage.png';
 
 const UserPage = ({ match }) => {
-  const [purchased, setPurchased] = useState([]);
+  // const [purchased, setPurchased] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [favIds, setFavIds] = useState([]);
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [inProgress, setProgress] = useState([]);
@@ -45,37 +46,26 @@ const UserPage = ({ match }) => {
         setProgress(data.patterns.projects.filter((pattern) => pattern.progress !== 100) || []);
         setUser(data.id);
         setUsername(data.username);
+        getFavoritesIds(data.patterns.favorites)
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleToggledHeart = (favoritedObj) => {
-    console.log('pattern id', favoritedObj.id);
-    console.log('pattern liked?', favoritedObj.liked);
-    if (!favoritedObj.liked) {
-      console.log('I was liked');
-      axios({
-        method: 'post',
-        url: `/api/users/${userContext.currentUser.userId}/favorite/`,
-        headers: {
-          Authorization: `Bearer ${userContext.token}`,
-        },
-        data: {
-          pattern_id: favoritedObj.id,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
+  const getFavoritesIds = (favs) => {
+    let favIds =  [];
+    for (var i = 0; i < favs.length; i++) {
+      favIds.push(favs[i].id)
+    }
+    setFavIds(favIds);
+  }
+
+  const handleToggledHeart = (id, fillHeart) => {
+    if (fillHeart) {
       axios({
         method: 'delete',
-        url: `/api/users/${userContext.currentUser.userId}/favorite/${favoritedObj.id}`,
+        url: `/api/users/${userContext.currentUser.userId}/favorite/${id}`,
         headers: {
           Authorization: `Bearer ${userContext.token}`,
         },
@@ -86,7 +76,24 @@ const UserPage = ({ match }) => {
         .catch((error) => {
           console.log(error);
         });
-    }
+      } else {
+        axios({
+          method: 'post',
+          url: `/api/users/${userContext.currentUser.userId}/favorite/`,
+          headers: {
+            Authorization: `Bearer ${userContext.token}`,
+          },
+          data: {
+            pattern_id: id,
+          },
+        })
+          .then((response) => {
+            getUserData(user)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
   };
 
   const removePatternCard = (list, id, projectId) => {
@@ -194,10 +201,10 @@ const UserPage = ({ match }) => {
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
           {/* {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> : null } */}
-          <PatternList forceUpdate={forceUpdate} className="Favorites" list={favorites} title="Favorites" user={user} showModal={showModal} username={username} />
-          <PatternList forceUpdate={forceUpdate} className="Created" list={created} title="Created" user={user} showModal={showModal} username={username} />
-          {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="In-Progress" list={inProgress} title="In Progress" user={user} showModal={showModal} username={username} /> : null }
-          {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Completed" list={completed} title="Completed" user={user} showModal={showModal} username={username} /> : null }
+          <PatternList className="Favorites" forceUpdate={forceUpdate} list={favorites} title="Favorites" user={user} showModal={showModal} username={username} handleToggledHeart={handleToggledHeart} favoritesList={favIds} />
+          <PatternList className="Created" forceUpdate={forceUpdate} list={created} title="Created" user={user} showModal={showModal} username={username} favoritesList={favIds}  handleToggledHeart={handleToggledHeart}/>
+          {user === userContext.currentUser.userId ? <PatternList className="In-Progress" forceUpdate={forceUpdate} list={inProgress} title="In Progress" user={user} showModal={showModal} username={username} favoritesList={favIds} handleToggledHeart={handleToggledHeart}/> : null }
+          {user === userContext.currentUser.userId ? <PatternList className="Completed" forceUpdate={forceUpdate} list={completed} title="Completed" user={user} showModal={showModal} username={username} favoritesList={favIds}  handleToggledHeart={handleToggledHeart}/> : null }
         </div>
         <div className={styles.footer} />
       </div>
@@ -216,3 +223,4 @@ UserPage.displayName = 'UserPage';
 //     axios.get(`/users/${user}`)
 //   })
 // }
+

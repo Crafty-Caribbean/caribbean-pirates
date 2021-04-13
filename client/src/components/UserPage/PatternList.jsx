@@ -12,7 +12,7 @@ import PatternForm from '../PatternForm/PatternForm';
 import context from '../UserContext';
 
 const PatternList = ({
-  title, list, user, setFavorited, showModal, forceUpdate,
+  title, list, user, setFavorited, showModal, forceUpdate, favoritesList, handleToggledHeart,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const toggleForm = () => {
@@ -61,6 +61,8 @@ const PatternList = ({
             showModal={showModal}
             price={pattern.price.toFixed(2)}
             forceUpdate={forceUpdate}
+            favoritesList={favoritesList}
+            handleToggledHeart={handleToggledHeart}
           />
         ))}
       </div>
@@ -71,20 +73,20 @@ const PatternList = ({
 
 export default PatternList;
 
-PatternList.propTypes = {
-  title: PropTypes.string,
-  list: PropTypes.arrayOf(PropTypes.object),
-  forceUpdate: PropTypes.func,
-  setFavorited: PropTypes.func,
-  user: PropTypes.number,
-  showModal: PropTypes.func,
-};
+// PatternList.propTypes = {
+//   title: PropTypes.string,
+//   list: PropTypes.arrayOf(PropTypes.object),
+//   forceUpdate: PropTypes.func,
+//   setFavorited: PropTypes.func,
+//   user: PropTypes.number,
+//   showModal: PropTypes.func,
+// };
 
-PatternList.defaultProps = {
-  title: PropTypes.string,
-  list: PropTypes.arrayOf(PropTypes.object),
-  forceUpdate: PropTypes.func,
-  setFavorited: PropTypes.func,
-  user: PropTypes.number,
-  showModal: PropTypes.func,
-};
+// PatternList.defaultProps = {
+//   title: PropTypes.string,
+//   list: PropTypes.arrayOf(PropTypes.object),
+//   forceUpdate: PropTypes.func,
+//   setFavorited: PropTypes.func,
+//   user: PropTypes.number,
+//   showModal: PropTypes.func,
+// };
