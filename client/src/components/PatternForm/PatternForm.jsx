@@ -34,7 +34,7 @@ class PatternForm extends React.Component {
   }
 
   handlePhotoChange(e) {
-    if (e.target.files.length > 5) {
+    if (e.target.files.length > 6) {
       alert('Maximum of 6 files allowed, Please try again');
     } else {
       this.setState({
