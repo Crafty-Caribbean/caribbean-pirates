@@ -31,9 +31,6 @@ class App extends React.Component {
     this.getToken();
   }
 
-  // componentDidUpdate() {
-  // }
-
   getToken() {
     axios.post('http://localhost:4000/token', {
       withCredentials: true,
@@ -71,11 +68,6 @@ class App extends React.Component {
   }
 
   logout() {
-    // this.setState({
-    //   isLoggedIn: false,
-    //   token: '',
-    //   currentUser: {},
-    // });
     axios.post('http://localhost:4000/logout', {
       withCredentials: true,
     }, {
