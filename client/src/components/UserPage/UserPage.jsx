@@ -101,6 +101,9 @@ const UserPage = ({ match }) => {
     if (title === 'In Progress' || title === 'Completed') {
       title = 'projects';
     }
+    if (title === 'Purchased') {
+      title = 'purchased';
+    }
     let reference;
     if (projectId) {
       reference = projectId;
