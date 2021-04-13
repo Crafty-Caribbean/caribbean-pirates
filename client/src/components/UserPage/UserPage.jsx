@@ -200,7 +200,7 @@ const UserPage = ({ match }) => {
       ) : null}
       <div className={styles.userPageContainer}>
         <div className={styles.patternsContainer}>
-          {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} /> : null }
+          {user === userContext.currentUser.userId ? <PatternList forceUpdate={forceUpdate} className="Purchased" list={purchased} title="Purchased" user={user} showModal={showModal} handleToggledHeart={handleToggledHeart} favoritesList={favIds} /> : null }
           <PatternList className="Favorites" forceUpdate={forceUpdate} list={favorites} title="Favorites" user={user} showModal={showModal} username={username} handleToggledHeart={handleToggledHeart} favoritesList={favIds} />
           <PatternList className="Created" forceUpdate={forceUpdate} list={created} title="Created" user={user} showModal={showModal} username={username} favoritesList={favIds} handleToggledHeart={handleToggledHeart} />
           {user === userContext.currentUser.userId ? <PatternList className="In-Progress" forceUpdate={forceUpdate} list={inProgress} title="In Progress" user={user} showModal={showModal} username={username} favoritesList={favIds} handleToggledHeart={handleToggledHeart} /> : null }
