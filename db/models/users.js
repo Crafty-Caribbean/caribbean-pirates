@@ -56,7 +56,7 @@ module.exports = {
                           (SELECT username FROM users WHERE users.id=p.author_id) AS author,
                           upu.created_at
                         FROM patterns p, user_purchased upu
-                        WHERE upu.pattern_id=p.id AND upu.user_id=u.id) AS purchased)
+                        WHERE upu.pattern_id=p.id AND upu.user_id=u.id AND upu.deleted=false) AS purchased)
                ) patterns
     FROM users u
     WHERE u.id=$1;`,

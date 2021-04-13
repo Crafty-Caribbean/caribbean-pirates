@@ -24,7 +24,7 @@ module.exports = {
 
   deletePurchasedPattern(userId, patternId, callback) {
     const query = {
-      text: 'UPDATE public.user_purchased SET deleted=true WHERE user_id=$1 AND pattern_id=$2;',
+      text: 'UPDATE user_purchased SET deleted=true WHERE user_id=$1 AND pattern_id=$2;',
       values: [userId, patternId],
     };
     db.connect((err, client, release) => {
