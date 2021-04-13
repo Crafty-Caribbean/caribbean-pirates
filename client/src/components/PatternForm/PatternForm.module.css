@@ -10,7 +10,7 @@
 }
 .patternFormModal {
   margin: auto;
-  height: 600px;
+  height: 700px;
   width: 400px;
   background: white;
   border: 1px solid white;
@@ -118,4 +118,8 @@
   visibility: hidden;
   height: 0px;
   width: 0px;
+}
+
+.imageUploadConfirmation {
+  margin: 10px auto -15px auto;
 }
