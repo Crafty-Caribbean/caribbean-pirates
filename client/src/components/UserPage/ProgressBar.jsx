@@ -6,7 +6,7 @@ import styles from './ProgressBar.module.css';
 import context from '../UserContext';
 
 const ProgressBar = ({
-  progress, id, user, forceUpdate,
+  progress, id, forceUpdate,
 }) => {
   const [value, setValue] = useState(progress.toString());
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -79,12 +79,10 @@ ProgressBar.propTypes = {
   progress: PropTypes.number,
   forceUpdate: PropTypes.func,
   id: PropTypes.number,
-  user: PropTypes.number,
 };
 
 ProgressBar.defaultProps = {
   progress: PropTypes.number,
   forceUpdate: PropTypes.func,
   id: PropTypes.number,
-  user: PropTypes.number,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
@@ -33,12 +34,16 @@ class PatternForm extends React.Component {
   }
 
   handlePhotoChange(e) {
-    this.setState({
-      images: e.target.files,
-    }, () => {
-      const { images } = this.state;
-      console.log(images);
-    });
+    if (e.target.files.length > 5) {
+      alert('Maximum of 6 files allowed, Please try again');
+    } else {
+      this.setState({
+        images: e.target.files,
+      }, () => {
+        const { images } = this.state;
+        console.log(images);
+      });
+    }
   }
 
   submitPattern(event) {
@@ -89,7 +94,7 @@ class PatternForm extends React.Component {
 
   render() {
     const {
-      title, description, skillLevel, craftType, price,
+      title, description, skillLevel, craftType, price, images,
     } = this.state;
     return (
       <div className={styles.patternFormModal}>
@@ -101,16 +106,16 @@ class PatternForm extends React.Component {
         <div className={styles.patternFormHeader}>Share A Pattern</div>
         <form className={styles.patternForm}>
           <label className={styles.patternFormLabel}>
-            <input className={styles.patternFormInput} name="title" type="text" value={title} onChange={(event) => this.handleChange(event)} placeholder="Enter Title" />
+            <input className={styles.patternFormInput} name="title" type="text" value={title} onChange={(event) => this.handleChange(event)} placeholder="Enter Title" required />
           </label>
           <label className={styles.patternFormLabel}>
-            <select className={styles.patternFormInput} value={craftType} name="craftType" onChange={(event) => this.handleChange(event)} placeholder="Craft Type">
+            <select className={styles.patternFormInput} value={craftType} name="craftType" onChange={(event) => this.handleChange(event)} placeholder="Craft Type" required>
               <option value="Crochet">Crochet</option>
               <option value="Knitting">Knitting</option>
             </select>
           </label>
           <label className={styles.patternFormLabel}>
-            <select className={styles.patternFormInput} value={skillLevel} name="skillLevel" onChange={(event) => this.handleChange(event)} placeholder="Skill Level">
+            <select className={styles.patternFormInput} value={skillLevel} name="skillLevel" onChange={(event) => this.handleChange(event)} placeholder="Skill Level" required>
               <option value="Beginner">Beginner</option>
               <option value="Novice">Novice</option>
               <option value="Intermediate">Intermediate</option>
@@ -119,14 +124,15 @@ class PatternForm extends React.Component {
             </select>
           </label>
           <label className={styles.patternFormLabel}>
-            <input className={styles.patternFormInput} name="price" type="number" value={price} onChange={(event) => this.handleChange(event)} step="0.01" placeholder="Enter Price; No input means free" />
+            <input className={styles.patternFormInput} name="price" type="number" value={price} onChange={(event) => this.handleChange(event)} step="0.01" min="0" placeholder="Enter Price; No input means free" required />
           </label>
           <label className={styles.patternFormLabel}>
             <textarea className={styles.patternFormInput} id={styles.patternTextArea} type="textarea" name="description" value={description} placeholder="Add A Description" onChange={(event) => this.handleChange(event)} />
           </label>
           <label className={styles.patternFormLabel}>
             <button className={styles.patternFormImgUpload} type="button" onClick={(event) => { event.stopPropagation(); event.preventDefault(); this.clickUploadImage(); }}>Upload Image</button>
-            <input id="uploadImage" className={styles.uploadImage} type="file" name="images" multiple accept="image/*" onChange={(event) => this.handlePhotoChange(event)} />
+            <input id="uploadImage" className={styles.uploadImage} type="file" name="images" multiple accept="image/*" onChange={(event) => this.handlePhotoChange(event)} required />
+            <div className={styles.imageUploadConfirmation}>{images.length}</div>
           </label>
           <button className={styles.patternFormSubmit} type="submit" onClick={this.submitPattern}>Submit</button>
         </form>

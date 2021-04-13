@@ -8,7 +8,7 @@ import context from '../UserContext';
 import profilePic from '../../../dist/images/userImage.png';
 
 const UserPage = ({ match }) => {
-  const [purchased, setPurchased] = useState([]);
+  // const [purchased, setPurchased] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [created, setCreated] = useState([]);
   const [completed, setCompleted] = useState([]);
