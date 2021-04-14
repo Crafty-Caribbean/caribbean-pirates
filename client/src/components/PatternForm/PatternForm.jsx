@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
@@ -13,8 +14,8 @@ class PatternForm extends React.Component {
     this.state = {
       title: '',
       price: '',
-      skillLevel: '',
-      craftType: '',
+      skillLevel: 'Beginner',
+      craftType: 'Crochet',
       images: [],
       description: '',
       userId: user,
@@ -22,6 +23,7 @@ class PatternForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.clickUploadImage = this.clickUploadImage.bind(this);
     this.submitPattern = this.submitPattern.bind(this);
+    this.handlePhotoChange = this.handlePhotoChange.bind(this);
   }
 
   handleChange(e) {
@@ -32,16 +34,20 @@ class PatternForm extends React.Component {
   }
 
   handlePhotoChange(e) {
-    const { images } = this.state;
-    this.setState({
-      images: e.target.files,
-    }, () => {
-      console.log(images);
-    });
+    if (e.target.files.length > 6) {
+      alert('Maximum of 6 files allowed, Please try again');
+    } else {
+      this.setState({
+        images: e.target.files,
+      }, () => {
+        const { images } = this.state;
+        console.log(images);
+      });
+    }
   }
 
   submitPattern(event) {
-    event.stopPropagation(); event.preventDefault();
+    event.preventDefault();
     const {
       title, price, skillLevel, craftType, images, userId,
     } = this.state;
@@ -53,17 +59,19 @@ class PatternForm extends React.Component {
         formData.append('file', images[i]);
       }
     }
-    axios.post('/api/uploads', {
-      formData,
-    }, {
+    axios.post('/api/photoUpload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     })
       .then(({ data }) => {
+        const imagesUrls = [];
+        for (let i = 0; i < data.length; i += 1) {
+          imagesUrls.push(data[i].Location);
+        }
         const { forceUpdate } = this.props;
         axios.post('/api/patterns/', {
-          title, price, skillLevel, craftType, userId, images: data,
+          title, price, skillLevel, craftType, userId, images: imagesUrls,
         })
           .then(() => {
             const { toggleForm } = this.props;
@@ -86,7 +94,7 @@ class PatternForm extends React.Component {
 
   render() {
     const {
-      title, description, skillLevel, craftType,
+      title, description, skillLevel, craftType, price, images,
     } = this.state;
     return (
       <div className={styles.patternFormModal}>
@@ -98,31 +106,35 @@ class PatternForm extends React.Component {
         <div className={styles.patternFormHeader}>Share A Pattern</div>
         <form className={styles.patternForm}>
           <label className={styles.patternFormLabel}>
-            <input className={styles.patternFormInput} name="title" type="text" value={title} onChange={(event) => this.handleChange(event)} placeholder="Enter Title" />
+            <input className={styles.patternFormInput} name="title" type="text" value={title} onChange={(event) => this.handleChange(event)} placeholder="Enter Title" required />
           </label>
           <label className={styles.patternFormLabel}>
-            <select className={styles.patternFormInput} value={craftType} name="craftType" onChange={(event) => this.handleChange(event)} placeholder="Craft Type">
+            <select className={styles.patternFormInput} value={craftType} name="craftType" onChange={(event) => this.handleChange(event)} placeholder="Craft Type" required>
               <option value="Crochet">Crochet</option>
               <option value="Knitting">Knitting</option>
             </select>
           </label>
           <label className={styles.patternFormLabel}>
-            <select className={styles.patternFormInput} value={skillLevel} name="skillLevel" onChange={(event) => this.handleChange(event)} placeholder="Skill Level">
+            <select className={styles.patternFormInput} value={skillLevel} name="skillLevel" onChange={(event) => this.handleChange(event)} placeholder="Skill Level" required>
               <option value="Beginner">Beginner</option>
               <option value="Novice">Novice</option>
-              <option value="Intermediete">Intermediete</option>
-              <option value="Advance">Advance</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
               <option value="Expert">Expert</option>
             </select>
+          </label>
+          <label className={styles.patternFormLabel}>
+            <input className={styles.patternFormInput} name="price" type="number" value={price} onChange={(event) => this.handleChange(event)} step="0.01" min="0" placeholder="Enter Price; No input means free" required />
           </label>
           <label className={styles.patternFormLabel}>
             <textarea className={styles.patternFormInput} id={styles.patternTextArea} type="textarea" name="description" value={description} placeholder="Add A Description" onChange={(event) => this.handleChange(event)} />
           </label>
           <label className={styles.patternFormLabel}>
             <button className={styles.patternFormImgUpload} type="button" onClick={(event) => { event.stopPropagation(); event.preventDefault(); this.clickUploadImage(); }}>Upload Image</button>
-            <input id="uploadImage" className={styles.uploadImage} type="file" name="images" multiple accept="image/*" onChange={(event) => this.handlePhotoChange(event)} />
+            <input id="uploadImage" className={styles.uploadImage} type="file" name="images" multiple accept="image/*" onChange={(event) => this.handlePhotoChange(event)} required />
+            <div className={styles.imageUploadConfirmation}>{images.length}</div>
           </label>
-          <button className={styles.patternFormSubmit} type="button" onClick={(event) => this.submitPattern(event)}>Submit</button>
+          <button className={styles.patternFormSubmit} type="submit" onClick={this.submitPattern}>Submit</button>
         </form>
       </div>
     );

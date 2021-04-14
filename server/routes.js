@@ -21,7 +21,7 @@ router.delete('/users/:user_id/created/:pattern_id', patterns.deleteOnePattern);
 // "Users"  =========================================*/
 router.get('/users/:user_id', users.getUserPatternList);
 
-// router.post('/signup', users.signUp);
+router.post('/signup', users.signUp);
 // router.post('/login', auth.authenticateToken, users.login);
 
 // (user edit profile/upload profile pic)
@@ -56,9 +56,12 @@ router.delete('/users/:user_id/projects/:project_id', auth.authenticateToken, us
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
 router.post('/users/:user_id/purchased/', auth.authenticateToken, userPurchased.addPurchasePattern);
-router.get('/users/:user_id/purchased/', userPurchased.findPurchasedPatterns);
+router.delete('/users/:user_id/purchased/:pattern_id', auth.authenticateToken, userPurchased.deletePurchasedPattern);
+router.get('/users/:user_id/purchased/', auth.authenticateToken, userPurchased.findPurchasedPatterns);
 
 // SEARCH BAR ==================================
 router.get('/search', search.getSearchResult);
+
+router.post('/photoUpload', patterns.photoUpload);
 
 module.exports = router;

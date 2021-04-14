@@ -13,6 +13,7 @@ module.exports = {
       if (err) {
         res.status(404).send('Fail to get user data', err);
       }
+      // console.log(results.rows);
       res.status(200).send(results.rows[0]);
     });
   },
@@ -67,7 +68,7 @@ module.exports = {
                 };
                 const accessToken = auth.generateAccessToken(user);
                 const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-                res.cookie('refreshToken', refreshToken, { httpOnly: true });
+                res.cookie('token', refreshToken, { httpOnly: true });
                 console.log(refreshToken);
                 usersModels.addUserToken(results.rows[0].id, refreshToken, (tokenErr) => {
                   if (tokenErr) {

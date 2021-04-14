@@ -62,13 +62,20 @@ class PatternCard extends React.Component {
       price,
       forceUpdate,
       projectId,
+      favoritesList,
+      handleToggledHeart,
     } = this.props;
     const { dimensions, showHeart, fillHeart } = this.state;
     const { height } = dimensions;
     const gridSpan = Math.round((height / 10) + 1.6);
     const { currentUser } = this.context;
-    // console.log(user_id);
-    // console.log(title);
+    let heart;
+    if(favoritesList?.includes(id)){
+      heart =  <HeartButton id={id} title={title} fillHeart={true} handleToggledHeart={handleToggledHeart} />
+    } else {
+      heart = <HeartButton id={id} title={title} handleToggledHeart={handleToggledHeart} />
+    }
+
     return (
       <div className={`pattern-card ${styles.patternCard} `} onMouseEnter={this.toggleShowHeart} onMouseLeave={this.toggleShowHeart} style={{ width: `${cardWidth}`, gridRowEnd: `span ${gridSpan}` }}>
         <div className={`image-div ${styles.imageContent}`}>
@@ -85,7 +92,7 @@ class PatternCard extends React.Component {
           <Link to={`/patterns/${id}`}>
             <img onLoad={this.onImgLoad} src={imgSrc} alt="pattern" />
           </Link>
-          {showHeart ? <HeartButton id={id} toggleHeart={this.toggleHeart} fillHeart={fillHeart} /> : ''}
+           {heart}
         </div>
         <div className={`pattern-card-footer ${styles.patternCardFooter}`} ref={this.footer}>
           <div className={`pattern-card-footer-content ${styles.patternCardFooterContent}`}>
