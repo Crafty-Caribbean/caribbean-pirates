@@ -56,7 +56,7 @@ router.delete('/users/:user_id/projects/:project_id', auth.authenticateToken, us
 // "User-Purchased"  =========================================*/
 // (Buy pattern, add to users owned pattern list)
 router.post('/users/:user_id/purchased/', auth.authenticateToken, userPurchased.addPurchasePattern);
-router.delete('/users/:user_id/purchased/', auth.authenticateToken, userPurchased.deletePurchasedPattern);
+router.delete('/users/:user_id/purchased/:pattern_id', auth.authenticateToken, userPurchased.deletePurchasedPattern);
 router.get('/users/:user_id/purchased/', auth.authenticateToken, userPurchased.findPurchasedPatterns);
 
 // SEARCH BAR ==================================

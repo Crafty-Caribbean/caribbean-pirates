@@ -5,7 +5,7 @@
   width: 10vw;
   max-width: 100px;
   max-height: 100px;
-  height: 10vh;
+  height: auto;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
 }
@@ -34,8 +34,25 @@
   border-top-right-radius: 0;
 }
 
+.startProgress2,
+.delete2 {
+  border-radius: 16px;
+  border: none;
+  background: none;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1vh;
+  height: 5vh;
+  outline: none;
+}
 .startProgress:hover,
 .delete:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.startProgress2:hover,
+.delete2:hover {
   cursor: pointer;
   background-color: #ddd;
 }

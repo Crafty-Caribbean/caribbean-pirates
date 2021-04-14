@@ -122,36 +122,36 @@ PatternCard.displayName = 'pattern-card';
 
 export default PatternCard;
 
-// PatternCard.propTypes = {
-//   cardWidth: PropTypes.null || PropTypes.string,
-//   imgSrc: PropTypes.string,
-//   progress: PropTypes.null || PropTypes.number,
-//   title: PropTypes.null || PropTypes.string,
-//   skillLevel: PropTypes.string,
-//   craftType: PropTypes.string,
-//   showTags: PropTypes.null || PropTypes.bool,
-//   id: PropTypes.number,
-//   user: PropTypes.null || PropTypes.number,
-//   name: PropTypes.string,
-//   showModal: PropTypes.func,
-//   price: PropTypes.null || PropTypes.string,
-//   forceUpdate: PropTypes.null || PropTypes.func,
-//   projectId: PropTypes.null || PropTypes.number,
-// };
+PatternCard.propTypes = {
+  cardWidth: PropTypes.null || PropTypes.string,
+  imgSrc: PropTypes.string,
+  progress: PropTypes.null || PropTypes.number,
+  title: PropTypes.null || PropTypes.string,
+  skillLevel: PropTypes.string,
+  craftType: PropTypes.string,
+  showTags: PropTypes.null || PropTypes.bool,
+  id: PropTypes.number,
+  user: PropTypes.null || PropTypes.number,
+  name: PropTypes.string,
+  showModal: PropTypes.func,
+  price: PropTypes.null || PropTypes.string,
+  forceUpdate: PropTypes.null || PropTypes.func,
+  projectId: PropTypes.null || PropTypes.number,
+};
 
-// PatternCard.defaultProps = {
-//   cardWidth: PropTypes.null,
-//   imgSrc: PropTypes.string,
-//   progress: PropTypes.null,
-//   title: PropTypes.null,
-//   skillLevel: PropTypes.string,
-//   craftType: PropTypes.string,
-//   showTags: PropTypes.null,
-//   id: PropTypes.number,
-//   user: PropTypes.null,
-//   name: PropTypes.string,
-//   showModal: PropTypes.func,
-//   price: PropTypes.null,
-//   forceUpdate: PropTypes.func,
-//   projectId: PropTypes.null,
-// };
+PatternCard.defaultProps = {
+  cardWidth: PropTypes.null,
+  imgSrc: PropTypes.string,
+  progress: PropTypes.null,
+  title: PropTypes.null,
+  skillLevel: PropTypes.string,
+  craftType: PropTypes.string,
+  showTags: PropTypes.null,
+  id: PropTypes.number,
+  user: PropTypes.null,
+  name: PropTypes.string,
+  showModal: PropTypes.func,
+  price: PropTypes.null,
+  forceUpdate: PropTypes.func,
+  projectId: PropTypes.null,
+};

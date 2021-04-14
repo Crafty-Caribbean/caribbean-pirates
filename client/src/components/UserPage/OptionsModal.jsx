@@ -13,8 +13,8 @@ const OptionsModal = ({
     role="button"
     tabIndex={0}
   >
-    {list === 'In Progress' ? null : <button type="button" className={styles.startProgress} onClick={() => initiateProgress(id)}> Start Project</button>}
-    {list === 'Favorites' ? null : <button type="button" className={styles.delete} onClick={() => removePatternCard(list, id, projectId)}>Delete</button>}
+    {list === 'In Progress' ? null : <button type="button" className={list === 'Favorites' ? styles.startProgress2 : styles.startProgress} onClick={() => initiateProgress(id)}> Start Project</button>}
+    {list === 'Favorites' ? null : <button type="button" className={list === 'In Progress' ? styles.delete2 : styles.delete} onClick={() => removePatternCard(list, id, projectId)}>Delete</button>}
   </div>
 );
 

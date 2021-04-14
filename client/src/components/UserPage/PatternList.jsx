@@ -73,20 +73,20 @@ const PatternList = ({
 
 export default PatternList;
 
-// PatternList.propTypes = {
-//   title: PropTypes.string,
-//   list: PropTypes.arrayOf(PropTypes.object),
-//   forceUpdate: PropTypes.func,
-//   setFavorited: PropTypes.func,
-//   user: PropTypes.number,
-//   showModal: PropTypes.func,
-// };
+PatternList.propTypes = {
+  title: PropTypes.string,
+  list: PropTypes.arrayOf(PropTypes.object),
+  forceUpdate: PropTypes.func,
+  setFavorited: PropTypes.func,
+  user: PropTypes.number,
+  showModal: PropTypes.func,
+};
 
-// PatternList.defaultProps = {
-//   title: PropTypes.string,
-//   list: PropTypes.arrayOf(PropTypes.object),
-//   forceUpdate: PropTypes.func,
-//   setFavorited: PropTypes.func,
-//   user: PropTypes.number,
-//   showModal: PropTypes.func,
-// };
+PatternList.defaultProps = {
+  title: PropTypes.string,
+  list: PropTypes.arrayOf(PropTypes.object),
+  forceUpdate: PropTypes.func,
+  setFavorited: PropTypes.func,
+  user: PropTypes.number,
+  showModal: PropTypes.func,
+};
