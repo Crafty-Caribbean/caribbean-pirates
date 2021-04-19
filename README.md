@@ -16,7 +16,7 @@ This web application allows crafters to discover and track patterns and find oth
 
 
   3. Home Page
-
+  ![alt text](https://i.imgur.com/3w0nPgT.png)
 
 
   4. Pattern Page
