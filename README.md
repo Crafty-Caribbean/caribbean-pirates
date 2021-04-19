@@ -43,6 +43,7 @@ This web application allows crafters to discover and track patterns and find oth
   5. Run ```npm run react-dev```
   6. Run ```npm run server-dev```
   7. run ```npm run auth-server-dev```
+  8. See website at localhost:3000
 
 
 ### Environment variables: 
