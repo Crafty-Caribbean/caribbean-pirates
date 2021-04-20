@@ -24,7 +24,7 @@ This web application allows crafters to discover and track patterns and find oth
 
 
   5. User and Author Page
-  ![Mikey-Perez-2021-04-19 17-03-37](https://user-images.githubusercontent.com/73146132/115318137-f58c1580-a131-11eb-8600-6ead6963ab85.gif)
+  ![User_Author_Page](https://user-images.githubusercontent.com/73146132/115321886-a944d380-a139-11eb-9a47-183aa4bc5abd.gif)
   
   
 
