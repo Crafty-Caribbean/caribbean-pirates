@@ -29,7 +29,7 @@ This web application allows crafters to discover and track patterns and find oth
   - Like patterns with the Heart Button
   - Start Projects, Track Pattern Progress or Delete patterns
   - Create by contributing your own pattern to the community
-  - Scroll through your patterns custom navigational buttons
+  - Scroll through your patterns with custom navigational buttons
   - User Profile pic and nickname displayed in center.
   - Add patterns or find patterns through the community using the + pattern card fillers.
 
