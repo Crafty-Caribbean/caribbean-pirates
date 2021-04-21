@@ -297,3 +297,32 @@ INSERT INTO public.user_projects(
 INSERT INTO public.user_projects(
 	user_id, pattern_id)
 	VALUES (5, 10);
+
+----  comments table ------------
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (1, 'ben', 'I love this');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (2, 'monica', 'So pretty!');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (3, 'gordon', 'It is good to sleep with');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (4, 'phil', 'Must buy');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (5, 'ronny', 'I want to make one!');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (6, 'ika', 'Time to start this project');
+
+INSERT INTO public.comments(
+	pattern_id, username, content)
+	VALUES (7, 'mikey', 'My girlfriend loves this one');
