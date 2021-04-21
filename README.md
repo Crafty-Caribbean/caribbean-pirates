@@ -16,7 +16,7 @@ This web application allows crafters to discover and track patterns and find oth
 
 
   3. Home Page
-
+  ![Home Page](https://i.imgur.com/3w0nPgT.png)
 
 
   4. Pattern Page
@@ -24,7 +24,14 @@ This web application allows crafters to discover and track patterns and find oth
 
 
   5. User and Author Page
-
+  ![User_Author_Page](https://user-images.githubusercontent.com/73146132/115321886-a944d380-a139-11eb-9a47-183aa4bc5abd.gif)
+  
+  - Like patterns with the Heart Button
+  - Start Projects, Track Pattern Progress or Delete patterns
+  - Create by contributing your own pattern to the community
+  - Scroll through your patterns with custom navigational buttons
+  - User Profile pic and nickname displayed in center.
+  - Add patterns or find patterns through the community using the + pattern card fillers.
 
 
   6. Database
@@ -42,7 +49,8 @@ This web application allows crafters to discover and track patterns and find oth
   4. Add environment variables
   5. Run ```npm run react-dev```
   6. Run ```npm run server-dev```
-  7. run ```npm run auth-server-dev```
+  7. Run ```npm run auth-server-dev```
+  8. See website at localhost:3000
 
 
 ### Environment variables: 
