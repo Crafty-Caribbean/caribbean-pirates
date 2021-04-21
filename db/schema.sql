@@ -29,14 +29,14 @@ CREATE TABLE patterns (
   likes INT NOT NULL DEFAULT 0,
   reported BOOLEAN NOT NULL DEFAULT 'false',
   purchased_times INT NOT NULL DEFAULT 0,
-  images TEXT[5] NOT NULL,
+  images TEXT[6] NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	deleted BOOLEAN NOT NULL DEFAULT 'false',
   FOREIGN KEY (author_id)
   REFERENCES users(id)
 );
 
-DROP TABLE IF EXISTS comments
+DROP TABLE IF EXISTS comments;
 CREATE TABLE comments (
 	id INT DEFAULT nextval('comments_id_seq') NOT NULL PRIMARY KEY,
 	pattern_id INT NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE comments (
 	content VARCHAR(1400) NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (pattern_id) REFERENCES patterns(id)
-)
+);
 
 DROP TABLE IF EXISTS user_projects;
 CREATE TABLE user_projects (
@@ -54,6 +54,7 @@ CREATE TABLE user_projects (
   progress INT NOT NULL DEFAULT 0,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   completed_at TIMESTAMP DEFAULT NULL,
+  deleted BOOLEAN NOT NULL DEFAULT 'false',
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (pattern_id) REFERENCES patterns(id)
 );
@@ -73,6 +74,7 @@ CREATE TABLE user_purchased (
   user_id INT NOT NULL,
   pattern_id INT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted BOOLEAN NOT NULL DEFAULT 'false',
   PRIMARY KEY (user_id, pattern_id),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (pattern_id) REFERENCES patterns(id)
