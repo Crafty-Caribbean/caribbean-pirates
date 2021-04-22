@@ -2,7 +2,9 @@
 
 ## Overview
 
-This web application allows crafters to discover and track patterns and find other creators.
+This web application was created to mimic the novelty fortune-telling magic 8 ball. In addition to providing answers to yes or no questions, this app also displays trending gifs and allows users to search keywords for more specific gifs.
+
+• 
 
 
 ## Features
