@@ -7,7 +7,7 @@
 .searchContainer {
   position: relative;
   display: grid;
-  grid-template-columns: auto 50px;
+  grid-template-columns: auto 80px;
   align-content: center;
   height: 80px;
   width: auto;
@@ -17,7 +17,7 @@
 .searchIcon:hover,
 .searchIcon:focus {
   outline: none;
-  justify-self: start;
+  justify-self: center;
   align-self: center;
   cursor: pointer;
   color: white;
@@ -29,7 +29,7 @@
   border-radius: 50%;
   width: 25px;
   height: 25px;
-  justify-content: center;
+  justify-self: center;
   align-content: center;
   border: solid 10px white;
 }
