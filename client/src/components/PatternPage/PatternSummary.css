@@ -153,3 +153,10 @@
   background-position: right;
   box-shadow: 2px 2px 7px 1px #EBEBEB;
 }
+
+@media (max-width: 950px) {
+  .patternSummaryContainer {
+    width: unset;
+    /* max-height: 60vh; */
+  }
+}

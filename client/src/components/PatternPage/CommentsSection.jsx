@@ -26,6 +26,9 @@ const CommentsList = ({ comments }) => {
   return (
     <div className={`${styles.commentTiles} ${tileClass}`} ref={commentListEl}>
       {
+        (comments.length === 0) && 'Be the first the leave a comment!'
+      }
+      {
         comments.map((comment) => (
           <CommentTiles key={comment.id} comment={comment} />
         ))

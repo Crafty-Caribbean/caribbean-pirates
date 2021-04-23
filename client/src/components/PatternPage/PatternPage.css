@@ -64,3 +64,24 @@
   border-radius: 32px 0px 0px 32px;
   background-color: red;
 }
+
+
+@media (min-width: 1100px) {
+
+  .patternDetailCard {
+    max-height: 700px;
+    max-width: 1100px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .patternDetailCard {
+    flex-direction: column;
+    width: unset;
+  }
+  .patternSummary {
+    width: unset;
+    min-height: unset;
+  }
+}
