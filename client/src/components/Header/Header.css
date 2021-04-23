@@ -4,6 +4,7 @@
   top: 0px;
   height: 100px;
   grid-template-columns: 90px 170px auto 150px 250px;
+  /* grid-template-columns: 1fr 2fr 8fr 1fr 2fr; */
   background-color: white;
   opacity: 0.975;
   margin: 10px 0px;
@@ -163,4 +164,113 @@ a.profileLink {
   box-shadow: 2px 2px 7px 1px #EBEBEB;
   border-radius: 50px;
   background-color: #EBEBEB;
+}
+
+@media screen and (max-width: 1050px) {
+  .header {
+    display: none;
+  }
+
+  .header {
+    display: grid;
+    position: sticky;
+    top: 0px;
+    height: 100px;
+    grid-template-columns: 90px 170px auto 150px 0px;
+    background-color: white;
+    opacity: 0.975;
+    margin: 10px 0px;
+    align-content: center;
+    z-index: 15;
+  }
+
+  .profileIcon,
+  .loginButton,
+  .logoutButton {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .header {
+    display: none;
+  }
+
+  .header {
+    display: grid;
+    position: sticky;
+    top: 0px;
+    height: 100px;
+    grid-template-columns: 90px auto 0px 100px 0px;
+    background-color: white;
+    opacity: 0.975;
+    margin: 10px 0px;
+    align-content: center;
+    z-index: 15;
+  }
+
+  .profileIcon,
+  .loginButton,
+  .logoutButton,
+  .logoName,
+  .logoNameText {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    display: none;
+  }
+
+  .header {
+    display: grid;
+    position: sticky;
+    top: 0px;
+    height: 100px;
+    grid-template-columns: 90px auto 0px 0px 0px;
+    background-color: white;
+    opacity: 0.975;
+    margin: 10px 0px;
+    align-content: center;
+    z-index: 15;
+  }
+
+  .profileIcon,
+  .loginButton,
+  .logoutButton,
+  .logoName,
+  .logoNameText,
+  .homeButton {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .header {
+    display: none;
+  }
+
+  .header {
+    display: grid;
+    position: sticky;
+    top: 0px;
+    height: 100px;
+    grid-template-columns: 0px 100% 0px 0px 0px;
+    background-color: white;
+    opacity: 0.975;
+    margin: 10px 0px;
+    align-content: center;
+    z-index: 15;
+  }
+
+  .profileIcon,
+  .loginButton,
+  .logoutButton,
+  .logoName,
+  .logoNameText,
+  .homeButton,
+  .logoImage {
+    display: none;
+  }
 }
