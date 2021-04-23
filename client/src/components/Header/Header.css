@@ -4,7 +4,6 @@
   top: 0px;
   height: 100px;
   grid-template-columns: 90px 170px auto 150px 250px;
-  /* grid-template-columns: 1fr 2fr 8fr 1fr 2fr; */
   background-color: white;
   opacity: 0.975;
   margin: 10px 0px;
@@ -76,10 +75,6 @@
   text-decoration: none;
   text-align: center;
 }
-
-/* .loginButton {
-  justify-self: start;
-} */
 
 .homeButton {
   width: 80%;
@@ -272,5 +267,12 @@ a.profileLink {
   .homeButton,
   .logoImage {
     display: none;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  .logoImage {
+    display: grid;
+    left: 17px;
   }
 }
