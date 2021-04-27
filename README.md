@@ -22,19 +22,19 @@ This web application allows crafters to discover and track patterns and find oth
   4. Pattern Page
   ![Imgur](https://i.imgur.com/2MhY5J6.png)
   Image gallery with selectable thumbnails
-  ![Imgur](https://i.imgur.com/CNjunbV.gifv)
+  ![Imgur](https://i.imgur.com/CNjunbV.gif)
   Display information based on tab selected
-  ![Imgur](https://i.imgur.com/hq9YDyu.gifv)
+  ![Imgur](https://i.imgur.com/hq9YDyu.gif)
   Can post comments as anonymous when not logged in
-  ![Imgur](https://i.imgur.com/7SjnTIG.gifv)
+  ![Imgur](https://i.imgur.com/7SjnTIG.gif)
   Can post comments under a username when logged in
-  ![Imgur](https://i.imgur.com/o3u5nd7.gifv)
+  ![Imgur](https://i.imgur.com/o3u5nd7.gif)
   Can favorite and unfavorite patterns when logged in
-  ![Imgur](https://i.imgur.com/F8h3PcS.gifv)
+  ![Imgur](https://i.imgur.com/F8h3PcS.gif)
   Can purchase the pattern when logged in
-  ![Imgur](https://i.imgur.com/d0LgyRP.gifv)
+  ![Imgur](https://i.imgur.com/d0LgyRP.gif)
   Goes to the author's user page when clicking the author's name
-  ![Imgur](https://i.imgur.com/ZqSIyrv.gifv)
+  ![Imgur](https://i.imgur.com/ZqSIyrv.gif)
 
 
 
