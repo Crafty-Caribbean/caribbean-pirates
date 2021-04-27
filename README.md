@@ -7,19 +7,19 @@ This web application allows crafters to discover and track patterns and find oth
 
 ## Features
 
-  1. Header
+  1. **Header**
 
 
 
-  2. Search Bar and Suggestions
+  2. **Search Bar and Suggestions**
 
 
 
-  3. Home Page
+  3. **Home Page**
   ![Home Page](https://i.imgur.com/3w0nPgT.png)
 
 
-  4. Pattern Page
+  4. **Pattern Page**
      ![Imgur](https://i.imgur.com/2MhY5J6.png)
 
      Image gallery with selectable thumbnails
@@ -52,7 +52,7 @@ This web application allows crafters to discover and track patterns and find oth
 
 
 
-  5. User and Author Page
+  5. **User and Author Page**
 
      ![User_Author_Page](https://user-images.githubusercontent.com/73146132/115321886-a944d380-a139-11eb-9a47-183aa4bc5abd.gif)
   
@@ -64,11 +64,11 @@ This web application allows crafters to discover and track patterns and find oth
   - Add patterns or find patterns through the community using the + pattern card fillers.
 
 
-  6. Database
+  6. **Database**
 
 
 
-  7. Servers
+  7. **Servers**
 
 
 ## Installation
