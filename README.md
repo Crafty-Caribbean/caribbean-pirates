@@ -8,12 +8,12 @@ This web application allows crafters to discover and track patterns and find oth
 ## Features
 
   1. **Header**
-  <img width="1777" alt="StitchSaverHeader" src="https://user-images.githubusercontent.com/69405223/116590143-45a56d80-a8d2-11eb-85e1-99a3256e0578.png">
+    <img width="1777" alt="StitchSaverHeader" src="https://user-images.githubusercontent.com/69405223/116590143-45a56d80-a8d2-11eb-85e1-99a3256e0578.png">
 
 
 
   2. **Search Bar and Suggestions**
-  <img width="1485" alt="StitchSaver Search Suggestions" src="https://user-images.githubusercontent.com/69405223/116589752-d2036080-a8d1-11eb-894e-8b620d5318e2.png">
+    <img width="1485" alt="StitchSaver Search Suggestions" src="https://user-images.githubusercontent.com/69405223/116589752-d2036080-a8d1-11eb-894e-8b620d5318e2.png">
 
 
 
